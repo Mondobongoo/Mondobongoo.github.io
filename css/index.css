@@ -1461,6 +1461,7 @@ a {
   -o-transition: all 0.2s;
   -ms-transition: all 0.2s;
   transition: all 0.2s;
+  word-break: break-all;
 }
 a:hover {
   color: #49b1f5;
