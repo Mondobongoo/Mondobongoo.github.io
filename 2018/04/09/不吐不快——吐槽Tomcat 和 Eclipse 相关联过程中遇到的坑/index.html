@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="不吐不快——吐槽Tomcat与Eclipse相关联过程中遇到的坑"><meta name="keywords" content=""><meta name="author" content="Mondobongo,undefined"><meta name="copyright" content="Mondobongo"><title>不吐不快——吐槽Tomcat与Eclipse相关联过程中遇到的坑 | Mondobongo's Blog</title><link rel="shortcut icon" href="http://owqr4khb7.bkt.clouddn.com/favicon.png"><link rel="stylesheet" href="/css/index.css?version=1.5.6"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css?version=1.5.6"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/gh/upupming/gitalk@36368e5dffd049e956cdbbd751ff96c28d8255cf/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="http://owqr4khb7.bkt.clouddn.com/avatar2.png"></div><div class="author-info__name text-center">Mondobongo</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">11</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">4</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">2</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container" style="background-image: url(true)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Mondobongo's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a><a class="site-page" href="/about">About</a></span></div><div id="post-info"><div id="post-title">不吐不快——吐槽Tomcat与Eclipse相关联过程中遇到的坑</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-09</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/随笔/">随笔</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>磕磕绊绊花了一两个小时总算在eclipse里把Tomcat配置好了</p>
+<p>墙裂吐槽一下其中很多时间花费在等待下载安装eclipse及插件上了，动不动就40、50kb/s是什么鬼啊</p>
+<a id="more"></a>
+<p>​                                                 </p>
+<p>首先要选择菜单栏Windows–&gt;preferences，找到其中的Server项</p>
+<p>结果却发现我的eclipse没有server这一栏？？？</p>
+<p>​                                                                      </p>
+<p>查了半天，发现是要装一个插件，好吧那就装吧</p>
+<p>装完之后，好了，server有了</p>
+<p>进入之后选择Tomcat的版本，最高版本只有7.0？？</p>
+<p>可我明明装的是9.0啊？？？</p>
+<p>又查查查，试了很多种方法，安装了插件发现也没有任何作用，可供选择的版本最高还是7.0</p>
+<p>​                                                       </p>
+<p>过了好一会儿，才知道好像是eclipse的版本装错了……</p>
+<p>在安装eclipse时有很多版本可供选择，因为 一开始在学Java的基础语法，所以当时我选择的是第一个最普通的JavaSE版本</p>
+<p>而进行JSP开发需要选择第二个JavaEE版的</p>
+<p>​                                                                    </p>
+<p>好吧，删除了现有版本又重新开始安装</p>
+<p>安装完成后，打开eclipse，选择一个workspace</p>
+<p>因为比较懒，所以没有新建一个文件夹，而是选择了原版本eclipse创建的一个workspace</p>
+<p>​                                                             </p>
+<p>进去之后，一切顺利，server也有了，Tomcat最高版本也是9.0</p>
+<p>正当我欢欣鼓舞之时，却突然发现……</p>
+<p>在File–&gt;New里找不到Dynamic Web Project？？？</p>
+<p>什么鬼？？？环境都配置好了，连创建新项目的机会都不给？？？</p>
+<p>瞬间崩溃……</p>
+<p>​                                                                         </p>
+<p>正当我百思不得其解抓耳挠腮之时，突然灵光一闪</p>
+<p>想到是不是跟最初选择的workspace有关呢？</p>
+<p>因为我们可以清楚的看到，新建了一个workspace之后，即使没有进行任何操作</p>
+<p>那个文件夹里也会出现名为 <code>.metadata</code>  、  <code>RemoteSystemsTempFiles</code> 的默认初始化文件夹</p>
+<p>是不是这些文件夹影响到了eclipse的配置呢？</p>
+<p>​                                                                  </p>
+<p>于是重新打开eclipse，创建了一个新的文件夹作为workspace</p>
+<p>点开File–&gt;New</p>
+<p>终于！！！出现了Dynamic Web Project 选项！！！</p>
+<p>啊……总算松了一口气</p>
+<p>整个人葛优瘫在椅子上……</p>
+<p>​                                                                            </p>
+<p>细细回想，也多亏了当时突然迸发出的想法，才能摆脱这种连续不断的困境</p>
+<p>这种完全依靠以往的经验以及各种胡思乱想而在一瞬间得出的想法，真是太奇妙了……</p>
+<p>​                                                    </p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Mondobongo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://mondobongoo.github.io/2018/04/09/不吐不快——吐槽Tomcat 和 Eclipse 相关联过程中遇到的坑/">https://mondobongoo.github.io/2018/04/09/不吐不快——吐槽Tomcat 和 Eclipse 相关联过程中遇到的坑/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mondobongoo.github.io" target="_blank">Mondobongo's Blog</a>！</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/04/25/记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程/"><i class="fa fa-chevron-left">  </i><span>记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程</span></a></div><div class="next-post pull-right"><a href="/2017/10/18/汇编语言环境搭建-输出-Hello-World/"><span>汇编语言环境搭建&amp;&amp;输出'Hello World'</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: 'dc0408e3f733cb37ebbb',
+  clientSecret: '6552104f2c597f889f315950b33aeeb49cb2d9f4',
+  repo: 'mondobongoo.github.io',
+  owner: 'mondobongoo',
+  admin: 'mondobongoo',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2017 - 2018 By Mondobongo</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">鲜衣怒马少年时<i class="fa fa-heart animated infinite pulse"></i></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.5.6"></script><script src="/js/fancybox.js?version=1.5.6"></script><script src="/js/sidebar.js?version=1.5.6"></script><script src="/js/copy.js?version=1.5.6"></script><script src="/js/fireworks.js?version=1.5.6"></script><script src="/js/transition.js?version=1.5.6"></script><script src="/js/scroll.js?version=1.5.6"></script><script src="/js/head.js?version=1.5.6"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
