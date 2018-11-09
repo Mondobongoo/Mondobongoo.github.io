@@ -13,7 +13,7 @@
 <a id="more"></a>
 <h2 id="一、搭建汇编环境"><a href="#一、搭建汇编环境" class="headerlink" title="一、搭建汇编环境"></a>一、搭建汇编环境</h2><p><strong>首先说明一点，为什么要这样大费周章地搭建环境？像教材一样通过“运行”直接打开dos命令窗口进行相关操作不就行了吗？</strong></p>
 <p>——因为教材所教授的内容是在16位操作系统下运行的，而在现如今普遍是win10 64位的系统下，由于兼容性问题会无法运行，如图</p>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171024215426.jpg" alt=""></p>
+<p><img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/fckBwqXodG8APzvAA3iRiUH1zFFawxUQivFKyGN7u.I!/b/dDcBAAAAAAAA&amp;bo=AAQ2AgAENgIRGS4!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <p>再者，Windows xp 系统自带debug.exe，但在不断的系统更迭之中，很多东西都被淘汰掉了。</p>
 <p>目前在win10中已经不再自带debug.exe</p>
 <p>在学校机房的xp系统下，通过“运行”打开dos窗口，直接输入debug，即可显示出相关内容。</p>
@@ -36,14 +36,14 @@
 <p>(实际上我发现好像并不需要这个ML.ERR文件，但是我记得在前几次搭建环境的过程中有提示缺少这个文件……玄学问题)</p>
 <p>(以上所列举的核心文件基本上覆盖了大部分需要的功能，或许会有遗漏，如果运行过程中系统提示缺少某个文件，找到并复制粘贴过来就好)</p>
 <h2 id="二、如何输出Hello-World！"><a href="#二、如何输出Hello-World！" class="headerlink" title="二、如何输出Hello World！"></a>二、如何输出Hello World！</h2><h3 id="前期工作"><a href="#前期工作" class="headerlink" title="前期工作"></a>前期工作</h3><p>打开桌面上的DOSBox，这时会弹出两个窗口，我们的主要操作在前面的小窗口进行，但后面的窗口不要关闭</p>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20171018011225.png" alt="窗口"></p>
+<p><img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/R08tjnfiloQjjj0ah9VZCVth5Xox2oi2tknO4GCzXPc!/b/dDQBAAAAAAAA&amp;bo=5QNHAuUDRwIDGTw!&amp;rf=viewer_4&amp;t=5" alt="窗口"></p>
 <p><strong>（以下命令的拼写忽略大小写）</strong></p>
 <p>此时的盘符Z表示的是虚拟硬盘，我们需要用mount命令更改DOSBox的映射指向，指向你创建的文件夹</p>
 <p>输入</p>
 <p><code>mount c e:\assemblylanguage</code>    回车</p>
 <p>若出现语句出现Drive C is mounted as local directory e:\assemblylanguage\ </p>
 <p>表明映射成功 </p>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20171018012828.png" alt="映射"></p>
+<p><img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/KtXZhkB0kFwdf4TAUHr87IzHNrMRL4kF.q308ugluBs!/b/dDQBAAAAAAAA&amp;bo=2QNDAtkDQwIDGTw!&amp;rf=viewer_4&amp;t=5" alt="映射"></p>
 <p>我知道可能你会说</p>
 <blockquote>
 <p>啊~ <del>我好懒啊</del>不想每一次打开都要输一行字映射一遍……<br>那么，有没有一款产品……啊不对，有没有一种方法可以让它自动映射呢？</p>
@@ -52,37 +52,37 @@
 <p> 打开DOSBOX的安装根目录（默认安装路径：C:\Program Files\DOSBox-0.74；若是32位的系统，则默认安装路径：C:\Program Files (x86)\DOSBox-0.74），双击文件DOSBox 0.74 Options.bat，运行该批处理文件后系统会用文本文档Notepad打开配置文件dosbox-0.74.conf。</p>
 <p>将光标定位到dosbox-0.74.conf文件的[autoexec]节点（一般在该文件末尾），在文件中添加以下内容：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOUNT C E:\AssemblyLanguage                  # 将目录E:\AssemblyLanguage挂载为DOSBOX下的C:</span><br><span class="line"><span class="built_in">set</span> PATH=$PATH$;E:\AssemblyLanguage          # 将E:\AssemblyLanguage写入环境变量PATH中</span><br></pre></td></tr></table></figure>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20171018014114.png" alt=""></p>
+<p><img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/5BwmUHHT1wjqtdoRsV1QVlttwnf3Xsjqx98TambHeh4!/b/dFUAAAAAAAAA&amp;bo=.gLPAfoCzwEDGTw!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <p>再次打开DOSBox后，就会发现最前面几行<strong>自动显示</strong>有</p>
 <p>Z:>MOUNT C E:\AssemblyLanguage</p>
 <p>Drive C is mounted as local directory E:\AssemblyLanguage\</p>
-<p>等字样，表明已经映射成功<img src="http://owqr4khb7.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20171018014809.png" alt=""></p>
+<p>等字样，表明已经映射成功<img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/GjYqLlFq46soQopj..NhOZnRq3MnQL7ik6o7iD13tnY!/b/dDcBAAAAAAAA&amp;bo=0QM8AtEDPAIDGTw!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <p>然后，输入dos命令<code>c:</code>更改盘符，进入虚拟盘C：这个虚拟盘C就是刚才创建的文件夹AssemblyLanguage</p>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20171018015419.png" alt=""></p>
+<p><img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/F5F9kszartZfqZ.WgVXYN6tMM.2uynKRwrORyVIsBmU!/b/dDYBAAAAAAAA&amp;bo=UgE4AFIBOAADGTw!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <p>嘿嘿嘿，接下来就动起你们灵巧的手指，开始汇编语言程序设计吧~</p>
 <h3 id="1-建立ASM源程序文件"><a href="#1-建立ASM源程序文件" class="headerlink" title="1.建立ASM源程序文件"></a>1.建立ASM源程序文件</h3><p>运行DOSBOX，在命令符C:>下输入命令：<code>edit 文件名.asm</code> ，启动EDIT.EXE进入代码编辑状态</p>
 <p>进入界面后光标可能会消失 按快捷键 ctrl+alt+del(小数点) 调出任务管理器即可 </p>
 <p>输入以下代码</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">data segment</span><br><span class="line">     string db 'Hello World!$'</span><br><span class="line">data ends</span><br><span class="line">code segment</span><br><span class="line">main proc far</span><br><span class="line">     assume cs:code,ds:data</span><br><span class="line">     start:</span><br><span class="line">          mov ax,data</span><br><span class="line">          mov ds,ax</span><br><span class="line">          mov dx,offset <span class="built_in">string</span></span><br><span class="line">          mov ah,<span class="number">9</span></span><br><span class="line">          <span class="keyword">int</span> <span class="number">21</span>h</span><br><span class="line">          mov ah,<span class="number">4</span>ch</span><br><span class="line">          <span class="keyword">int</span> <span class="number">21</span>h</span><br><span class="line">main endp</span><br><span class="line">code ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20171018132051.png" alt=""></p>
+<p><img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/uqgb2DspzzLNCgPBfKi6Bk0R4vGssq5hy4Z2hJJBFi0!/b/dFQBAAAAAAAA&amp;bo=1AM3AtQDNwIDGTw!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <p>保存源文件并退出编辑：FILE-&gt;SAVE AS…&gt;FileName:hello.asm&gt;enter</p>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171018133346.png" alt=""></p>
+<p><img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/VXxB5gIfm79zFPpF9jgfxVoeLYngjJUwLbUToLhAWF8!/b/dDQBAAAAAAAA&amp;bo=1AM9AtQDPQIDGTw!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <p>这时，你所创建的文件夹里会多出一个HELLO.ASM文件</p>
 <blockquote>
 <p>其实，虽然这样创建源文件可以体会到上古时代程序员编程的感觉，但相对而言还是略繁琐。在此墙！裂！推！荐！另外一种做法——在你所创建的文件夹里新建一个.txt后缀记事本文件，打开输入代码，保存退出，然后重命名把后缀txt改成asm，即可达到同样的效果</p>
 </blockquote>
 <h3 id="2-编译HELLO-ASM-生成-OBJ文件"><a href="#2-编译HELLO-ASM-生成-OBJ文件" class="headerlink" title="2.编译HELLO.ASM,生成.OBJ文件"></a>2.编译HELLO.ASM,生成.OBJ文件</h3><p>输入命令：<code>MASM 文件名.asm</code>生成目标文件文件名.OBJ</p>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171018134512.png" alt=""></p>
+<p><img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/QS8xAJlB75N.*EhU6z.CW*Gu8.cRnd9XGtcWM1N.Xsg!/b/dDUBAAAAAAAA&amp;bo=hgKtAYYCrQEDGTw!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <p>之后就可以看到文件夹会新生成出一个HELLO.OBJ文件</p>
 <h3 id="3-链接生成-exe文件"><a href="#3-链接生成-exe文件" class="headerlink" title="3.链接生成.exe文件"></a>3.链接生成.exe文件</h3><p>输入命令：<code>LINK 文件名.OBJ</code>，链接生成可执行文件文件名.EXE</p>
 <p>然后一直按回车直到不再生成新的语句</p>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20171018135002.png" alt=""></p>
+<p><img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/8Cf7K8i8dlK1Y5gUKQzC*4OaGw5YbDZ5nv*jbJnJnNA!/b/dDABAAAAAAAA&amp;bo=BALBAAQCwQADGTw!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <p>文件夹中已生成HELLO.EXE文件</p>
 <h3 id="4-执行exe文件"><a href="#4-执行exe文件" class="headerlink" title="4.执行exe文件"></a>4.执行exe文件</h3><p>输入命令：<code>HELLO.EXE</code> 执行文件可以看到在屏幕上显示:Hello World!</p>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20171018135339.png" alt=""></p>
+<p><img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/*mDJfFuEps0*2FmqOAMspLV9SizLFXywifddt7PW594!/b/dDEBAAAAAAAA&amp;bo=mAA1AJgANQADGTw!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <h3 id="5-DEBUG"><a href="#5-DEBUG" class="headerlink" title="5.DEBUG"></a>5.DEBUG</h3><p>输入命令：<code>EBUG 文件名.EXE</code>，在DEBUG的命令提示符“-”出现后开始调试</p>
 <p>输入<code>r</code>查看程序运行前的寄存器组初始值</p>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20171018135714.png" alt=""></p>
+<p><img src="http://m.qpic.cn/psb?/V138MMQ83qT5pq/by.NN7WCSF6Xap3U1MbBiG*RFl7tXTSVuDh2pHNoqsM!/b/dFMBAAAAAAAA&amp;bo=UwJtAFMCbQADGTw!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <p>其他命令同理</p>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=444323322&auto=1&height=32"></iframe></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Mondobongo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://mondobongoo.github.io/2017/10/18/汇编语言环境搭建-输出-Hello-World/">https://mondobongoo.github.io/2017/10/18/汇编语言环境搭建-输出-Hello-World/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mondobongoo.github.io" target="_blank">Mondobongo's Blog</a>！</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/04/09/不吐不快——吐槽Tomcat 和 Eclipse 相关联过程中遇到的坑/"><i class="fa fa-chevron-left">  </i><span>不吐不快——吐槽Tomcat与Eclipse相关联过程中遇到的坑</span></a></div><div class="next-post pull-right"><a href="/2017/10/01/废话一箩筐/"><span>废话一箩筐</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
   clientID: 'dc0408e3f733cb37ebbb',
