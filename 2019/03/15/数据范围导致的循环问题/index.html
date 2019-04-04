@@ -17,7 +17,7 @@
 <p>解决方法是每一个50000后加一个字母l，表明是 long 数据类型，即 50000l</p>
 <p>修改之后更有趣了，不会只循环一次，但是陷入了死循环…</p>
 <p>后来才发现<code>2*ans*ans</code> 是不可能超过<code>50000*50000</code> 的，因为ans本身也是int类型</p>
-<p>所以最后把ans改为int类型，代码便可以正常运行了</p>
+<p>所以最后把ans改为long类型，代码便可以正常运行了</p>
 </div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Mondobongo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://mondobongoo.github.io/2019/03/15/数据范围导致的循环问题/">https://mondobongoo.github.io/2019/03/15/数据范围导致的循环问题/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mondobongoo.github.io" target="_blank">Mondobongo's Blog</a>！</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="next-post pull-right"><a href="/2018/11/01/修改hexo字体大小与文字溢出边框问题/"><span>修改hexo字体大小与CSS文字溢出边框问题</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
   clientID: 'dc0408e3f733cb37ebbb',
   clientSecret: '6552104f2c597f889f315950b33aeeb49cb2d9f4',
