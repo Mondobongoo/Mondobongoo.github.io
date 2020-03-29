@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mondobongo's Blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+
+
+  <meta name="subtitle" content="最是人间留不住，朱颜辞镜花辞树">
+
+
+
+
+  <meta name="keywords" content="图论, nlvi" />
+
+
+<link rel="apple-touch-startup-image" media="(device-width: 375px)" href="assets/apple-launch-1125x2436.png">
+<link rel="apple-touch-startup-image" media="(orientation: landscape)" href="assets/apple-touch-startup-image-2048x1496.png">
+<link rel="stylesheet" href="/style/style.css">
+<script>
+  var nlviconfig = {
+    title: "Mondobongo's Blog",
+    author: "Mondobongo",
+    baseUrl: "/",
+    theme: {
+      scheme: "",
+      lightbox: ,
+      animate: ,
+      search: false,
+      friends: false,
+      reward: false,
+      pjax: false,
+      lazy: false,
+      toc: false
+    }
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+@font-face {
+  font-family: "Allura";
+  src: url('/font/allura/allura.ttf');
+}
+</style>
+
+  <title> 对克鲁斯卡尔算法的深度理解 · Mondobongo's Blog </title>
+</head>
+<body>
+  <div class="container">
+    <header class="header" id="header">
+  <div class="header-wrapper">
+    <div class="logo">
+  <div class="logo-inner syuanpi tvIn" style="display:none;">
+    <h1><a href="/">Mondobongo's Blog</a></h1>
+    
+      <span id="subtitle">最是人间留不住，朱颜辞镜花辞树</span>
+    
+  </div>
+</div>
+
+    <nav class="main-nav">
+  
+</nav>
+
+  </div>
+</header>
+<div class="mobile-header" id="mobile-header">
+  <div class="mobile-header-nav">
+    <div class="mobile-header-item" id="mobile-left">
+      <div class="header-menu-item">
+        <div class="header-menu-line"></div>
+      </div>
+    </div>
+    <h1 class="mobile-header-title">
+      <a href="/">Mondobongo's Blog</a>
+    </h1>
+    <div class="mobile-header-item"></div>
+  </div>
+  <div class="mobile-header-body">
+    <ul class="mobile-header-list">
+      
+    </ul>
+  </div>
+</div>
+
+
+
+    <div class="container-inner" style="display:none;">
+      <main class="main" id="main">
+        <div class="main-wrapper">
+          
+    
+  
+  <article class="
+  post
+   is_post 
+  ">
+    <header class="post-header">
+      <div class="post-time syuanpi fadeInRightShort back-1">
+        <div class="post-time-wrapper">
+          
+          <time>2017-08-19</time>
+          
+            
+              <span class="post-category"><a href="/categories/ACM/">ACM</a></span>
+            
+          
+        </div>
+      </div>
+      <h2 class="post-title syuanpi fadeInRightShort back-2">
+        
+          对克鲁斯卡尔算法的深度理解
+        
+      </h2>
+    </header>
+    <div class="post-content syuanpi fadeInRightShort back-3">
+      
+        <p>之前对于克鲁斯卡尔算法的学习我只是草草地翻阅了《大话数据结构》的内容，也就会在纸上手动画一下用它来实现最小生成树的过程，至于算法的代码并没有认真去理解，而用到它的时候也只是对着书上的模板敲一敲。</p>
+<a id="more"></a>
+<p>暑期集训的时候正好出了一道<a href="https://vjudge.net/problem/HihoCoder-1098" target="_blank" rel="noopener">克鲁斯卡尔的模板题</a>，我心中暗喜，摩拳擦掌，三下五除二地把模板敲上去，静静地等待Accepted：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>//构造边集数组的元素类型</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> begin;</span><br><span class="line">    <span class="keyword">int</span> end;</span><br><span class="line">    <span class="keyword">int</span> weight;</span><br><span class="line">&#125;Edge;</span><br><span class="line"></span><br><span class="line">Edge edges[<span class="number">1000005</span>];</span><br><span class="line"><span class="keyword">int</span> parent[<span class="number">1000005</span>];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(Edge a, Edge b)</span><span class="comment">//快速排序的条件</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.weight &lt; b.weight;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> f)</span><span class="comment">//寻找根节点</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(parent[f]&gt;<span class="number">0</span>)</span><br><span class="line">        f=parent[f];</span><br><span class="line">    <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Kruskal</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    sort(edges,edges+m,cmp);<span class="comment">//对边集数组按权值由小到大排序</span></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;++i) parent[i]=<span class="number">0</span>;<span class="comment">//初始化parent数组</span></span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        x=Find(edges[i].begin);<span class="comment">//寻找边edges[i]的“首节点”所在树的树根</span></span><br><span class="line">        y=Find(edges[i].end);  <span class="comment">//寻找边edges[i]的“尾节点”所在树的树根</span></span><br><span class="line">        <span class="keyword">if</span>(x!=y)               <span class="comment">//假如x与y不等，说明两个顶点不在一棵树内，因此这条边的加入不会使已经选择的边集产生回路</span></span><br><span class="line">        &#123;</span><br><span class="line">            parent[x]=y;</span><br><span class="line">            sum+=edges[i].weight;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;edges[i].begin,&amp;edges[i].end,&amp;edges[i].weight);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,Kruskal());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然而评测姬反馈给我的却是Time Limit Exceeded……QAQ</p>
+<p>苦思冥想了一会儿，还是没有什么头绪，就去百度了一下别人克鲁斯卡尔的算法是怎么写的。</p>
+<p>仔细对比了一下我与他人代码的差别，大致上都一样，但对于用parent数组寻找根节点的处理却有所不同。</p>
+<p>我是按照《大话》提供的代码写的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;++i) parent[i]=<span class="number">0</span>;<span class="comment">//初始化</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(parent[f]&gt;<span class="number">0</span>)</span><br><span class="line">        f=parent[f];</span><br><span class="line">    <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其他人多是这样写的：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)  parent[i]=i;<span class="comment">//初始化</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(parent[f]!=f)</span><br><span class="line">        parent[f]=Find(parent[f]);</span><br><span class="line">    <span class="keyword">return</span> parent[f];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>虽然形式有所不同，可是看上去貌似没什么差别呀……（原谅我太菜了）</p>
+<p>难道这就是超时的问题所在？我把这一部分改了一下，提交，果然就AC了。</p>
+<p>问了问dalao们，他们给的答复就是：第一种写法没有进行<strong>路径压缩</strong> ，所以肯定会超时。</p>
+<p>所谓<strong>路径压缩</strong> ，是<strong>并查集</strong>里的一种操作。</p>
+<p>第一种写法，只是在路径上不断地寻找上一个节点的父亲节点，一步一步地找到根节点。</p>
+<p>而第二种路径压缩，<strong>实际上是在找完根结点之后，在递归回来的时候顺便把路径上元素的父亲指针都指向根结点。</strong>这样的话，虽然第一次寻找根节点也是一个一个地找，但是之后如果再次对这条路径上的某个节点进行操作，则可以<strong>一次性直接</strong>找到它的根节点，节省了大量的时间。</p>
+<p>我这时才恍然大悟，原来克鲁斯卡尔算法中最关键的一步（判断是否形成回路），是用并查集的思想来实现的。</p>
+
+      
+    
+    </div>
+    
+      <div class="post-tags syuanpi fadeInRightShort back-3">
+      
+        <a href="/tags/图论/">图论</a>
+      
+      </div>
+    
+    
+      
+
+      
+    
+  </article>
+  
+    
+  <nav class="article-page">
+    
+      <a href="/2017/08/23/continue语句在while和for中用法的差别/" id="art-left" class="art-left">
+        <span class="next-title">
+          <i class="iconfont icon-left"></i>continue语句在while和for中用法的差别
+        </span>
+      </a>
+    
+    
+      <a href="/2017/08/14/利用vector实现邻接表建图/" id="art-right" class="art-right">
+        <span class="prev-title">
+          利用vector实现邻接表建图<i class="iconfont icon-right"></i>
+        </span>
+      </a>
+    
+  </nav>
+
+
+    
+  <i id="com-switch" class="iconfont icon-down jumping-in long infinite" style="font-size:24px;display:block;text-align:center;transform:rotate(180deg);"></i>
+  <div class="post-comments" id="post-comments" style="display: block;margin: auto 16px;">
+    
+
+    
+    
+
+    
+
+  </div>
+
+
+
+  
+  
+
+
+        </div>
+      </main>
+      <footer class="footer syuanpi fadeIn" id="footer">
+  <hr>
+  <div class="footer-wrapper">
+    <div class="left">
+      <div class="contact-icon">
+  
+  
+</div>
+
+    </div>
+    <div class="right">
+      <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span> ~ 2020</span>
+        <span>❤</span>
+        <span>Mondobongo</span>
+    </div>
+    <div class="theme">
+        <span>
+            Powered by
+            <a href="http://hexo.io/" target="_blank" rel="noopener">Hexo </a>
+        </span>
+        <span>
+            Theme
+            <a href="https://github.com/ColMugX/hexo-theme-Nlvi"> Nlvi </a>
+        </span>
+    </div>
+    
+</div>
+
+    </div>
+  </div>
+</footer>
+    </div>
+    <div class="tagcloud" id="tagcloud">
+  <div class="tagcloud-taglist">
+  
+    <div class="tagcloud-tag">
+      <button>图论</button>
+    </div>
+  
+    <div class="tagcloud-tag">
+      <button>二分图</button>
+    </div>
+  
+    <div class="tagcloud-tag">
+      <button>STL</button>
+    </div>
+  
+    <div class="tagcloud-tag">
+      <button>置顶</button>
+    </div>
+  
+  </div>
+  
+    <div class="tagcloud-postlist active">
+      <h2>图论</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2017/09/24/codeforces-862B-Mahmoud-and-Ehab-and-the-bipartiteness/">
+            <time class="tagcloud-posttime">2017 / 09 / 24</time>
+            <span>codeforces-862B Mahmoud and Ehab and the bipartiteness</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2017/09/24/hihocoder-1121 二分图的判定/">
+            <time class="tagcloud-posttime">2017 / 09 / 24</time>
+            <span>hihocoder-1121 二分图的判定</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2017/09/24/简述二分图/">
+            <time class="tagcloud-posttime">2017 / 09 / 24</time>
+            <span>简述二分图</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2017/08/19/对克鲁斯卡尔算法的深度理解/">
+            <time class="tagcloud-posttime">2017 / 08 / 19</time>
+            <span>对克鲁斯卡尔算法的深度理解</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2017/08/14/利用vector实现邻接表建图/">
+            <time class="tagcloud-posttime">2017 / 08 / 14</time>
+            <span>利用vector实现邻接表建图</span>
+          </a>
+        </div>
+      
+    </div>
+  
+    <div class="tagcloud-postlist ">
+      <h2>二分图</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2017/09/24/codeforces-862B-Mahmoud-and-Ehab-and-the-bipartiteness/">
+            <time class="tagcloud-posttime">2017 / 09 / 24</time>
+            <span>codeforces-862B Mahmoud and Ehab and the bipartiteness</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2017/09/24/hihocoder-1121 二分图的判定/">
+            <time class="tagcloud-posttime">2017 / 09 / 24</time>
+            <span>hihocoder-1121 二分图的判定</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2017/09/24/简述二分图/">
+            <time class="tagcloud-posttime">2017 / 09 / 24</time>
+            <span>简述二分图</span>
+          </a>
+        </div>
+      
+    </div>
+  
+    <div class="tagcloud-postlist ">
+      <h2>STL</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2017/08/14/利用vector实现邻接表建图/">
+            <time class="tagcloud-posttime">2017 / 08 / 14</time>
+            <span>利用vector实现邻接表建图</span>
+          </a>
+        </div>
+      
+    </div>
+  
+    <div class="tagcloud-postlist ">
+      <h2>置顶</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2017/10/01/废话一箩筐/">
+            <time class="tagcloud-posttime">2017 / 10 / 01</time>
+            <span>废话一箩筐</span>
+          </a>
+        </div>
+      
+    </div>
+  
+</div>
+
+  </div>
+  <div class="backtop syuanpi melt toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/script/scheme/balance.js"></script>
+
+
+<script src="/script/bootstarp.js"></script>
+
+
+<script>
+if (nlviconfig.theme.toc) {
+  setTimeout(function() {
+    if (nlviconfig.theme.scheme === 'balance') {
+      $("#header").addClass("show_toc");
+    } else if (nlviconfig.theme.scheme === 'banderole') {
+      $(".container-inner").addClass("has_toc");
+      $(".post-toc .title").addClass("show");
+      $(".toc-inner").addClass("show");
+    }
+  }, 1000);
+}
+</script>
+
+
+
+</body>
+</html>
