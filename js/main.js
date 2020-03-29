@@ -64,7 +64,7 @@ require([], function (){
     }
 
     //是否使用fancybox
-    if(yiliaConfig.fancybox === true){
+    if(!!yiliaConfig.fancybox){
         require([yiliaConfig.fancybox_js], function(pc){
             var isFancy = $(".isFancy");
             if(isFancy.length != 0){
@@ -79,10 +79,10 @@ require([], function (){
                     var height = imgArr.eq(i).attr("height");
                     imgArr.eq(i).replaceWith("<a href='"+src+"' title='"+title+"' rel='fancy-group' class='fancy-ctn fancybox'><img src='"+src+"' width="+width+" height="+height+" title='"+title+"' alt='"+title+"'></a>");
                 }
-
-                $(".article-inner .fancy-ctn").fancybox();
+                $(".article-inner .fancy-ctn").fancybox({ type: "image" });
             }
-        });
+        })
+    }
 
     }
     //是否开启动画
