@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/index.html">
 <meta property="og:site_name" content="Mondobongo&#39;s Blog">
 <meta property="og:description" content="我们为什么要使用邻接表？  众所周知，图的存储方式有很多，比如邻接矩阵、邻接表、十字链表、边集数组等等。对于刚刚进行算法竞赛学习的弱弱来说，最常用的可能就是邻接矩阵了，简单明了，操作方便，运用在各类dfs、bfs题目中可谓是一招鲜吃遍天。">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-09-26T13:53:12.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用vector实现邻接表建图">
@@ -59,11 +59,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">home</a></li>
+          <li><a href="/">首页</a></li>
          
-          <li><a href="/about/">about</a></li>
+          <li><a href="/about/">关于</a></li>
          
-          <li><a href="/archives/">articles</a></li>
+          <li><a href="/archives/">归档</a></li>
         
       </ul>
     </span>
@@ -77,10 +77,10 @@
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">post.desktop.previous</span>
-      <span id="i-next" class="info" style="display:none;">post.desktop.next</span>
-      <span id="i-top" class="info" style="display:none;">post.desktop.back_to_top</span>
-      <span id="i-share" class="info" style="display:none;">post.desktop.share</span>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -194,11 +194,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">home</a></li>
+          <li><a href="/">首页</a></li>
          
-          <li><a href="/about/">about</a></li>
+          <li><a href="/about/">关于</a></li>
          
-          <li><a href="/archives/">articles</a></li>
+          <li><a href="/archives/">归档</a></li>
         
       </ul>
     </div>
@@ -225,10 +225,10 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> post.mobile.menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> post.mobile.toc</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> post.mobile.share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> post.mobile.back_to_top</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
     </div>
 
   </div>
@@ -237,7 +237,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    footer.copyright &copy;
+    Copyright &copy;
     
     
     2017-2020
@@ -247,11 +247,11 @@
     <nav>
       <ul>
          
-          <li><a href="/">home</a></li>
+          <li><a href="/">首页</a></li>
          
-          <li><a href="/about/">about</a></li>
+          <li><a href="/about/">关于</a></li>
          
-          <li><a href="/archives/">articles</a></li>
+          <li><a href="/archives/">归档</a></li>
         
       </ul>
     </nav>
@@ -272,7 +272,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"tooltip.copy_tip\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -283,7 +283,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "tooltip.copied");
+      e.trigger.setAttribute('aria-label', "复制成功!");
       e.clearSelection();
     })
   })

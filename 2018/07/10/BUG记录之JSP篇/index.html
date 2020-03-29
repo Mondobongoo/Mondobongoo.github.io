@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://mondobongoo.github.io/2018/07/10/BUG记录之JSP篇/index.html">
 <meta property="og:site_name" content="Mondobongo&#39;s Blog">
 <meta property="og:description" content="一、css文件编码格式和html编码格式不同时，引用外部css文件会无效 解决方法：用notpad++打开，改变编码格式 注意要事先配置好eclipse的编码格式 如果修改编码格式之后css样式依旧不显示，退出浏览器，清除浏览器缓存，再重新部署TOMCAT即可">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://b310.photo.store.qq.com/psb?/V138MMQ83qT5pq/MvB1QKZgc70E8jhA8F.NU9RHzpKRlNR8mBMMAMyzsYg!/b/dDYBAAAAAAAA&bo=jQa8AY0GvAEDGTw!&rf=viewer_4&t=5">
 <meta property="og:updated_time" content="2020-03-05T13:11:38.382Z">
 <meta name="twitter:card" content="summary">
@@ -60,11 +60,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">home</a></li>
+          <li><a href="/">首页</a></li>
          
-          <li><a href="/about/">about</a></li>
+          <li><a href="/about/">关于</a></li>
          
-          <li><a href="/archives/">articles</a></li>
+          <li><a href="/archives/">归档</a></li>
         
       </ul>
     </span>
@@ -80,10 +80,10 @@
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">post.desktop.previous</span>
-      <span id="i-next" class="info" style="display:none;">post.desktop.next</span>
-      <span id="i-top" class="info" style="display:none;">post.desktop.back_to_top</span>
-      <span id="i-share" class="info" style="display:none;">post.desktop.share</span>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -210,11 +210,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">home</a></li>
+          <li><a href="/">首页</a></li>
          
-          <li><a href="/about/">about</a></li>
+          <li><a href="/about/">关于</a></li>
          
-          <li><a href="/archives/">articles</a></li>
+          <li><a href="/archives/">归档</a></li>
         
       </ul>
     </div>
@@ -244,10 +244,10 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> post.mobile.menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> post.mobile.toc</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> post.mobile.share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> post.mobile.back_to_top</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
     </div>
 
   </div>
@@ -256,7 +256,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    footer.copyright &copy;
+    Copyright &copy;
     
     
     2017-2020
@@ -266,11 +266,11 @@
     <nav>
       <ul>
          
-          <li><a href="/">home</a></li>
+          <li><a href="/">首页</a></li>
          
-          <li><a href="/about/">about</a></li>
+          <li><a href="/about/">关于</a></li>
          
-          <li><a href="/archives/">articles</a></li>
+          <li><a href="/archives/">归档</a></li>
         
       </ul>
     </nav>
@@ -291,7 +291,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"tooltip.copy_tip\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -302,7 +302,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "tooltip.copied");
+      e.trigger.setAttribute('aria-label', "复制成功!");
       e.clearSelection();
     })
   })
