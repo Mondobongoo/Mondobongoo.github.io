@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="我们为什么要使用邻接表？  众所周知，图的存储方式有很多，比如邻接矩阵、邻接表、十字链表、边集数组等等。对于刚刚进行算法竞赛学习的弱弱来说，最常用的可能就是邻接矩阵了，简单明了，操作方便，运用在各类dfs、bfs题目中可谓是一招鲜吃遍天。">
+<meta name="keywords" content="图论,STL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用vector实现邻接表建图">
+<meta property="og:url" content="https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/index.html">
+<meta property="og:site_name" content="Mondobongo&#39;s Blog">
+<meta property="og:description" content="我们为什么要使用邻接表？  众所周知，图的存储方式有很多，比如邻接矩阵、邻接表、十字链表、边集数组等等。对于刚刚进行算法竞赛学习的弱弱来说，最常用的可能就是邻接矩阵了，简单明了，操作方便，运用在各类dfs、bfs题目中可谓是一招鲜吃遍天。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-26T13:53:12.248Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用vector实现邻接表建图">
+<meta name="twitter:description" content="我们为什么要使用邻接表？  众所周知，图的存储方式有很多，比如邻接矩阵、邻接表、十字链表、边集数组等等。对于刚刚进行算法竞赛学习的弱弱来说，最常用的可能就是邻接矩阵了，简单明了，操作方便，运用在各类dfs、bfs题目中可谓是一招鲜吃遍天。">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/myfavicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/myfavicon.ico" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/myfavicon.ico">
+          
+        
+    
+    <!-- title -->
+    <title>利用vector实现邻接表建图</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/08/19/对克鲁斯卡尔算法的深度理解/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&text=利用vector实现邻接表建图"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&title=利用vector实现邻接表建图"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&is_video=false&description=利用vector实现邻接表建图"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=利用vector实现邻接表建图&body=Check out this article: https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&title=利用vector实现邻接表建图"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&title=利用vector实现邻接表建图"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&title=利用vector实现邻接表建图"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&title=利用vector实现邻接表建图"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&name=利用vector实现邻接表建图&description=&lt;h3 id=&#34;我们为什么要使用邻接表？&#34;&gt;&lt;a href=&#34;#我们为什么要使用邻接表？&#34; class=&#34;headerlink&#34; title=&#34;我们为什么要使用邻接表？&#34;&gt;&lt;/a&gt;我们为什么要使用邻接表？&lt;/h3&gt;&lt;p&gt;  众所周知，图的存储方式有很多，比如邻接矩阵、邻接表、十字链表、边集数组等等。对于刚刚进行算法竞赛学习的弱弱来说，最常用的可能就是邻接矩阵了，简单明了，操作方便，运用在各类dfs、bfs题目中可谓是一招鲜吃遍天。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&t=利用vector实现邻接表建图"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#我们为什么要使用邻接表？"><span class="toc-number">1.</span> <span class="toc-text">我们为什么要使用邻接表？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vector-简介及基本操作"><span class="toc-number">2.</span> <span class="toc-text">vector 简介及基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-简介"><span class="toc-number">2.1.</span> <span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-基本操作："><span class="toc-number">2.2.</span> <span class="toc-text">2. 基本操作：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构建图"><span class="toc-number">3.</span> <span class="toc-text">构建图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-定义不定长数组"><span class="toc-number">3.1.</span> <span class="toc-text">1.定义不定长数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-建边"><span class="toc-number">3.2.</span> <span class="toc-text">2.建边</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-遍历"><span class="toc-number">3.3.</span> <span class="toc-text">3.遍历</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        利用vector实现邻接表建图
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Mondobongo's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-08-14T13:08:54.000Z" itemprop="datePublished">2017-08-14</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/ACM/">ACM</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/STL/">STL</a>, <a class="tag-link" href="/tags/图论/">图论</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="我们为什么要使用邻接表？"><a href="#我们为什么要使用邻接表？" class="headerlink" title="我们为什么要使用邻接表？"></a>我们为什么要使用邻接表？</h3><p>  众所周知，图的存储方式有很多，比如邻接矩阵、邻接表、十字链表、边集数组等等。对于刚刚进行算法竞赛学习的弱弱来说，最常用的可能就是邻接矩阵了，简单明了，操作方便，运用在各类dfs、bfs题目中可谓是一招鲜吃遍天。</p>
+<a id="more"></a>
+<p>  但是，当我们进入到图论算法的学习中，就可能会开始发现邻接矩阵使用起来并不是那么得心应手了。当一张图中<code>顶点很多但是边却不多</code>的时候，如果运用邻接矩阵来存储的话，那么遍历起来就会耗费很多的时间。</p>
+<blockquote>
+<p>举一个比较极端的例子，一张图中有10000个顶点，但是只有100条边，当它用邻接矩阵存储时，遍历的过程要进行10000*10000次操作。这个时候，即使算法正确，样例能过，然而往往在提交之后会因为某个数据量很大的数据而超时。而如果用邻接表来存储，只需要进行100次操作即可，极大程度上缩短了运行时间。</p>
+</blockquote>
+<p>（关于邻接表的相关知识就不再赘述，若暂时不太清楚或已经遗忘，可上网搜索相关资料、博客进行学习，或是参考《大话数据结构》）</p>
+<h3 id="vector-简介及基本操作"><a href="#vector-简介及基本操作" class="headerlink" title="vector 简介及基本操作"></a>vector 简介及基本操作</h3><h4 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h4><p>vector是c++中stl库中封装好的容器，常用定义不定长数组来构建无向图或有向图。</p>
+<p>简单来说vector就是一个长度可以变化的数组，c语言中的数组只能存放数字或字符，而vector基本上可以存放任何类型的数据，如struct(也可以直接用结构体数组)、string、pair等。</p>
+<p>所以从实际效果上看<code>vector就等同于链表</code></p>
+<h4 id="2-基本操作："><a href="#2-基本操作：" class="headerlink" title="2. 基本操作："></a>2. 基本操作：</h4><p>(1)头文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;vector&gt;</span><br></pre></td></tr></table></figure></p>
+<p>(2)创建vector对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt;  vec;</span><br></pre></td></tr></table></figure>
+<p>(3)尾部插入元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vec.push_back(a);</span><br></pre></td></tr></table></figure>
+<p>(4)使用下标访问元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;vec[0]&lt;&lt;endl;//记住下标是从0开始的。</span><br></pre></td></tr></table></figure>
+<p>(5)使用迭代器访问元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt;::iterator it;</span><br><span class="line">for(it=vec.begin();it!=vec.end();it++)</span><br><span class="line">	cout&lt;&lt;*it&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<p>(6)插入元素: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vec.insert(vec.begin()+i,a);//在第i+1个元素前面插入a;</span><br></pre></td></tr></table></figure>
+<p>(7)删除元素:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vec.erase(vec.begin()+2);//删除第3个元素</span><br><span class="line">vec.erase(vec.begin()+i,vec.end()+j);//删除区间[i,j-1];区间从0开始</span><br></pre></td></tr></table></figure>
+<p>(8)向量大小:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vec.size();</span><br></pre></td></tr></table></figure>
+<p>(9)清空:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vec.clear();</span><br></pre></td></tr></table></figure>
+<p>vector的元素不仅仅可以使int,double,string,还可以是结构体，但是要注意：结构体要定义为全局的，否则会出错。如下例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">struct node &#123;int s, t, v;&#125;;</span><br><span class="line">vector &lt;node&gt;G[ ];</span><br></pre></td></tr></table></figure>
+<h3 id="构建图"><a href="#构建图" class="headerlink" title="构建图"></a>构建图</h3><h4 id="1-定义不定长数组"><a href="#1-定义不定长数组" class="headerlink" title="1.定义不定长数组"></a>1.定义不定长数组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector &lt;int&gt; map[100010] ;</span><br></pre></td></tr></table></figure>
+<h4 id="2-建边"><a href="#2-建边" class="headerlink" title="2.建边"></a>2.建边</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>,&amp;s,&amp;t);</span><br><span class="line">    <span class="built_in">map</span>[s].push_back(t);</span><br><span class="line">    <span class="built_in">map</span>[t].push_back(s); <span class="comment">//有向图时，此步省略。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-遍历"><a href="#3-遍历" class="headerlink" title="3.遍历"></a>3.遍历</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=<span class="built_in">map</span>[s].size();i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,<span class="built_in">map</span>[s][i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#我们为什么要使用邻接表？"><span class="toc-number">1.</span> <span class="toc-text">我们为什么要使用邻接表？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vector-简介及基本操作"><span class="toc-number">2.</span> <span class="toc-text">vector 简介及基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-简介"><span class="toc-number">2.1.</span> <span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-基本操作："><span class="toc-number">2.2.</span> <span class="toc-text">2. 基本操作：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构建图"><span class="toc-number">3.</span> <span class="toc-text">构建图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-定义不定长数组"><span class="toc-number">3.1.</span> <span class="toc-text">1.定义不定长数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-建边"><span class="toc-number">3.2.</span> <span class="toc-text">2.建边</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-遍历"><span class="toc-number">3.3.</span> <span class="toc-text">3.遍历</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&text=利用vector实现邻接表建图"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&title=利用vector实现邻接表建图"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&is_video=false&description=利用vector实现邻接表建图"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=利用vector实现邻接表建图&body=Check out this article: https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&title=利用vector实现邻接表建图"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&title=利用vector实现邻接表建图"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&title=利用vector实现邻接表建图"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&title=利用vector实现邻接表建图"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&name=利用vector实现邻接表建图&description=&lt;h3 id=&#34;我们为什么要使用邻接表？&#34;&gt;&lt;a href=&#34;#我们为什么要使用邻接表？&#34; class=&#34;headerlink&#34; title=&#34;我们为什么要使用邻接表？&#34;&gt;&lt;/a&gt;我们为什么要使用邻接表？&lt;/h3&gt;&lt;p&gt;  众所周知，图的存储方式有很多，比如邻接矩阵、邻接表、十字链表、边集数组等等。对于刚刚进行算法竞赛学习的弱弱来说，最常用的可能就是邻接矩阵了，简单明了，操作方便，运用在各类dfs、bfs题目中可谓是一招鲜吃遍天。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://mondobongoo.github.io/2017/08/14/利用vector实现邻接表建图/&t=利用vector实现邻接表建图"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2017-2020
+    Mondobongo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

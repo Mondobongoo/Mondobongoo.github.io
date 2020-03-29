@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="之前对于克鲁斯卡尔算法的学习我只是草草地翻阅了《大话数据结构》的内容，也就会在纸上手动画一下用它来实现最小生成树的过程，至于算法的代码并没有认真去理解，而用到它的时候也只是对着书上的模板敲一敲。">
+<meta name="keywords" content="图论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对克鲁斯卡尔算法的深度理解">
+<meta property="og:url" content="https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/index.html">
+<meta property="og:site_name" content="Mondobongo&#39;s Blog">
+<meta property="og:description" content="之前对于克鲁斯卡尔算法的学习我只是草草地翻阅了《大话数据结构》的内容，也就会在纸上手动画一下用它来实现最小生成树的过程，至于算法的代码并没有认真去理解，而用到它的时候也只是对着书上的模板敲一敲。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-19T12:09:45.155Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对克鲁斯卡尔算法的深度理解">
+<meta name="twitter:description" content="之前对于克鲁斯卡尔算法的学习我只是草草地翻阅了《大话数据结构》的内容，也就会在纸上手动画一下用它来实现最小生成树的过程，至于算法的代码并没有认真去理解，而用到它的时候也只是对着书上的模板敲一敲。">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/myfavicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/myfavicon.ico" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/myfavicon.ico">
+          
+        
+    
+    <!-- title -->
+    <title>对克鲁斯卡尔算法的深度理解</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/08/23/continue语句在while和for中用法的差别/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/08/14/利用vector实现邻接表建图/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&text=对克鲁斯卡尔算法的深度理解"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&title=对克鲁斯卡尔算法的深度理解"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&is_video=false&description=对克鲁斯卡尔算法的深度理解"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=对克鲁斯卡尔算法的深度理解&body=Check out this article: https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&title=对克鲁斯卡尔算法的深度理解"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&title=对克鲁斯卡尔算法的深度理解"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&title=对克鲁斯卡尔算法的深度理解"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&title=对克鲁斯卡尔算法的深度理解"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&name=对克鲁斯卡尔算法的深度理解&description=&lt;p&gt;之前对于克鲁斯卡尔算法的学习我只是草草地翻阅了《大话数据结构》的内容，也就会在纸上手动画一下用它来实现最小生成树的过程，至于算法的代码并没有认真去理解，而用到它的时候也只是对着书上的模板敲一敲。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&t=对克鲁斯卡尔算法的深度理解"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        对克鲁斯卡尔算法的深度理解
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Mondobongo's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-08-19T11:58:20.000Z" itemprop="datePublished">2017-08-19</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/ACM/">ACM</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/图论/">图论</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>之前对于克鲁斯卡尔算法的学习我只是草草地翻阅了《大话数据结构》的内容，也就会在纸上手动画一下用它来实现最小生成树的过程，至于算法的代码并没有认真去理解，而用到它的时候也只是对着书上的模板敲一敲。</p>
+<a id="more"></a>
+<p>暑期集训的时候正好出了一道<a href="https://vjudge.net/problem/HihoCoder-1098" target="_blank" rel="noopener">克鲁斯卡尔的模板题</a>，我心中暗喜，摩拳擦掌，三下五除二地把模板敲上去，静静地等待Accepted：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>//构造边集数组的元素类型</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> begin;</span><br><span class="line">    <span class="keyword">int</span> end;</span><br><span class="line">    <span class="keyword">int</span> weight;</span><br><span class="line">&#125;Edge;</span><br><span class="line"></span><br><span class="line">Edge edges[<span class="number">1000005</span>];</span><br><span class="line"><span class="keyword">int</span> parent[<span class="number">1000005</span>];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(Edge a, Edge b)</span><span class="comment">//快速排序的条件</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.weight &lt; b.weight;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> f)</span><span class="comment">//寻找根节点</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(parent[f]&gt;<span class="number">0</span>)</span><br><span class="line">        f=parent[f];</span><br><span class="line">    <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Kruskal</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    sort(edges,edges+m,cmp);<span class="comment">//对边集数组按权值由小到大排序</span></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;++i) parent[i]=<span class="number">0</span>;<span class="comment">//初始化parent数组</span></span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        x=Find(edges[i].begin);<span class="comment">//寻找边edges[i]的“首节点”所在树的树根</span></span><br><span class="line">        y=Find(edges[i].end);  <span class="comment">//寻找边edges[i]的“尾节点”所在树的树根</span></span><br><span class="line">        <span class="keyword">if</span>(x!=y)               <span class="comment">//假如x与y不等，说明两个顶点不在一棵树内，因此这条边的加入不会使已经选择的边集产生回路</span></span><br><span class="line">        &#123;</span><br><span class="line">            parent[x]=y;</span><br><span class="line">            sum+=edges[i].weight;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;edges[i].begin,&amp;edges[i].end,&amp;edges[i].weight);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,Kruskal());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然而评测姬反馈给我的却是Time Limit Exceeded……QAQ</p>
+<p>苦思冥想了一会儿，还是没有什么头绪，就去百度了一下别人克鲁斯卡尔的算法是怎么写的。</p>
+<p>仔细对比了一下我与他人代码的差别，大致上都一样，但对于用parent数组寻找根节点的处理却有所不同。</p>
+<p>我是按照《大话》提供的代码写的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;++i) parent[i]=<span class="number">0</span>;<span class="comment">//初始化</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(parent[f]&gt;<span class="number">0</span>)</span><br><span class="line">        f=parent[f];</span><br><span class="line">    <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其他人多是这样写的：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)  parent[i]=i;<span class="comment">//初始化</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(parent[f]!=f)</span><br><span class="line">        parent[f]=Find(parent[f]);</span><br><span class="line">    <span class="keyword">return</span> parent[f];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>虽然形式有所不同，可是看上去貌似没什么差别呀……（原谅我太菜了）</p>
+<p>难道这就是超时的问题所在？我把这一部分改了一下，提交，果然就AC了。</p>
+<p>问了问dalao们，他们给的答复就是：第一种写法没有进行<strong>路径压缩</strong> ，所以肯定会超时。</p>
+<p>所谓<strong>路径压缩</strong> ，是<strong>并查集</strong>里的一种操作。</p>
+<p>第一种写法，只是在路径上不断地寻找上一个节点的父亲节点，一步一步地找到根节点。</p>
+<p>而第二种路径压缩，<strong>实际上是在找完根结点之后，在递归回来的时候顺便把路径上元素的父亲指针都指向根结点。</strong>这样的话，虽然第一次寻找根节点也是一个一个地找，但是之后如果再次对这条路径上的某个节点进行操作，则可以<strong>一次性直接</strong>找到它的根节点，节省了大量的时间。</p>
+<p>我这时才恍然大悟，原来克鲁斯卡尔算法中最关键的一步（判断是否形成回路），是用并查集的思想来实现的。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&text=对克鲁斯卡尔算法的深度理解"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&title=对克鲁斯卡尔算法的深度理解"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&is_video=false&description=对克鲁斯卡尔算法的深度理解"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=对克鲁斯卡尔算法的深度理解&body=Check out this article: https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&title=对克鲁斯卡尔算法的深度理解"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&title=对克鲁斯卡尔算法的深度理解"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&title=对克鲁斯卡尔算法的深度理解"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&title=对克鲁斯卡尔算法的深度理解"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&name=对克鲁斯卡尔算法的深度理解&description=&lt;p&gt;之前对于克鲁斯卡尔算法的学习我只是草草地翻阅了《大话数据结构》的内容，也就会在纸上手动画一下用它来实现最小生成树的过程，至于算法的代码并没有认真去理解，而用到它的时候也只是对着书上的模板敲一敲。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://mondobongoo.github.io/2017/08/19/对克鲁斯卡尔算法的深度理解/&t=对克鲁斯卡尔算法的深度理解"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2017-2020
+    Mondobongo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
