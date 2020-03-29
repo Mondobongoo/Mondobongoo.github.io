@@ -396,38 +396,6 @@
 
 
     
-      <div class="duoshuo" id="comments">
-    <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2017/10/01/废话一箩筐/" data-title="废话一箩筐" data-url="https://mondobongoo.github.io/2017/10/01/废话一箩筐/"></div>
-    <script>
-        var duoshuoQuery = {short_name:"moxfive"};
-        function loadComment() {
-            var d = document, s = d.createElement('script');
-            s.src = '//moxfive.xyz/resources/embed.js';
-            s.async = true; s.charset = 'UTF-8';
-            (d.head || d.body).appendChild(s);
-        }
-
-        $(function() { 
-            var jsonUrl = "http://api.duoshuo.com/threads/counts.jsonp?short_name=moxfive&threads=2017/10/01/废话一箩筐/&callback=?";
-            $.getJSON(jsonUrl, function(result) {
-                $.each(result.response, function(i, field) {
-                    var value = field.comments;
-                    if (value > 0) {
-                        $(".count-comment").text(value);
-                        return;
-                    }
-                })
-
-            })
-        });
-    </script>
-    
-    <script> loadComment(); </script>
-
-</div>
-
-    
 
 
 
@@ -561,7 +529,7 @@ MathJax.Hub.Queue(function() {
         }
     
 </script>
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
   </div>
 	<!-- 页面点击小红心 -->
