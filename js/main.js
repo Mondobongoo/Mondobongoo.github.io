@@ -83,8 +83,7 @@ require([], function (){
             }
         })
     }
-
-    }
+	
     //是否开启动画
     if(yiliaConfig.animate === true){
 
