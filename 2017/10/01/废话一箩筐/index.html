@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="Mondobongo&#39;s Blog">
 <meta property="og:description" content="记录一些废话">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-08T13:21:53.326Z">
+<meta property="og:updated_time" content="2020-03-29T16:54:51.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="废话一箩筐">
 <meta name="twitter:description" content="记录一些废话">
@@ -285,23 +285,22 @@
 <p>记录一些废话 </p>
 </blockquote>
  <a id="more"></a>
+<ol>
+<li>不要在int main 里开大数组(比如1e7的数组)，运行会崩溃的，开在主函数外就行了</li>
+<li>memset只能初始化为-1 0 其他数值都不行</li>
+<li>由于博客中介绍的大部分算法都是通过神犇们的博客习得的，复制粘贴过来意义不大，<del>而且由于我懒得打字</del>所以更多的只贴链接</li>
+</ol>
 <ul>
-<li><p>不要在int main 里开大数组(比如1e7的数组)，运行会崩溃的，开在主函数外就行了</p>
-</li>
-<li><p>memset只能初始化为-1 0 其他数值都不行</p>
-</li>
-<li><p>由于博客中介绍的大部分算法都是通过神犇们的博客习得的，复制粘贴过来意义不大，<del>而且由于我懒得打字</del>所以更多的只贴链接</p>
-</li>
 <li><p>当然对于原博文个别描述不清的地方，我也会附上自己对于这些的算法的理解的</p>
 </li>
 <li><p>在输入一个数字之后，再输入字符，注意要处理好输入数字后的回车键，绝对不能让回车键错误地存进字符中。所以应该这样进行输入</p>
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">" %c"</span>,&amp;ch);<span class="comment">//注意这个%c前面有个空格</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br><span class="line">getchar();<span class="comment">//处理掉回车键</span></span><br><span class="line">gets(s);</span><br></pre></td></tr></table></figure>
-<ul>
+<ol start="6">
 <li>在图论的题目中，<strong>删点是大忌</strong>，所以要把正向删点转化为逆向建点</li>
 <li>long long 类型的输出方式要根据oj的机器而进行正确的选择，否则会报错，win %I64d    linux %lld</li>
-</ul>
+</ol>
 
       
     </div>
@@ -313,7 +312,7 @@
         <p><span>本文标题:</span><a href="/2017/10/01/废话一箩筐/">废话一箩筐</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
         <p><span>发布时间:</span>2017-10-01, 01:27</p>
-        <p><span>最后更新:</span>2018-11-08, 21:21</p>
+        <p><span>最后更新:</span>2020-03-30, 00:54</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/10/01/废话一箩筐/" title="废话一箩筐">https://mondobongoo.github.io/2017/10/01/废话一箩筐/</a>
             <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2017/10/01/废话一箩筐/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
