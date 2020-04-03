@@ -18,18 +18,13 @@
 
 
 
-<meta name="description" content="记录一些废话">
-<meta name="keywords" content="置顶">
-<meta property="og:type" content="article">
-<meta property="og:title" content="废话一箩筐">
-<meta property="og:url" content="https://mondobongoo.github.io/2017/10/01/废话一箩筐/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mondobongo&#39;s Blog">
+<meta property="og:url" content="https://mondobongoo.github.io/archives/2020/index.html">
 <meta property="og:site_name" content="Mondobongo&#39;s Blog">
-<meta property="og:description" content="记录一些废话">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-03T08:57:09.297Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="废话一箩筐">
-<meta name="twitter:description" content="记录一些废话">
+<meta name="twitter:title" content="Mondobongo&#39;s Blog">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -61,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>废话一箩筐 | Mondobongo&#39;s Blog</title>
+<title>Archives: 2020 | Mondobongo&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -71,8 +66,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: true,
-        isArchive: false,
+        isPost: false,
+        isArchive: true,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -226,184 +221,60 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-废话一箩筐" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2017/10/01/废话一箩筐/" class="article-date">
-      <time datetime="2017-09-30T17:27:51.000Z" itemprop="datePublished">2017-10-01</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+          <div class="article-meta">
+              <a href="/2020/04/02/LeetCode刷题记录/" class="archive-article-date">
+      <time datetime="2020-04-02T15:45:51.000Z" itemprop="datePublished">04-02</time>
 </a>
 
 
-    </div>
+        </div>
+         
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      废话一箩筐
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/04/02/LeetCode刷题记录/">LeetCode刷题记录</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-archive">
+          
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/随笔/">随笔</a>
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
     </div>
 
 
-        
+          
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/置顶/">置顶</a></li></ul>
     </div>
 
+        </div>
         <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-          
-        <blockquote>
-<p>记录一些废话 </p>
-</blockquote>
- <a id="more"></a>
-<ol>
-<li><p>不要在int main 里开大数组(比如1e7的数组)，运行会崩溃的，开在主函数外就行了</p>
-</li>
-<li><p>memset只能初始化为-1 0 其他数值都不行</p>
-</li>
-<li><p>由于博客中介绍的大部分算法都是通过神犇们的博客习得的，复制粘贴过来意义不大，<del>而且由于我懒得打字</del>所以更多的只贴链接</p>
-</li>
-<li><p>当然对于原博文个别描述不清的地方，我也会附上自己对于这些的算法的理解的</p>
-</li>
-<li><p>在输入一个数字之后，再输入字符，注意要处理好输入数字后的回车键，绝对不能让回车键错误地存进字符中。所以应该这样进行输入</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">" %c"</span>,&amp;ch);<span class="comment">//注意这个%c前面有个空格</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br><span class="line">getchar();<span class="comment">//处理掉回车键</span></span><br><span class="line">gets(s);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在图论的题目中，<strong>删点是大忌</strong>，所以要把正向删点转化为逆向建点</p>
-</li>
-<li><p>long long 类型的输出方式要根据oj的机器而进行正确的选择，否则会报错，win %I64d    linux %lld</p>
-</li>
-<li><p>注意 <strong>子串</strong> 和 <strong>子序列</strong> 是有区别的</p>
-<blockquote>
-<p>给定 <code>&quot;pwwkew&quot;</code> ，</p>
-<p>子串是pww,wwk等很多个子串 是连在一起的</p>
-<p>子序列是 pwk,pke等很多个子序列 ，但是子序列中的字符在字符串中不一定是连在一起的。</p>
-</blockquote>
-<p>​</p>
-</li>
-</ol>
-
-      
-    </div>
-    
+    </header>
   </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/10/01/废话一箩筐/">废话一箩筐</a></p>
-        <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
-        <p><span>发布时间:</span>2017-10-01, 01:27</p>
-        <p><span>最后更新:</span>2020-04-03, 16:57</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/10/01/废话一箩筐/" title="废话一箩筐">https://mondobongoo.github.io/2017/10/01/废话一箩筐/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2017/10/01/废话一箩筐/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
-
-    
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/10/18/汇编语言环境搭建-输出-Hello-World/">
-                    汇编语言环境搭建&amp;&amp;输出&#39;Hello World&#39;
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/09/24/codeforces-862B-Mahmoud-and-Ehab-and-the-bipartiteness/">
-                    codeforces-862B Mahmoud and Ehab and the bipartiteness
-                </a>
-            </div>
-        
-    </nav>
-
-  
 </article>
-
-
-
-
-
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"true"];
-    </script>
-
-
-
-
+  
+  
+    </div></section>
+  
 
     
 
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2017/10/18/汇编语言环境搭建-输出-Hello-World/" title="上一篇: 汇编语言环境搭建&amp;&amp;输出&#39;Hello World&#39;">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2017/09/24/codeforces-862B-Mahmoud-and-Ehab-and-the-bipartiteness/" title="下一篇: codeforces-862B Mahmoud and Ehab and the bipartiteness">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/04/02/LeetCode刷题记录/">LeetCode刷题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/数据范围导致的循环问题/">数据范围导致的循环问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/01/修改hexo字体大小与文字溢出边框问题/">修改hexo字体大小与CSS文字溢出边框问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/10/BUG记录之JSP篇/">BUG记录之JSP篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/25/记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程/">记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/09/不吐不快——吐槽Tomcat 和 Eclipse 相关联过程中遇到的坑/">不吐不快——吐槽Tomcat与Eclipse相关联过程中遇到的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/18/汇编语言环境搭建-输出-Hello-World/">汇编语言环境搭建&&输出'Hello World'</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/废话一箩筐/">废话一箩筐</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/codeforces-862B-Mahmoud-and-Ehab-and-the-bipartiteness/">codeforces-862B Mahmoud and Ehab and the bipartiteness</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/hihocoder-1121 二分图的判定/">hihocoder-1121 二分图的判定</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/简述二分图/">简述二分图</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/23/continue语句在while和for中用法的差别/">continue语句在while和for中用法的差别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/19/对克鲁斯卡尔算法的深度理解/">对克鲁斯卡尔算法的深度理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/利用vector实现邻接表建图/">利用vector实现邻接表建图</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
 </div>
       <footer id="footer">
     <div class="outer">
