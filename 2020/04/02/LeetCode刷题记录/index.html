@@ -18,18 +18,18 @@
 
 
 
-<meta name="description" content="2020.03. 26 1-Two Sum    题目顺序类别: FirstTime-byTag-Array">
+<meta name="description" content="一个写给自己看的刷题记录">
 <meta name="keywords" content="置顶">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode刷题记录">
 <meta property="og:url" content="https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/index.html">
 <meta property="og:site_name" content="Mondobongo&#39;s Blog">
-<meta property="og:description" content="2020.03. 26 1-Two Sum    题目顺序类别: FirstTime-byTag-Array">
+<meta property="og:description" content="一个写给自己看的刷题记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-03T09:57:52.948Z">
+<meta property="og:updated_time" content="2020-04-07T08:34:12.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode刷题记录">
-<meta name="twitter:description" content="2020.03. 26 1-Two Sum    题目顺序类别: FirstTime-byTag-Array">
+<meta name="twitter:description" content="一个写给自己看的刷题记录">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -271,27 +271,91 @@
       
       
           
-        <p>2020.03. 26</p>
-<p>1-Two Sum    题目顺序类别: FirstTime-byTag-Array</p>
+        <blockquote>
+<p>一个写给自己看的刷题记录</p>
+</blockquote>
 <a id="more"></a>
+<p>2020.03. 26</p>
+<p>1-Two Sum    题目顺序类别: FirstTime-byTag-Array</p>
 <p><strong>随记：</strong></p>
-<p>​    习惯了平常的ACM题目，第一次见到LeetCode这种预先给答题格式的题目还有些不知所措……看了一会儿才理解输入是传入函数的参数，输出是函数的返回值。除此之外，LeetCode好像不会在题目里给出数据的范围。</p>
-<p><strong>题目要点：</strong></p>
+<p>​    习惯了平常的ACM题目，第一次见到LeetCode这种预先给答题格式的题目还有些不知所措……看了一会儿才理解输入是传入函数的参数，输出是函数的返回值。除此之外，LeetCode好像不会在题目里给出数据的范围。而且LeetCode不用引入头文件就可以直接使用 <code>max()</code> 这种常见函数，也可以直接使用常见的C++ STL</p>
+<p><strong>收获：</strong></p>
 <p>​    本题就写了一个O($n^2$)的暴力二重循环就过了。</p>
-<p>​    题解里更快的解法是用哈希表，以后再补。</p>
-<p>​    复习了一下vector的概念，初始化，求元素个数</p>
+<p>​    题解里更快的解法是用哈希表，暂时没看，以后再补。</p>
+<p>​    复习了一下vector的概念、初始化、求元素个数</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec(n);</span><br><span class="line"><span class="comment">//注意要与数组的初始化区分开，千万不要把vec(n)写成了vec[n]</span></span><br><span class="line"><span class="keyword">int</span> vecSize=vec.size();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i; i&lt;vecSize; i++)&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;vec[i]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <p>2020.04.01</p>
+<p>136-Single Number    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong></p>
+<p>​    一个数组里除了一个数字只出现过一次，其他所有数字都出现了两次，找出这个数字。暴力解很简单，写个二重循环就行了。</p>
+<p>​    但是题目要求”have a linear runtime complexity”, 即要求时间复杂度为O($n$)。然后我就想到了以前做题的一种处理方法——利用数组，数组元素的下标不再只是一个单纯的序号，而有了实际意义：数组的下标代表着某个数字，元素的内容就代表该数字出现过几次，例如 <code>num[4]=2;</code> 就意味着”数字4出现过2次”。</p>
+<p>​    按照这种思路就写了一遍，交了之后就<strong>Runtime Error</strong>了，根据以往ACM的经验，大概率是<strong>数组越界</strong>了。查看了一下果然是的，因为数组下标不能小于0，所以当输入数据有负数如-1时，数组自然就越界了。</p>
+<p>​    这个时候我就想到了以前使用过的一种C++ STL——map. 这种数据结构类似数组，但是数组的下标只能为自然数，而map的关键字可以是任意类型的数据如int、String等，如果map的关键字类型为int，那么自然就可以用负数了。</p>
+<p>​    接着写啊写，提交了之后发现又变成了 <strong>Time Limit Exceeded</strong> …… 这明显就是程序陷入无限循环了，debug了一会儿，发现是对map进行遍历的while循环里忘了对迭代器进行更新。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::iterator iter;</span><br><span class="line">iter=m.begin();</span><br><span class="line"><span class="keyword">while</span>(iter!=m.end())&#123;</span><br><span class="line">    <span class="keyword">if</span>(iter-&gt;second==<span class="number">1</span>)&#123;</span><br><span class="line">    ans=iter-&gt;first;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//此处应该有 iter++;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>究其原因就是我平常用的最多的是for循环，然而我看map相关博文的时候，给出的是我不常用的while 循环，我照着写然后就疏忽了。看来以后还是要用for循环对map进行遍历。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;::iterator iter; iter!=m.end(); iter++)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    看了看题解，发现原来我这种”利用数组下标“的方式就是”哈希“。也对，map在Java里就叫做HashMap。</p>
+<p><strong>收获：</strong> </p>
+<p>​    <a href="https://www.cnblogs.com/fnlingnzb-learner/p/5833051.html" target="_blank" rel="noopener">学习了map</a>的初始化、插值、遍历等操作</p>
+<p>​    学会了判断map用insert插值是否成功(如果关键字已经在map里就会插入失败)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">pair&lt;<span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;::iterator,<span class="keyword">bool</span>&gt; Insert_Pair;</span><br><span class="line">Insert_Pair = m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(nums[i],<span class="number">1</span>));<span class="comment">//获取插入的结果</span></span><br><span class="line"><span class="keyword">if</span>(Insert_Pair.second == <span class="literal">false</span>)&#123; <span class="comment">//如果插入失败了，证明该关键字已在map中</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <p>2020.04.02</p>
+<p>202- Happy Number    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong></p>
+<p>​    </p>
+<p><strong>收获：</strong></p>
 <hr>
 <p>2020.04.03</p>
 <p>53-Maximum Subarray    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
 <p><strong>随记：</strong></p>
-<p>​    习惯了平常的ACM题目，第一次见到LeetCode这种预先给答题格式的题目还有些不知所措……看了一会儿才理解输入是传入函数的参数，输出是函数的返回值。除此之外，LeetCode好像不会在题目里给出数据的范围。</p>
-<p><strong>题目要点：</strong></p>
+<p>​    </p>
+<p><strong>收获：</strong></p>
 <hr>
+<p>2020.04.04</p>
+<p>53-Move Zeroes    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong></p>
+<p>​    </p>
+<p><strong>收获：</strong></p>
+<hr>
+<p>2020.04.05</p>
+<p>122-Best Time to Buy and Sell Stock II    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong></p>
+<p>​    第一眼看上去感觉有点像是“最长上升子序列”，本来开始准备写dp什么的了，后来发现这题简单到根本用不着dp，直接写几行代码就过了。</p>
+<p>​    最精彩的是我交完题后看官方题解，我以为这么简单的题就一种暴力解法，没想到居然还有三种思路。我想我的思路肯定是最简单的，就直接越过前两种简单解法没看，直接去看最后一种解法，没想到最后一种解法就是我的思路。然后我回头看了一眼第一个题解，惊了，我以为我的O(n)解法已经够简单粗暴了，第一种题解居然还能写出更暴力O($n^2$)的代码……(没敢仔细看这种解法，怕影响我智商) 接着又看了看评论区，竟然发现很多人在赞扬第三种解法有多精妙……无语，本质上就是一道非常简单的C语言题目而已。</p>
+<p><strong>收获：</strong>无</p>
+<hr>
+<p>2020.04.06</p>
+<p>49-Group Anagrams    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong></p>
+<p>​    题目第一眼看上去不难，就是如果按纯暴力来做，操作起来可能有点麻烦。这时候我就想到了要不要把每个字母转化成数字，然后用每个单词里每个字母所代表的数字相加，然后来判断这两个单词是否互为anagrams(相同字母异序词)。但是发现无法解决12+14=13+13这种情况，遂放弃。</p>
+<p>​    然后我就想到了把对每个单词都进行内部字母排序，比如ate和eat都排序为aet。之后放入一个map里，利用map关键字的唯一性，这样就可以来判断多个单词是否互为anagrams。</p>
+<p>​    可是按照这种思路，需要额外写一个string内部排序函数，我觉得有点麻烦。于是我就在想，C++内置了很多非常强大的函数，那么string能不能直接调用一两个函数就直接对内部进行排序呢？查了一下居然真的找到了<a href="https://blog.csdn.net/sinat_34328764/article/details/80088457" target="_blank" rel="noopener">我想要的答案</a> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort(str.begin(), str.end());</span><br></pre></td></tr></table></figure>
+<p>​    写题的过程中，我发现需要用到“插入”的方式来对vector添加元素，而不是以往<code>vec[i]=0;</code> 这种形式。然后我就突然有一个想法，既然vector和map都能以“插入”的方式赋值，那么vector能不能像map一样在初始化的时候不规定大小呢？</p>
+<p>​    于是我又查了查，找到了<a href="https://www.cnblogs.com/Nonono-nw/p/3462183.html" target="_blank" rel="noopener">答案</a> 。这篇博文里，我以往看到的vector初始化方式都是“一、vector 的初始化”写到的五种方式，这五种方式都需要在初始化的时候规定vector的大小。但是这次我在这篇博文“三、顺序访问vector的几种方式”看到了<code>vector&lt;int&gt; a;</code> 这样的形式，这就证明了我的猜想是正确的。其实后来又看了看其他人写的关于vector的博文，大多在最开始就写了<code>vector&lt;int&gt; a;</code> 这种初始化方式，只能说我一开始学vector的时候太懒了，没多看几篇文章，弄得我在用vector的时候还得去”猜“vector的某种用法(好蠢)。</p>
+<p>​    还有就是由于第一次接触到二维vector的用法，不太熟悉导致编译错误耽误了一段时间。本来应该是这样对二维vector插值的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; ans;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; group;</span><br><span class="line">group.push_back(strs[i]);</span><br><span class="line">ans.push_back(group);</span><br><span class="line"><span class="comment">//注意vector里push_back和insert用法上的区别，不要记混了</span></span><br></pre></td></tr></table></figure>
+<p>我硬是自作聪明，施展了一番奇技淫巧：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ans.push_back(group.push_back(strs[i]));</span><br></pre></td></tr></table></figure>
+<p>看起来挺厉害的，结果就是<strong>一直报错还搜不到报错的原因</strong>，幸好后来脑子转过弯了，改了代码后提交了一次就Accept了。顺便一提，提交之后发现这是我通过的第一道medium题。</p>
+<p>​    看了看官方题解，我的解法就是解法一的思路。解法二的思路我记得脑海中曾经闪过，但是感觉有点麻烦就放弃了。然后最让我感到震惊的是该题评论区第一条：</p>
+<blockquote>
+<p>在美版leetcode上看到大神的思路，用质数表示26个字母，把字符串的各个字母相乘，这样可保证字母异位词的乘积必定是相等的。其余步骤就是用map存储，和别人的一致了。</p>
+</blockquote>
+<p>这其实跟我最开始的思路“字母转化为数字然后相加”很相似，但是他用质数相乘解决了我思路中“12+14=13+13“这样的问题。</p>
+<p><strong>收获：</strong> </p>
+<p>​    了解到vector初始化可以不规定大小</p>
+<p>​    学会了二维vector插入元素的正确</p>
+<p>​    复习了map的初始化、获取长度、插入元素</p>
+<hr>
+<p>2020.04.07</p>
+<p>Counting Elements    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong></p>
+<p>​    不知道题目意义何在，只要知道map以及map.find()怎么用，半分钟不到就能解决。而且题目下面还给了提示说用Hash，感觉就像是一个map教学题。提交成功后才发现这道题根本就不在题库里，可能是太过于简单了吧，不知道把它出在这个30天挑战里干嘛。</p>
+<p><strong>收获：</strong>无</p>
 
       
     </div>
@@ -303,7 +367,7 @@
         <p><span>本文标题:</span><a href="/2020/04/02/LeetCode刷题记录/">LeetCode刷题记录</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
         <p><span>发布时间:</span>2020-04-02, 23:45</p>
-        <p><span>最后更新:</span>2020-04-03, 17:57</p>
+        <p><span>最后更新:</span>2020-04-07, 16:34</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/04/02/LeetCode刷题记录/" title="LeetCode刷题记录">https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/</a>
             <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
