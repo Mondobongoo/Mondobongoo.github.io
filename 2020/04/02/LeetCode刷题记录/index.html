@@ -26,10 +26,12 @@
 <meta property="og:site_name" content="Mondobongo&#39;s Blog">
 <meta property="og:description" content="一个写给自己看的刷题记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-10T14:39:28.722Z">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V138MMQ83qT5pq/h4SLI6MeeCc7mRdKk01uskDCE8*0CvhXv4YbFx6rpz0V6rKS16mCxdoOmVbmT3hnsVTRm.nzjIpniRz.fJ8Z2c71F41daQSLOi3OJhbIxF8!/b&bo=5gEdAuYBHQIRGS4!&rf=viewer_4&t=5">
+<meta property="og:updated_time" content="2020-04-11T19:10:16.312Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode刷题记录">
 <meta name="twitter:description" content="一个写给自己看的刷题记录">
+<meta name="twitter:image" content="http://m.qpic.cn/psc?/V138MMQ83qT5pq/h4SLI6MeeCc7mRdKk01uskDCE8*0CvhXv4YbFx6rpz0V6rKS16mCxdoOmVbmT3hnsVTRm.nzjIpniRz.fJ8Z2c71F41daQSLOi3OJhbIxF8!/b&bo=5gEdAuYBHQIRGS4!&rf=viewer_4&t=5">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -277,8 +279,7 @@
 <a id="more"></a>
 <p>2020.03. 26</p>
 <p>1-Two Sum    题目顺序类别: FirstTime-byTag-Array</p>
-<p><strong>随记：</strong></p>
-<p>　　习惯了平常的ACM题目，第一次见到LeetCode这种预先给答题格式的题目还有些不知所措……看了一会儿才理解输入是传入函数的参数，输出是函数的返回值。并且如果一个函数类型不是void，只是在循环里直接if判断后return会报错，一定要在函数的末尾写有return语句。除此之外，LeetCode好像不会在题目里给出数据的范围。而且LeetCode不用引入头文件就可以直接使用 <code>max()</code> 这种常见函数，也可以直接使用常见的C++ STL</p>
+<p><strong>随记：</strong><br>　　习惯了平常的ACM题目，第一次见到LeetCode这种预先给答题格式的题目还有些不知所措……看了一会儿才理解输入是传入函数的参数，输出是函数的返回值。并且如果一个函数类型不是void，只是在循环里直接if判断后return会报错，一定要在函数的末尾写有return语句。除此之外，LeetCode好像不会在题目里给出数据的范围。而且LeetCode不用引入头文件就可以直接使用 <code>max()</code> 这种常见函数，也可以直接使用常见的C++ STL</p>
 <p><strong>收获：</strong></p>
 <ul>
 <li>本题就写了一个O($n^2$)的暴力二重循环就过了。</li>
@@ -290,12 +291,7 @@
 <hr>
 <p>2020.04.01</p>
 <p>136-Single Number    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
-<p><strong>随记：</strong></p>
-<p>　　 一个数组里除了一个数字只出现过一次，其他所有数字都出现了两次，找出这个数字。暴力解很简单，写个二重循环就行了。</p>
-<p>　　但是题目要求”have a linear runtime complexity”, 即要求时间复杂度为O($n$)。然后我就想到了以前做题的一种处理方法——利用数组，数组元素的下标不再只是一个单纯的序号，而有了实际意义：数组的下标代表着某个数字，元素的内容就代表该数字出现过几次，例如 <code>num[4]=2;</code> 就意味着”数字4出现过2次”。</p>
-<p>　　按照这种思路就写了一遍，交了之后就<strong>Runtime Error</strong>了，根据以往ACM的经验，大概率是<strong>数组越界</strong>了。查看了一下果然是的，因为数组下标不能小于0，所以当输入数据有负数如-1时，数组自然就越界了。</p>
-<p>　　这个时候我就想到了以前使用过的一种C++ STL——map. 这种数据结构类似数组，但是数组的下标只能为自然数，而map的关键字可以是任意类型的数据如int、String等，如果map的关键字类型为int，那么自然就可以用负数了。</p>
-<p>　　接着写啊写，提交了之后发现又变成了 <strong>Time Limit Exceeded</strong> …… 这明显就是程序陷入无限循环了，debug了一会儿，发现是对map进行遍历的while循环里忘了对迭代器进行更新。</p>
+<p><strong>随记：</strong><br>　　 一个数组里除了一个数字只出现过一次，其他所有数字都出现了两次，找出这个数字。暴力解很简单，写个二重循环就行了。<br>　　但是题目要求”have a linear runtime complexity”, 即要求时间复杂度为O($n$)。然后我就想到了以前做题的一种处理方法——利用数组，数组元素的下标不再只是一个单纯的序号，而有了实际意义：数组的下标代表着某个数字，元素的内容就代表该数字出现过几次，例如 <code>num[4]=2;</code> 就意味着”数字4出现过2次”。<br>　　按照这种思路就写了一遍，交了之后就<strong>Runtime Error</strong>了，根据以往ACM的经验，大概率是<strong>数组越界</strong>了。查看了一下果然是的，因为数组下标不能小于0，所以当输入数据有负数如-1时，数组自然就越界了。<br>　　这个时候我就想到了以前使用过的一种C++ STL——map. 这种数据结构类似数组，但是数组的下标只能为自然数，而map的关键字可以是任意类型的数据如int、String等，如果map的关键字类型为int，那么自然就可以用负数了。<br>　　接着写啊写，提交了之后发现又变成了 <strong>Time Limit Exceeded</strong> …… 这明显就是程序陷入无限循环了，debug了一会儿，发现是对map进行遍历的while循环里忘了对迭代器进行更新。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::iterator iter;</span><br><span class="line">iter=m.begin();</span><br><span class="line"><span class="keyword">while</span>(iter!=m.end())&#123;</span><br><span class="line">    <span class="keyword">if</span>(iter-&gt;second==<span class="number">1</span>)&#123;</span><br><span class="line">    ans=iter-&gt;first;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//此处应该有 iter++;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>究其原因就是我平常用的最多的是for循环，然而我看map相关博文的时候，给出的是我不常用的while 循环，我照着写然后就疏忽了。看来以后还是要用for循环对map进行遍历。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;::iterator iter; iter!=m.end(); iter++)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -330,7 +326,7 @@
 <p><strong>随记：</strong></p>
 <p>　　第一眼看上去感觉有点像是“最长上升子序列”，本来开始准备写dp什么的了，后来发现这题简单到根本用不着dp，直接写几行代码就过了。</p>
 <p>　　最精彩的是我交完题后看官方题解，我以为这么简单的题就一种暴力解法，没想到居然还有三种思路。我想我的思路肯定是最简单的，就直接越过前两种简单解法没看，直接去看最后一种解法，没想到最后一种解法就是我的思路。然后我回头看了一眼第一个题解，惊了，我以为我的O($n$)解法已经够简单粗暴了，第一种题解居然还能写出更暴力O($n^2$)的代码……(没敢仔细看这种解法，怕影响我智商) 接着又看了看评论区，竟然发现很多人在赞扬第三种解法有多精妙……无语，本质上就是一道非常简单的C语言题目而已。</p>
-<p><strong>收获：</strong>无</p>
+<p><strong>收获：</strong> 无</p>
 <hr>
 <p>2020.04.06</p>
 <p>49-Group Anagrams    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
@@ -379,11 +375,35 @@
 <p>　　可是我又感觉用stack还是有点麻烦，灵机一动想了一下，用一个计数器来记录连续的’#’不就好了(跟官方题解二思路一样)，写了一下就提交通过了。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> newS;</span><br><span class="line"><span class="keyword">int</span> SSize=S.size();</span><br><span class="line"><span class="keyword">int</span> flag=<span class="number">0</span>;<span class="comment">//标志着在遍历该符号之前，有几个'#'</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=SSize<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--)&#123;<span class="comment">//倒序遍历</span></span><br><span class="line">    <span class="keyword">if</span>(S[i]==<span class="string">'#'</span>) flag++;</span><br><span class="line">    <span class="comment">//当前符号为'#'，计数器flag加一</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(S[i]!=<span class="string">'#'</span>&amp;&amp;flag==<span class="number">0</span>) newS+=S[i]; </span><br><span class="line">    <span class="comment">//当前符号不为'#'，且之前没有累计的'#'，复制当前符号</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(S[i]!=<span class="string">'#'</span>&amp;&amp;flag&gt;<span class="number">0</span>) flag--;</span><br><span class="line">    <span class="comment">//当前符号不为'#'，但是之前仍有累计的'#'未消耗完，跳过当前符号，计数器flag减一</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>顺便一提，在此我的if语句写的有些啰嗦，写这么多的原因是我依稀记得以前在这里踩过坑，对多个条件取反的结果很多时候跟直觉并不一样，比如 $A\ and\ B$  取反是 $\overline A\ or\  \overline B$ , 而并不是直觉上的$\overline A\ and \  \overline B$ ，所以为了避免重蹈覆辙，我宁愿多写一点判断条件。</p>
-<p><strong>收获：</strong> </p>
+<p><strong>收获：</strong></p>
 <ul>
 <li>C++ string 的一些操作，如 str.size(), str.compare()</li>
 <li>Mathjax的<a href="https://blog.csdn.net/qq_42659468/article/details/90381985" target="_blank" rel="noopener">一些语法</a>，比如字母上划线，字母之间的空格</li>
 <li>虽说我的思路是跟官方题解二相同，但是它的空间复杂度为O(1)，我的还是O($M+N$)，这一点有待学习</li>
+</ul>
+<hr>
+<p>2020.04.10</p>
+<p>155-Min Stack 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　第一次写这种“设计对象”的题目。题目很简单，本来想用stack来做，不过后来感觉用stack时不太方便实现getMin()这个函数，所以最终选择了vector，因为在之前浏览vector相关知识的博客中，我记得vector本身就有push_back、pop_back等功能，而且我猜想vector自带getMin( )类似的功能。最后我在<a href="https://www.cnblogs.com/Tang-tangt/p/9352093.html" target="_blank" rel="noopener">这篇博文</a>里找到了该操作，虽然并不是vector自带的，但也很方便。<br>　　中间出现了一个小插曲，就是我对C++里很多内容记得模糊不清了，然后直接把vector创建在构造函数里，导致其他函数无法调用vector。后来我就把构造函数清空，把vector在private里创建就行了。<br>　　不过我提交的代码耗时800+ms，我看别人的代码30+ms就通过了，我估计是<code>*min_element(v.begin(),v.end());</code>这个操作耗费了不少时间。看了一下别的思路，就是在入栈时，同时push实际值、当前最小值，出栈就是同时pop两下。该思路变形就是用两个stack，在入栈的同时，在另一个stack里记录第一个stack当前最小值。也可以用链表来实现，每一个结点里记录了该结点入栈时的最小值。</p>
+<p><strong>收获：</strong></p>
+<ul>
+<li>回顾了C++里面向对象、构造函数等内容</li>
+<li>回顾了vector里push_back(x)、pop_back()</li>
+<li>学习了vector求最值的操作</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">最大值：<span class="keyword">int</span> maxValue = *max_element(v.begin(),v.end());</span><br><span class="line">最小值：<span class="keyword">int</span> minValue = *min_element(v.begin(),v.end());</span><br></pre></td></tr></table></figure>
+<p>2020.04.11</p>
+<p>543-Diameter of Binary Tree 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　首次写二叉树的题目，题目不难，但我写得磕磕绊绊的，犯了不少错误，耗费了一些时间才提交成功。所以本来以为是个medium的题目，结果还是个easy题(唉太菜了)。<br>　　题目思路并不难，如果曾经学过二叉树的操作，分析几个例子自己模拟一下差不多就能写出来了。我提交后看了看评论区，基本上也都是同样的思路。比如我在写代码的时候，还为自己把寻常的“二叉树深度”概念逆向转换为“二叉树高度”这一思路而自鸣得意，然后发现评论区很多人用词也同样是“高度”……</p>
+<p>　　关于代码的错误主要也体现在三点：<br>　　1.因为二叉树左右子节点操作类似，所以我就喜欢复制粘贴代码，然而粘贴后经常忘了改left和right<br>　　2.忘记判断左右子节点是否为空，这一点跑样例的时候控制台会报错，发现了这一点就改正了,在每次进入左右子结点之前判断左右子结点是否为空，然后再进入递归函数<br>　　3.忘记判断根节点是否为空，跑样例的时候没发现，导致第一次提交Runtime Error了，发现有一组样例输入是空，这才意识过来问题所在。然后在代码最开始就加上了根节点判别条件，提交就通过了</p>
+<p>　　其实本题有一个坑点，只不过题目直接就说出来了<strong>This path may or may not pass through the root.</strong>于是在自定义样例的时候，必然要画出一个“最长路径不经过根结点”的二叉树。然后我发现了leetcode居然提供了一个特别实用的功能——二叉树可视化工具，就是你在自定义样例的时候，可以实时显示出二叉树的样子。比如，我写了这样一个样例，然后就能即时看到二叉树的样子。<br><code>[1,2,3,4,5,null,null,null,null,6,7,8,9,null,10,11,null,null,null,null,12,13,null,null,14,15,null,null,16]</code><br><img src="http://m.qpic.cn/psc?/V138MMQ83qT5pq/h4SLI6MeeCc7mRdKk01uskDCE8*0CvhXv4YbFx6rpz0V6rKS16mCxdoOmVbmT3hnsVTRm.nzjIpniRz.fJ8Z2c71F41daQSLOi3OJhbIxF8!/b&amp;bo=5gEdAuYBHQIRGS4!&amp;rf=viewer_4&amp;t=5" alt=""></p>
+<p>　　在提交后看了看别人的代码，发现其他人写的都很简短，差不多行数是我的一半。对比了一下，发现是因为在遍历二叉树的同时，需要返回两个值，这在python可以实现但C++/Java不行，所以很多人选择定义了一个全局变量Max来记录，我本来也该设置个全局变量的，不知道为什么脑子抽了写了另外一个函数再遍历一次。所以别人一个函数，我两个函数，行数自然就多了一倍。而且我发现我的一些代码写得很啰嗦，比如我会在每次进入左右节点之前都进行判空：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Node-&gt;left!=<span class="literal">NULL</span>) leftMax=findMax(Node-&gt;left, nowMax);</span><br><span class="line"><span class="keyword">if</span>(Node-&gt;right!=<span class="literal">NULL</span>) rightMax=findMax(Node-&gt;right, nowMax);</span><br></pre></td></tr></table></figure></p>
+<p>而实际上，只需要在进入递归函数后的第一行，写下一句<code>if(Node==NULL) return 0;</code>就行了，简洁高效。</p>
+<p><strong>收获：</strong></p>
+<ul>
+<li>二叉树的相关操作</li>
+<li>leetcode二叉树可视化</li>
+<li>以后再补交一份简洁版的代码</li>
 </ul>
 
       
@@ -396,7 +416,7 @@
         <p><span>本文标题:</span><a href="/2020/04/02/LeetCode刷题记录/">LeetCode刷题记录</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
         <p><span>发布时间:</span>2020-04-02, 23:45</p>
-        <p><span>最后更新:</span>2020-04-10, 22:39</p>
+        <p><span>最后更新:</span>2020-04-12, 03:10</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/04/02/LeetCode刷题记录/" title="LeetCode刷题记录">https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/</a>
             <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
