@@ -27,7 +27,7 @@
 <meta property="og:description" content="一个写给自己看的刷题记录">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://m.qpic.cn/psc?/V138MMQ83qT5pq/h4SLI6MeeCc7mRdKk01uskDCE8*0CvhXv4YbFx6rpz0V6rKS16mCxdoOmVbmT3hnsVTRm.nzjIpniRz.fJ8Z2c71F41daQSLOi3OJhbIxF8!/b&bo=5gEdAuYBHQIRGS4!&rf=viewer_4&t=5">
-<meta property="og:updated_time" content="2020-04-11T19:10:16.312Z">
+<meta property="og:updated_time" content="2020-04-12T17:52:21.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode刷题记录">
 <meta name="twitter:description" content="一个写给自己看的刷题记录">
@@ -405,6 +405,14 @@
 <li>leetcode二叉树可视化</li>
 <li>以后再补交一份简洁版的代码</li>
 </ul>
+<p>2020.04.12</p>
+<p>1046-Last Stone Weight 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　题目挺简单的，没什么好说的，提示说可以用heap去做本题，我懒得看，就直接用vector+sort写了。提交了之后看了看评论区，看到别人的代码里用到了C++ STL里的priority_queue，这个STL我好像很少用过，查了查，原来优先队列就是用堆实现的。就顺便学习了一下堆的相关操作：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化优先队列</span></span><br><span class="line">priority_queue&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;,less&lt;<span class="keyword">int</span>&gt;&gt; q;<span class="comment">//降序</span></span><br><span class="line">priority_queue&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;,greater&lt;<span class="keyword">int</span>&gt;&gt; q;<span class="comment">//升序</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//插值，自动排序</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; vec.size() ; i ++)&#123;</span><br><span class="line">  q.push(stones[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">q.size();<span class="comment">//获取大小</span></span><br><span class="line">q.top();<span class="comment">//获取顶端元素</span></span><br><span class="line">q.pop();<span class="comment">//弹出顶端元素</span></span><br><span class="line">q.empty()<span class="comment">//是否为空</span></span><br></pre></td></tr></table></figure>
+<p><strong>收获：</strong></p>
+<ul>
+<li>学习了用 C++ STL 里的 priority_queue 来进行 heap 的相关操作</li>
+</ul>
 
       
     </div>
@@ -416,7 +424,7 @@
         <p><span>本文标题:</span><a href="/2020/04/02/LeetCode刷题记录/">LeetCode刷题记录</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
         <p><span>发布时间:</span>2020-04-02, 23:45</p>
-        <p><span>最后更新:</span>2020-04-12, 03:10</p>
+        <p><span>最后更新:</span>2020-04-13, 01:52</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/04/02/LeetCode刷题记录/" title="LeetCode刷题记录">https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/</a>
             <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
