@@ -27,7 +27,7 @@
 <meta property="og:description" content="一个写给自己看的刷题记录">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://m.qpic.cn/psc?/V138MMQ83qT5pq/h4SLI6MeeCc7mRdKk01uskDCE8*0CvhXv4YbFx6rpz0V6rKS16mCxdoOmVbmT3hnsVTRm.nzjIpniRz.fJ8Z2c71F41daQSLOi3OJhbIxF8!/b&bo=5gEdAuYBHQIRGS4!&rf=viewer_4&t=5">
-<meta property="og:updated_time" content="2020-04-12T17:52:21.717Z">
+<meta property="og:updated_time" content="2020-04-15T19:51:21.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode刷题记录">
 <meta name="twitter:description" content="一个写给自己看的刷题记录">
@@ -298,6 +298,7 @@
 <p>　　看了看题解，发现原来我这种”利用数组下标“的方式就是”哈希“。也对，map在Java里就叫做HashMap。</p>
 <p><strong>收获：</strong> </p>
 <ul>
+<li>当数组下标需要是负数时，就要立刻想到用map</li>
 <li><a href="https://www.cnblogs.com/fnlingnzb-learner/p/5833051.html" target="_blank" rel="noopener">学习了map</a>的初始化、插值、遍历等操作</li>
 <li>学会了判断map用insert插值是否成功(如果关键字已经在map里就会插入失败)</li>
 </ul>
@@ -361,10 +362,17 @@
 <p><strong>收获：</strong> 无</p>
 <hr>
 <p>2020.04.08</p>
-<p>Counting Elements    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p>876-Middle of the Linked List    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
 <p><strong>随记：</strong></p>
-<p>　　不知道题目意义何在，只要知道map以及map.find()怎么用，半分钟不到就能解决。而且题目下面还给了提示说用Hash，感觉就像是一个map教学题。提交成功后才发现这道题根本就不在题库里，可能是太过于简单了吧，不知道把它出在这个30天挑战里干嘛。</p>
-<p><strong>收获：</strong> 无</p>
+<p>　　第一次做链表题目，很久都没接触过链表了，所以懵了一会儿。题目不难，很快就做出来了。因为答案要返回中间节点到末尾的子链表，所以找到中间节点时候我还在想要不要重新创建一个相同大小的链表然后一一赋值呢？突然我灵机一动，直接创建一个指针去指向中间节点不就好了嘛！<code>ListNode *ans=middle;</code><br>　　提交后看评论区，终于见识到了耳闻已久的“快慢指针”在此题中的应用。</p>
+<p><strong>收获：</strong> </p>
+<ul>
+<li>复习了链表的相关操作，如链表的遍历</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(ListNode* temp=head; temp-&gt;next!=<span class="literal">NULL</span>; temp=temp-&gt;next)&#123;</span><br><span class="line">  listSize++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>学到了“快慢指针”的用法</li>
+</ul>
 <hr>
 <p>2020.04.09</p>
 <p>844- Backspace String Compare    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
@@ -392,6 +400,7 @@
 <li>学习了vector求最值的操作</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">最大值：<span class="keyword">int</span> maxValue = *max_element(v.begin(),v.end());</span><br><span class="line">最小值：<span class="keyword">int</span> minValue = *min_element(v.begin(),v.end());</span><br></pre></td></tr></table></figure>
+<hr>
 <p>2020.04.11</p>
 <p>543-Diameter of Binary Tree 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
 <p><strong>随记：</strong><br>　　首次写二叉树的题目，题目不难，但我写得磕磕绊绊的，犯了不少错误，耗费了一些时间才提交成功。所以本来以为是个medium的题目，结果还是个easy题(唉太菜了)。<br>　　题目思路并不难，如果曾经学过二叉树的操作，分析几个例子自己模拟一下差不多就能写出来了。我提交后看了看评论区，基本上也都是同样的思路。比如我在写代码的时候，还为自己把寻常的“二叉树深度”概念逆向转换为“二叉树高度”这一思路而自鸣得意，然后发现评论区很多人用词也同样是“高度”……</p>
@@ -405,6 +414,7 @@
 <li>leetcode二叉树可视化</li>
 <li>以后再补交一份简洁版的代码</li>
 </ul>
+<hr>
 <p>2020.04.12</p>
 <p>1046-Last Stone Weight 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
 <p><strong>随记：</strong><br>　　题目挺简单的，没什么好说的，提示说可以用heap去做本题，我懒得看，就直接用vector+sort写了。提交了之后看了看评论区，看到别人的代码里用到了C++ STL里的priority_queue，这个STL我好像很少用过，查了查，原来优先队列就是用堆实现的。就顺便学习了一下堆的相关操作：</p>
@@ -413,6 +423,34 @@
 <ul>
 <li>学习了用 C++ STL 里的 priority_queue 来进行 heap 的相关操作</li>
 </ul>
+<hr>
+<p>2020.04.13</p>
+<p>525-Contiguous Array 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　<strong>非常沮丧，第一次做LeetCode没写出来……(不过我也知道这种情况在今后会出现更多次)</strong> 一开始看到“求最值”，想到在<a href="https://labuladong.gitbook.io/algo/di-ling-zhang-bi-du-xi-lie/dong-tai-gui-hua-xiang-jie-jin-jie" target="_blank" rel="noopener">算法小抄</a>上看到的 <strong>“动态规划问题的一般形式就是求最值”</strong> 就以为是dp，想了好久没写出来dp的推导式，遂放弃dp。然后随便想了个算法，写了几个样例，结果输出不对。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<p>尝试过分治，也不行，还想过把第一个样例转化为 [3,2,8,3,2] 这样的形式再进行操作，也不行。然后硬着头皮想了了五六个小时依旧无果，撑不住了，去看了<a href="https://leetcode-cn.com/problems/contiguous-array/solution/lian-xu-shu-zu-by-leetcode/" target="_blank" rel="noopener">官方题解</a>。题解的思路确实巧妙，或许之前的五六个小时里向题解的思路靠近过，但始终还是没能触碰到，不愧是medium题。<br>　　看了题解后，按照题解的思路去写了一遍代码，跑了一些样例通过了，结果 [0,1,0,1,0,1,0,1] 的输出还是错的(幸好能通过该样例及时发现问题，不然又要耽误好多时间)。想了一会儿没明白，只能跑去看题解的代码，发现原来是我少写了一句<code>m[0]=-1;</code>。因为<a href="https://leetcode-cn.com/problems/contiguous-array/solution/lian-xu-shu-zu-by-leetcode/" target="_blank" rel="noopener">题解</a>所画的那个折线图，起始于坐标0，第一个数据的坐标是1。然而在代码里，第一个数据的下标是0,丢失了原来的坐标0，所以就需要额外在map里插入一个坐标-1 (题解三里Java代码写的是<code>map.put(0, -1);</code>)。<del>看了题解思路还写不出来正确代码实属大菜逼</del><br>　不得不再次对此题进行一下感叹，该题<strong>并没用到任何常见或高深的“算法”</strong>(评论区也没看到有人用其他什么算法)，也与数学无关，仅仅是靠思维上的一个技巧来进行解题,真可谓是“大智若愚，大巧若拙”。</p>
+<p><strong>收获：</strong></p>
+<ul>
+<li>学会了面对失败，面对挫折，<strong>在LeetCode我是来刷题的，而不是来发明算法的</strong>，想不出来解法很正常，以后如果思路停滞超过半小时，就直接看题解进行学习，不能再闭门造车浪费时间</li>
+<li>看了看别人的代码，学到了map的一些简洁操作</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//我之前是这样写的，直接插入，然后判断插入是否成功</span></span><br><span class="line">pair&lt;<span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;::iterator, <span class="keyword">bool</span>&gt; insertPair;</span><br><span class="line">insertPair=m.insert(pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;(count,i)); <span class="comment">//插入</span></span><br><span class="line"><span class="keyword">if</span>(insertPair.second==<span class="literal">false</span>)&#123; <span class="comment">//如果插入失败</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//别人的写法，先查找，，然后再插入</span></span><br><span class="line"><span class="keyword">auto</span> iter = m.find(count);</span><br><span class="line"><span class="keyword">if</span>(iter == m.end())&#123;<span class="comment">//如果没找到</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(iter == m.end())&#123;<span class="comment">//如果找到了</span></span><br><span class="line">  m.insert(&#123;coutn,i&#125;);<span class="comment">//插入</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2020.04.14</p>
+<p>Perform String Shifts 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　类似于2020.04.07的题，本题又是一道不在题库中的题，题目很简单，而且稍微需要思考的点已经给出了提示，就没什么好说的。很惭愧，我一开始看数据范围很小，就打算直接暴力模拟。然后看到了提示2，我才知道“左右抵消”这种操作。<br>　　第一次提交的结果是Runtime Error，很明显超数组下标了，看了看代码才意识过来，和当年做的“约瑟夫环”类似，这种首位衔接循环的情况，当位移的长度大于数组长度，必须不断减小到数组长度之内<code>while(count&gt;sSize) count-=sSize;</code></p>
+<p><strong>收获：</strong></p>
+<ul>
+<li>看了别人的代码，才想起来减小位移长度时并不需要用循环，直接取模就好了<code>if(count&gt;sSize) count=count%sSize</code></li>
+</ul>
+<hr>
+<p>2020.04.15</p>
+<p>238-Product of Array Except Self 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　第二次看到题目后不会做……我知道这一天肯定会再次到来，但是我没想到这个“再次”来得这么快(<del>看来我还是高估了自己的智商</del>)……<br>　　题目看上去很简单，但是加了限制条件后就变得很困难。抛开限制，本题貌似最简单的做法就是所有数字相乘，然后每次除以某个数字，官方题解说该做法当遇到某数为0时就会出错因为不能除以0(我还没想到这一点)。或者是对于每个数，每次都从头到尾跳过该数字乘一遍，当然这种做法时间复杂度是O($n^2$),不满足O($n$)的要求。<br>　　苦于“除法”的思维定式，找不到答案，只能看题解。题解的思路概括起来就是简单一句话<code>乘积 = 当前数左边的乘积 * 当前数右边的乘积</code>,不得不赞叹巧妙。本题同样没用到什么高明的算法，评论区称之为“脑筋急转弯”。<br>　　本题的进阶解法更为精简，但是进阶要求的描述<code>出于对空间复杂度分析的目的，输出数组不被视为额外空间</code>我并不是很满意，我以为“输出数组不被视为额外空间”的意思是直接把输出数组忽视掉，谁知道题解反而是去占据了“输出空间”去解题，让该进阶解法有种利用漏洞“捡漏”的感觉。我觉得，进阶描述应该更准确地说 <strong>“除了输入数组、输出数组以外，不能够定义任何新的数组”</strong>。</p>
+<p><strong>收获：</strong></p>
+<ul>
+<li>再次明白了自己智商有待充值</li>
+</ul>
+<hr>
 
       
     </div>
@@ -424,7 +462,7 @@
         <p><span>本文标题:</span><a href="/2020/04/02/LeetCode刷题记录/">LeetCode刷题记录</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
         <p><span>发布时间:</span>2020-04-02, 23:45</p>
-        <p><span>最后更新:</span>2020-04-13, 01:52</p>
+        <p><span>最后更新:</span>2020-04-16, 03:51</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/04/02/LeetCode刷题记录/" title="LeetCode刷题记录">https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/</a>
             <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
