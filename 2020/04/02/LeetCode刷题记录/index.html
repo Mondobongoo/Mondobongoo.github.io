@@ -27,7 +27,7 @@
 <meta property="og:description" content="一个写给自己看的刷题记录">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://m.qpic.cn/psc?/V138MMQ83qT5pq/h4SLI6MeeCc7mRdKk01uskDCE8*0CvhXv4YbFx6rpz0V6rKS16mCxdoOmVbmT3hnsVTRm.nzjIpniRz.fJ8Z2c71F41daQSLOi3OJhbIxF8!/b&bo=5gEdAuYBHQIRGS4!&rf=viewer_4&t=5">
-<meta property="og:updated_time" content="2020-04-15T19:51:21.137Z">
+<meta property="og:updated_time" content="2020-04-25T13:54:56.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode刷题记录">
 <meta name="twitter:description" content="一个写给自己看的刷题记录">
@@ -282,16 +282,20 @@
 <p><strong>随记：</strong><br>　　习惯了平常的ACM题目，第一次见到LeetCode这种预先给答题格式的题目还有些不知所措……看了一会儿才理解输入是传入函数的参数，输出是函数的返回值。并且如果一个函数类型不是void，只是在循环里直接if判断后return会报错，一定要在函数的末尾写有return语句。除此之外，LeetCode好像不会在题目里给出数据的范围。而且LeetCode不用引入头文件就可以直接使用 <code>max()</code> 这种常见函数，也可以直接使用常见的C++ STL</p>
 <p><strong>收获：</strong></p>
 <ul>
-<li>本题就写了一个O($n^2$)的暴力二重循环就过了。</li>
+<li>本题就写了一个$O(n^2)$的暴力二重循环就过了。</li>
 <li>题解里更快的解法是用哈希表，暂时没看，以后再补。</li>
 <li>复习了一下vector的概念、初始化、求元素个数</li>
-<li>分清了Markdown语法的 <code>$行内公式$</code> 和 <code>$$行间公式$$</code></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec(n);</span><br><span class="line"><span class="comment">//注意要与数组的初始化区分开，千万不要把vec(n)写成了vec[n]</span></span><br><span class="line"><span class="keyword">int</span> vecSize=vec.size();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i; i&lt;vecSize; i++)&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;vec[i]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>分清了Markdown语法的 <code>$行内公式$</code> 和 <code>$$行间公式$$</code></li>
+<li>领悟到一个优化代码运行速度的写法</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//该写法代码运行时间484ms</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.size(); i++ )</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;nums.size(); j++)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该写法代码运行时间336ms</span></span><br><span class="line"><span class="keyword">int</span> numsSize=nums.size();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;numsSize; i++ )</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;numsSize; j++)</span><br></pre></td></tr></table></figure>
 <hr>
 <p>2020.04.01</p>
 <p>136-Single Number    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
-<p><strong>随记：</strong><br>　　 一个数组里除了一个数字只出现过一次，其他所有数字都出现了两次，找出这个数字。暴力解很简单，写个二重循环就行了。<br>　　但是题目要求”have a linear runtime complexity”, 即要求时间复杂度为O($n$)。然后我就想到了以前做题的一种处理方法——利用数组，数组元素的下标不再只是一个单纯的序号，而有了实际意义：数组的下标代表着某个数字，元素的内容就代表该数字出现过几次，例如 <code>num[4]=2;</code> 就意味着”数字4出现过2次”。<br>　　按照这种思路就写了一遍，交了之后就<strong>Runtime Error</strong>了，根据以往ACM的经验，大概率是<strong>数组越界</strong>了。查看了一下果然是的，因为数组下标不能小于0，所以当输入数据有负数如-1时，数组自然就越界了。<br>　　这个时候我就想到了以前使用过的一种C++ STL——map. 这种数据结构类似数组，但是数组的下标只能为自然数，而map的关键字可以是任意类型的数据如int、String等，如果map的关键字类型为int，那么自然就可以用负数了。<br>　　接着写啊写，提交了之后发现又变成了 <strong>Time Limit Exceeded</strong> …… 这明显就是程序陷入无限循环了，debug了一会儿，发现是对map进行遍历的while循环里忘了对迭代器进行更新。</p>
+<p><strong>随记：</strong><br>　　 一个数组里除了一个数字只出现过一次，其他所有数字都出现了两次，找出这个数字。暴力解很简单，写个二重循环就行了。<br>　　但是题目要求”have a linear runtime complexity”, 即要求时间复杂度为$O(n)$。然后我就想到了以前做题的一种处理方法——利用数组，数组元素的下标不再只是一个单纯的序号，而有了实际意义：数组的下标代表着某个数字，元素的内容就代表该数字出现过几次，例如 <code>num[4]=2;</code> 就意味着”数字4出现过2次”。<br>　　按照这种思路就写了一遍，交了之后就<strong>Runtime Error</strong>了，根据以往ACM的经验，大概率是<strong>数组越界</strong>了。查看了一下果然是的，因为数组下标不能小于0，所以当输入数据有负数如-1时，数组自然就越界了。<br>　　这个时候我就想到了以前使用过的一种C++ STL——map. 这种数据结构类似数组，但是数组的下标只能为自然数，而map的关键字可以是任意类型的数据如int、String等，如果map的关键字类型为int，那么自然就可以用负数了。<br>　　接着写啊写，提交了之后发现又变成了 <strong>Time Limit Exceeded</strong> …… 这明显就是程序陷入无限循环了，debug了一会儿，发现是对map进行遍历的while循环里忘了对迭代器进行更新。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::iterator iter;</span><br><span class="line">iter=m.begin();</span><br><span class="line"><span class="keyword">while</span>(iter!=m.end())&#123;</span><br><span class="line">    <span class="keyword">if</span>(iter-&gt;second==<span class="number">1</span>)&#123;</span><br><span class="line">    ans=iter-&gt;first;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//此处应该有 iter++;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>究其原因就是我平常用的最多的是for循环，然而我看map相关博文的时候，给出的是我不常用的while 循环，我照着写然后就疏忽了。看来以后还是要用for循环对map进行遍历。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;::iterator iter; iter!=m.end(); iter++)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -314,7 +318,7 @@
 <p>53-Maximum Subarray    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
 <p><strong>随记：</strong></p>
 <p>​    </p>
-<p><strong>收获：</strong></p>
+<p><strong>收获：</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b[<span class="number">9</span>]=&#123;<span class="number">-2</span>,<span class="number">1</span>,<span class="number">-3</span>,<span class="number">4</span>,<span class="number">-1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-5</span>,<span class="number">4</span>&#125;;</span><br><span class="line">   <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a(b,b+<span class="number">9</span>);</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p>2020.04.04</p>
 <p>53-Move Zeroes    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
@@ -326,7 +330,7 @@
 <p>122-Best Time to Buy and Sell Stock II    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
 <p><strong>随记：</strong></p>
 <p>　　第一眼看上去感觉有点像是“最长上升子序列”，本来开始准备写dp什么的了，后来发现这题简单到根本用不着dp，直接写几行代码就过了。</p>
-<p>　　最精彩的是我交完题后看官方题解，我以为这么简单的题就一种暴力解法，没想到居然还有三种思路。我想我的思路肯定是最简单的，就直接越过前两种简单解法没看，直接去看最后一种解法，没想到最后一种解法就是我的思路。然后我回头看了一眼第一个题解，惊了，我以为我的O($n$)解法已经够简单粗暴了，第一种题解居然还能写出更暴力O($n^2$)的代码……(没敢仔细看这种解法，怕影响我智商) 接着又看了看评论区，竟然发现很多人在赞扬第三种解法有多精妙……无语，本质上就是一道非常简单的C语言题目而已。</p>
+<p>　　最精彩的是我交完题后看官方题解，我以为这么简单的题就一种暴力解法，没想到居然还有三种思路。我想我的思路肯定是最简单的，就直接越过前两种简单解法没看，直接去看最后一种解法，没想到最后一种解法就是我的思路。然后我回头看了一眼第一个题解，惊了，我以为我的$O(n)$解法已经够简单粗暴了，第一种题解居然还能写出更暴力$O(n^2)$的代码……(没敢仔细看这种解法，怕影响我智商) 接着又看了看评论区，竟然发现很多人在赞扬第三种解法有多精妙……无语，本质上就是一道非常简单的C语言题目而已。</p>
 <p><strong>收获：</strong> 无</p>
 <hr>
 <p>2020.04.06</p>
@@ -356,7 +360,7 @@
 </ul>
 <hr>
 <p>2020.04.07</p>
-<p>Counting Elements    题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><a href="https://leetcode.com/explore/featured/card/30-day-leetcoding-challenge/528/week-1/3289/" target="_blank" rel="noopener">Counting Elements</a> 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
 <p><strong>随记：</strong></p>
 <p>　　不知道题目意义何在，只要知道map以及map.find()怎么用，半分钟不到就能解决。而且题目下面还给了提示说用Hash，感觉就像是一个map教学题。提交成功后才发现这道题根本就不在题库里，可能是太过于简单了吧，不知道把它出在这个30天挑战里干嘛。</p>
 <p><strong>收获：</strong> 无</p>
@@ -404,8 +408,8 @@
 <p>2020.04.11</p>
 <p>543-Diameter of Binary Tree 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
 <p><strong>随记：</strong><br>　　首次写二叉树的题目，题目不难，但我写得磕磕绊绊的，犯了不少错误，耗费了一些时间才提交成功。所以本来以为是个medium的题目，结果还是个easy题(唉太菜了)。<br>　　题目思路并不难，如果曾经学过二叉树的操作，分析几个例子自己模拟一下差不多就能写出来了。我提交后看了看评论区，基本上也都是同样的思路。比如我在写代码的时候，还为自己把寻常的“二叉树深度”概念逆向转换为“二叉树高度”这一思路而自鸣得意，然后发现评论区很多人用词也同样是“高度”……</p>
-<p>　　关于代码的错误主要也体现在三点：<br>　　1.因为二叉树左右子节点操作类似，所以我就喜欢复制粘贴代码，然而粘贴后经常忘了改left和right<br>　　2.忘记判断左右子节点是否为空，这一点跑样例的时候控制台会报错，发现了这一点就改正了,在每次进入左右子结点之前判断左右子结点是否为空，然后再进入递归函数<br>　　3.忘记判断根节点是否为空，跑样例的时候没发现，导致第一次提交Runtime Error了，发现有一组样例输入是空，这才意识过来问题所在。然后在代码最开始就加上了根节点判别条件，提交就通过了</p>
-<p>　　其实本题有一个坑点，只不过题目直接就说出来了<strong>This path may or may not pass through the root.</strong>于是在自定义样例的时候，必然要画出一个“最长路径不经过根结点”的二叉树。然后我发现了leetcode居然提供了一个特别实用的功能——二叉树可视化工具，就是你在自定义样例的时候，可以实时显示出二叉树的样子。比如，我写了这样一个样例，然后就能即时看到二叉树的样子。<br><code>[1,2,3,4,5,null,null,null,null,6,7,8,9,null,10,11,null,null,null,null,12,13,null,null,14,15,null,null,16]</code><br><img src="http://m.qpic.cn/psc?/V138MMQ83qT5pq/h4SLI6MeeCc7mRdKk01uskDCE8*0CvhXv4YbFx6rpz0V6rKS16mCxdoOmVbmT3hnsVTRm.nzjIpniRz.fJ8Z2c71F41daQSLOi3OJhbIxF8!/b&amp;bo=5gEdAuYBHQIRGS4!&amp;rf=viewer_4&amp;t=5" alt=""></p>
+<p>　　关于代码的错误主要也体现在三点：<br>　　1.因为二叉树左右子节点操作类似，所以我就喜欢复制粘贴代码，然而粘贴后经常忘了改left和right<br>　　2.忘记判断左右子节点是否为空，这一点跑样例的时候控制台会报错，发现了这一点就改正了,在每次进入左右子结点之前判断左右子结点是否为空，然后再进入递归函数<br>　　3.忘记判断根节点是否为空，跑样例的时候没发现，<strong>导致第一次提交Runtime Error了，发现有一组样例输入是空</strong>，这才意识过来问题所在。然后在代码最开始就加上了根节点判别条件，提交就通过了</p>
+<p>　　其实本题有一个坑点，只不过题目直接就说出来了 <strong>This path may or may not pass through the root.</strong> 于是在自定义样例的时候，必然要画出一个“最长路径不经过根结点”的二叉树。然后我发现了leetcode居然提供了一个特别实用的功能——<strong>二叉树可视化工具</strong>，就是你在自定义样例的时候，可以实时显示出二叉树的样子。比如，我写了这样一个样例，然后就能即时看到二叉树的样子。<br><code>[1,2,3,4,5,null,null,null,null,6,7,8,9,null,10,11,null,null,null,null,12,13,null,null,14,15,null,null,16]</code><br><img src="http://m.qpic.cn/psc?/V138MMQ83qT5pq/h4SLI6MeeCc7mRdKk01uskDCE8*0CvhXv4YbFx6rpz0V6rKS16mCxdoOmVbmT3hnsVTRm.nzjIpniRz.fJ8Z2c71F41daQSLOi3OJhbIxF8!/b&amp;bo=5gEdAuYBHQIRGS4!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <p>　　在提交后看了看别人的代码，发现其他人写的都很简短，差不多行数是我的一半。对比了一下，发现是因为在遍历二叉树的同时，需要返回两个值，这在python可以实现但C++/Java不行，所以很多人选择定义了一个全局变量Max来记录，我本来也该设置个全局变量的，不知道为什么脑子抽了写了另外一个函数再遍历一次。所以别人一个函数，我两个函数，行数自然就多了一倍。而且我发现我的一些代码写得很啰嗦，比如我会在每次进入左右节点之前都进行判空：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Node-&gt;left!=<span class="literal">NULL</span>) leftMax=findMax(Node-&gt;left, nowMax);</span><br><span class="line"><span class="keyword">if</span>(Node-&gt;right!=<span class="literal">NULL</span>) rightMax=findMax(Node-&gt;right, nowMax);</span><br></pre></td></tr></table></figure></p>
 <p>而实际上，只需要在进入递归函数后的第一行，写下一句<code>if(Node==NULL) return 0;</code>就行了，简洁高效。</p>
 <p><strong>收获：</strong></p>
@@ -426,17 +430,17 @@
 <hr>
 <p>2020.04.13</p>
 <p>525-Contiguous Array 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
-<p><strong>随记：</strong><br>　　<strong>非常沮丧，第一次做LeetCode没写出来……(不过我也知道这种情况在今后会出现更多次)</strong> 一开始看到“求最值”，想到在<a href="https://labuladong.gitbook.io/algo/di-ling-zhang-bi-du-xi-lie/dong-tai-gui-hua-xiang-jie-jin-jie" target="_blank" rel="noopener">算法小抄</a>上看到的 <strong>“动态规划问题的一般形式就是求最值”</strong> 就以为是dp，想了好久没写出来dp的推导式，遂放弃dp。然后随便想了个算法，写了几个样例，结果输出不对。</p>
+<p><strong>随记：</strong><br>　　<strong>非常沮丧，第一次做LeetCode没写出来……(不过我也知道这种情况在今后会出现更多次)</strong> 首先，看到本题就应该很轻易地就知晓暴力$O(n^2)$肯定是会超时的。之后看到“求最值”，想到在<a href="https://labuladong.gitbook.io/algo/di-ling-zhang-bi-du-xi-lie/dong-tai-gui-hua-xiang-jie-jin-jie" target="_blank" rel="noopener">算法小抄</a>上看到的 <strong>“动态规划问题的一般形式就是求最值”</strong> 就以为是dp，想了好久没写出来dp的推导式，遂放弃dp。然后随便想了个算法，写完后自制几个样例测试，结果输出不对。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-<p>尝试过分治，也不行，还想过把第一个样例转化为 [3,2,8,3,2] 这样的形式再进行操作，也不行。然后硬着头皮想了了五六个小时依旧无果，撑不住了，去看了<a href="https://leetcode-cn.com/problems/contiguous-array/solution/lian-xu-shu-zu-by-leetcode/" target="_blank" rel="noopener">官方题解</a>。题解的思路确实巧妙，或许之前的五六个小时里向题解的思路靠近过，但始终还是没能触碰到，不愧是medium题。<br>　　看了题解后，按照题解的思路去写了一遍代码，跑了一些样例通过了，结果 [0,1,0,1,0,1,0,1] 的输出还是错的(幸好能通过该样例及时发现问题，不然又要耽误好多时间)。想了一会儿没明白，只能跑去看题解的代码，发现原来是我少写了一句<code>m[0]=-1;</code>。因为<a href="https://leetcode-cn.com/problems/contiguous-array/solution/lian-xu-shu-zu-by-leetcode/" target="_blank" rel="noopener">题解</a>所画的那个折线图，起始于坐标0，第一个数据的坐标是1。然而在代码里，第一个数据的下标是0,丢失了原来的坐标0，所以就需要额外在map里插入一个坐标-1 (题解三里Java代码写的是<code>map.put(0, -1);</code>)。<del>看了题解思路还写不出来正确代码实属大菜逼</del><br>　不得不再次对此题进行一下感叹，该题<strong>并没用到任何常见或高深的“算法”</strong>(评论区也没看到有人用其他什么算法)，也与数学无关，仅仅是靠思维上的一个技巧来进行解题,真可谓是“大智若愚，大巧若拙”。</p>
+<p>尝试过分治，也不行，还想过把第一个样例转化为 [3,2,8,3,2] 这样的形式再进行操作，也不行。然后硬着头皮想了了五六个小时依旧无果，撑不住了，去看了<a href="https://leetcode-cn.com/problems/contiguous-array/solution/lian-xu-shu-zu-by-leetcode/" target="_blank" rel="noopener">官方题解</a>。题解的思路确实巧妙，或许之前的五六个小时里向题解的思路靠近过，但始终还是没能触碰到，不愧是medium题。<br>　　看了题解后，按照题解的思路去写了一遍代码，跑了一些样例通过了，结果 [0,1,0,1,0,1,0,1] 的输出还是错的(幸好能通过该样例及时发现问题，不然又要耽误好多时间)。想了一会儿没明白，只能跑去看题解的代码，发现原来是我少写了一句<code>mAp[0]=-1;</code>。因为<a href="https://leetcode-cn.com/problems/contiguous-array/solution/lian-xu-shu-zu-by-leetcode/" target="_blank" rel="noopener">题解</a>所画的那个折线图，起始于坐标0，第一个数据的坐标是1。然而在代码里，第一个数据的下标是0,丢失了原来的坐标0，所以就需要额外在map里插入一个坐标-1 (题解三里Java代码写的是<code>map.put(0, -1);</code>)。<del>看了题解思路还写不出来正确代码实属大菜逼</del><br>　不得不再次对此题进行一下感叹，该题<strong>并没用到任何常见或高深的“算法”</strong>(评论区也没看到有人用其他什么算法)，也与数学无关，仅仅是靠思维上的一个技巧来进行解题,真可谓是“大智若愚，大巧若拙”。</p>
 <p><strong>收获：</strong></p>
 <ul>
 <li>学会了面对失败，面对挫折，<strong>在LeetCode我是来刷题的，而不是来发明算法的</strong>，想不出来解法很正常，以后如果思路停滞超过半小时，就直接看题解进行学习，不能再闭门造车浪费时间</li>
 <li>看了看别人的代码，学到了map的一些简洁操作</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//我之前是这样写的，直接插入，然后判断插入是否成功</span></span><br><span class="line">pair&lt;<span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;::iterator, <span class="keyword">bool</span>&gt; insertPair;</span><br><span class="line">insertPair=m.insert(pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;(count,i)); <span class="comment">//插入</span></span><br><span class="line"><span class="keyword">if</span>(insertPair.second==<span class="literal">false</span>)&#123; <span class="comment">//如果插入失败</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//别人的写法，先查找，，然后再插入</span></span><br><span class="line"><span class="keyword">auto</span> iter = m.find(count);</span><br><span class="line"><span class="keyword">if</span>(iter == m.end())&#123;<span class="comment">//如果没找到</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(iter == m.end())&#123;<span class="comment">//如果找到了</span></span><br><span class="line">  m.insert(&#123;coutn,i&#125;);<span class="comment">//插入</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//我之前是这样写的，直接插入，然后判断插入是否成功</span></span><br><span class="line">pair&lt;<span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;::iterator, <span class="keyword">bool</span>&gt; insertPair;</span><br><span class="line">insertPair=m.insert(pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;(count,i)); <span class="comment">//插入</span></span><br><span class="line"><span class="keyword">if</span>(insertPair.second==<span class="literal">false</span>)&#123; <span class="comment">//如果插入失败</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//别人的写法，先查找，，然后再插入</span></span><br><span class="line"><span class="keyword">auto</span> iter = m.find(count);</span><br><span class="line"><span class="keyword">if</span>(iter == m.end())&#123;<span class="comment">//如果没找到</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(iter != m.end())&#123;<span class="comment">//如果找到了</span></span><br><span class="line">  m.insert(&#123;coutn,i&#125;);<span class="comment">//插入</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>2020.04.14</p>
-<p>Perform String Shifts 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><a href="https://leetcode.com/explore/featured/card/30-day-leetcoding-challenge/529/week-2/3299/" target="_blank" rel="noopener">Perform String Shifts</a> 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
 <p><strong>随记：</strong><br>　　类似于2020.04.07的题，本题又是一道不在题库中的题，题目很简单，而且稍微需要思考的点已经给出了提示，就没什么好说的。很惭愧，我一开始看数据范围很小，就打算直接暴力模拟。然后看到了提示2，我才知道“左右抵消”这种操作。<br>　　第一次提交的结果是Runtime Error，很明显超数组下标了，看了看代码才意识过来，和当年做的“约瑟夫环”类似，这种首位衔接循环的情况，当位移的长度大于数组长度，必须不断减小到数组长度之内<code>while(count&gt;sSize) count-=sSize;</code></p>
 <p><strong>收获：</strong></p>
 <ul>
@@ -445,12 +449,178 @@
 <hr>
 <p>2020.04.15</p>
 <p>238-Product of Array Except Self 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
-<p><strong>随记：</strong><br>　　第二次看到题目后不会做……我知道这一天肯定会再次到来，但是我没想到这个“再次”来得这么快(<del>看来我还是高估了自己的智商</del>)……<br>　　题目看上去很简单，但是加了限制条件后就变得很困难。抛开限制，本题貌似最简单的做法就是所有数字相乘，然后每次除以某个数字，官方题解说该做法当遇到某数为0时就会出错因为不能除以0(我还没想到这一点)。或者是对于每个数，每次都从头到尾跳过该数字乘一遍，当然这种做法时间复杂度是O($n^2$),不满足O($n$)的要求。<br>　　苦于“除法”的思维定式，找不到答案，只能看题解。题解的思路概括起来就是简单一句话<code>乘积 = 当前数左边的乘积 * 当前数右边的乘积</code>,不得不赞叹巧妙。本题同样没用到什么高明的算法，评论区称之为“脑筋急转弯”。<br>　　本题的进阶解法更为精简，但是进阶要求的描述<code>出于对空间复杂度分析的目的，输出数组不被视为额外空间</code>我并不是很满意，我以为“输出数组不被视为额外空间”的意思是直接把输出数组忽视掉，谁知道题解反而是去占据了“输出空间”去解题，让该进阶解法有种利用漏洞“捡漏”的感觉。我觉得，进阶描述应该更准确地说 <strong>“除了输入数组、输出数组以外，不能够定义任何新的数组”</strong>。</p>
+<p><strong>随记：</strong><br>　　第二次看到题目后不会做……我知道这一天肯定会再次到来，但是我没想到这个“再次”来得这么快(<del>看来我还是高估了自己的智商</del>)……<br>　　题目看上去很简单，但是加了限制条件后就变得很困难。抛开限制，本题貌似最简单的做法就是所有数字相乘，然后每次除以某个数字，不过官方题解说该做法当遇到某数为0时就会出错，因为不能除以0(我还没想到这一点)。或者是对于每个数，每次都从头到尾跳过该数字乘一遍，当然这种做法时间复杂度是$O(n^2)$,不满足$O(n)$的要求。<br>　　苦于“除法”的思维定式，找不到答案，只能看题解。题解的思路概括起来就是简单一句话<code>乘积 = 当前数左边的乘积 * 当前数右边的乘积</code>,不得不赞叹巧妙。本题同样没用到什么高明的算法，评论区称之为“脑筋急转弯”。<br>　　本题的进阶解法更为精简，但是进阶要求的描述<code>出于对空间复杂度分析的目的，输出数组不被视为额外空间</code>我并不是很满意，我以为“输出数组不被视为额外空间”的意思是直接把输出数组忽视掉，谁知道题解反而是去占据了“输出空间”去解题，让该进阶解法有种利用漏洞“捡漏”的感觉。我觉得，进阶描述应该更准确地说 <strong>“除了输入数组、输出数组以外，不能够定义任何新的数组”</strong>。</p>
 <p><strong>收获：</strong></p>
 <ul>
 <li>再次明白了自己智商有待充值</li>
 </ul>
 <hr>
+<p>2020.04.16</p>
+<p>678-Valid Parenthesis String 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　<strong>本题是我从开始刷LeetCode到目前为止做得最崩溃的一道题</strong>……<br><a href="https://leetcode-cn.com/problems/valid-parenthesis-string/comments/72887" target="_blank" rel="noopener">https://leetcode-cn.com/problems/valid-parenthesis-string/comments/72887</a></p>
+<p><strong>收获：</strong></p>
+<ul>
+<li>再次明白了自己智商有待充值</li>
+</ul>
+<hr>
+<p>2020.04.17</p>
+<p>200-Number of Islands 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　题目太过于经典没什么好说的，《挑战程序设计竞赛》第32页原题，大一的时候就做过，算是我对于<strong>深度优先搜索</strong>这个知识点的启蒙题之一吧。<br>　　开始编写代码，我习惯性地设置了一个二维数组flag进行标记，虽然后来flag发现并没有用就删掉了，但是在这个过程中我学到了如何对一个空二维vector初始化行列数。<br>　　提交成功之前，代码有三处错误：<br>　　1.第一次跑样例 Runtime Error，应该是数组越界，看了一下，是因为没有判断nextI和nextJ的范围，补上了一句<code>if(nextI&gt;0&amp;&amp;nextI&lt;rows&amp;&amp;nextJ&gt;0&amp;&amp;nextJ&lt;columns)</code><br>　　2.第二次跑样例发现结果不对，插入了几个printf查错，最后发现是判断范围的语句里，nextI&gt;=0 nextJ&gt;0 都少写了一个 = 号，低级错误<br>　　3.提交后又报错Runtime Error，发现跟2020.04.11二叉树错因一样:<strong>某个样例输入为空</strong><code>[]</code>……二叉树你输入空就算了，这个题还输入个空vector，无语…… 然后在求输入二维vector行数后加了个判断，如果rows=0就直接返回。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rows=grid.size();</span><br><span class="line"><span class="keyword">if</span>(rows==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">columns=grid[<span class="number">0</span>].size();</span><br></pre></td></tr></table></figure></p>
+<p>　　今天还有一个奇怪的现象就是，在提交成功后，我点击题目，跳转回了30-Day LeetCoding Challenge的做题页面，而不是题库。我以为本题跟2020.04.07、2020.04.14两题类似，没有被收入进题库。但是我感觉按常理来讲，本题难度远高于之前的两题，应该是medium难度的。于是我复制题目名称在题库里搜索，果然搜到了一道medium题，证实了我的猜想。不过，我又在题库里搜了之前的两道题，依旧没有被收录。</p>
+<p><strong>收获：</strong></p>
+<ul>
+<li>二维vector求行列数</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rows=grid.size();</span><br><span class="line">columns=grid[<span class="number">0</span>].size();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>二维vector初始化行列数</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; flag;</span><br><span class="line">flag.resize(rows);<span class="comment">//flag有rows行</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;rows; i++) flag[i].resize(columns);<span class="comment">//每一行有columns列</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>输入的二维vector记得要进行判空</strong></li>
+</ul>
+<hr>
+<p>2020.04.18</p>
+<p>64-Minimum Path 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　初看题目，想着要用<strong>深搜</strong>或者<strong>广搜</strong>，但是感觉这样做有点麻烦，而且很可能会超时。然后我灵光一闪，发现这道题和以前做过的一道初级dp基本上一致。于是顺着思路就开始写代码，测试样例的时候虽然结果正确，但是突然发现，按照往常习惯设置的二维dp数组根本没什么用。因为grid每个元素的值用过之后就不用再记录了，取代掉也没有问题，所以完全可以直接就在grid里进行操作，不用再额外设置数组。删除修改了一些代码，提交一遍过了。<br>　　提交之后我就想找以前在哪里见过这道题，《挑战程序设计竞赛》没有，《ACM book》没有，《<a href="https://labuladong.gitbook.io/algo/" target="_blank" rel="noopener">labuladong的算法小抄</a>》也没有。想了一会儿，突然想起一个网站，打开该网站，果然找到了—— <a href="https://www.icourse163.org/learn/PKU-1001894005?tid=1001994002#/learn/content" target="_blank" rel="noopener">中国大学MOOC 程序设计与算法（二）算法基础 郭炜</a> 第五周第一题“数字三角形”。<br>　　除此之外，我今天又发现了跟昨天一样的奇怪现象——在提交成功后，我点击题目，跳转回了30-Day LeetCoding Challenge的做题页面，而不是题库，之后也在题库搜到了该题。根据我的观察，我感觉是因为昨天、今天这两道题的官方题解是被锁住的，可能是因为这个原因才没有直接跳转到题库里。顺便我发现这两道题在LeetCode-CN的官方题解居然是开放的…惊了，<strong>第一次发现中国版比国外原版良心的应用程序</strong>。</p>
+<p><strong>收获：</strong> 无</p>
+<hr>
+<p>2020.04.19</p>
+<p>33-Search in Rotated Sorted Array 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　今天感觉还不错，这道没见过的medium题由自己想出来了。这道题本身不难，直接做就是$O(n)$，但是题目附加了时间复杂度为$O(log\ n)$,难度就随着而升了。但是这个给出的时间复杂度限制同时也给了我们一个提示——本题很可能和二分查找相关。然而本题的输入数组是一个rotated有序数组。rotate直译为旋转、转动，我认为当算法题的数组rotated，意思就是这是个首位相连的循环数组。二分查找的适用范围是整体有序的数组，所以就不能直接套用。<br>　　我最开始想，<strong>先用排序算法排序，然后再二分查找</strong>。但是经过研究，我发现<strong>最快的排序算法的复杂度也高达$O(nlog\ n)$</strong>，所以这个想法就只能舍去了。然后我想了一会儿没什么思路，本来准备按照之前的自我约定“不会就直接看题解不要浪费时间”，但是我总有一种“我能做出来”的感觉，又思考了一会儿，竟然真的想出来了。</p>
+<blockquote>
+<p>因为输入的数组并不是完全乱序的，而是部分有序的，所以可以先用二分查找找出最小值，这样就能计算出数组的偏移量，然后计算出元素本来的坐标，就可以再次利用二分查找解题了。</p>
+</blockquote>
+<p>　　不过写代码的过程并不是很顺利。因为我之前虽然接触过二分查找，但是没有深入地学习过。并且虽然我知道二分查找的写法有很多种，然而我没想到《挑战程序设计竞赛》139页、《ACM Book》59页、《<a href="https://labuladong.gitbook.io/algo/di-ling-zhang-bi-du-xi-lie/er-fen-cha-zhao-xiang-jie" target="_blank" rel="noopener">labuladong的算法小抄</a>》<strong>三处的代码都各有不同</strong>……本来我就不怎么会二分查找，还碰到这种情况，就只能迷迷糊糊地瞎写代码了……所以虽然代码整体有两次二分查找，但是第一处二分查找最小值用的是《挑战程序设计竞赛》139页的写法，第二处二分查找用的是《<a href="https://labuladong.gitbook.io/algo/di-ling-zhang-bi-du-xi-lie/er-fen-cha-zhao-xiang-jie" target="_blank" rel="noopener">labuladong的算法小抄</a>》的写法。这样迷迷糊糊地写肯定要出错，然后<strong>中间就写了一堆cout查错，再慢慢修补</strong>。共写了两版代码。第一版的代码题目样例过了，但是没过我自己出的一个样例。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nums = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>], target = <span class="number">4</span> <span class="comment">//题目样例</span></span><br><span class="line">nums = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">0</span>,<span class="number">1</span>], target = <span class="number">5</span> <span class="comment">//自己出的样例</span></span><br></pre></td></tr></table></figure>
+<p>　　<br>　　然后改了改，第二版代码提交出错，败在了<code>nums= [1,3] target=1</code>。这个样例就是说数组没有偏移，或者是偏移后恰好归原位。把这个样例放在代码里测试，根据中间cout输出的结果，发现是第一个二分查找出错了。于是在第一个二分查找前加了个if判断句，判断数组是否本来就是顺序的 <code>if(nums[0]&lt;nums[right]) move=0;</code>，提交通过。<br>　　提交后，我第三次发现跟前两天一样的现象——交成功后，我点击题目，跳转回了30-Day LeetCoding Challenge的做题页面，而不是题库，之后也在题库搜到了该题。该题的题解同样也是锁着的，就证实了我昨天的猜想：因为英文版题解是锁着的，所以没有直接跳转到题库。同样地，该题中文版题解是开放的。<br>　　然后看了看中文官方题解，思路基本跟我一模一样，就是用两次二分查找，代码也类似。在评论区貌似看到了更精简的解法 <a href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/solution/ji-jian-solution-by-lukelee/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/search-in-rotated-sorted-array/solution/ji-jian-solution-by-lukelee/</a> ，暂时没仔细看，以后再补。</p>
+<p><strong>收获：</strong> </p>
+<ul>
+<li>重温二分查找</li>
+<li>之后要重新学透二分查找</li>
+</ul>
+<hr>
+<p>2020.04.20</p>
+<p>33-Search in Rotated Sorted Array 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　题目就是给一个先序遍历序列，以此建立二叉搜索树。起初，以为是个模板题，就去找二叉搜索树的相关资料。但是之后又感觉不是模板题，因为二叉搜索树插入元素的模板代码是递归，而题目注明了先序遍历序列不大于100，由此我就想到2020.04.16数据长度也是不大于100，但是用递归求解会翻车。<br>　　因为二叉搜索树的插入元素递归模板并不要求输入序列的内部顺序，而本题给的输入序列是先序遍历序列，于是我想先序遍历序列+二叉搜索树这两者的特性结合可能会引导出此题的非递归解法。我想了一会儿有点思路，但是感觉有点麻烦，就一不做二不休直接套<a href="https://labuladong.gitbook.io/algo/shu-ju-jie-gou-xi-lie/er-cha-sou-suo-shu-cao-zuo-ji-jin" target="_blank" rel="noopener">二叉搜索树插入元素模板</a>,交上去居然一遍过了，我以为会很慢但显示是0ms……所以整个过程就是 <strong>我以为是模板题 -&gt; 我以为不是模板题 -&gt; 结果还是模板题</strong>……<br>　　令我感到惊讶的是，提交后看评论区、官方题解，有递归、非递归、分治等思路，但是几乎大部分代码与我的思路都不一样，只有零星几个与我代码结构相近的评论<br><a href="https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/comments/76567" target="_blank" rel="noopener">https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/comments/76567</a><br><a href="https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/comments/41731" target="_blank" rel="noopener">https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/comments/41731</a><br>观察学习了一会儿，发现了区别在于别人更多的是在考虑如何利用所给出的<strong>先序遍历序列</strong>去构建一个<strong>二叉树</strong>，其中再附加一些额外的细节使得构建的是二叉搜索树（其实就是在我之前的思考过程中嫌麻烦被放弃掉的思路）；而我的做法是如何利用<strong>一个个的元素</strong>构建一个<strong>二叉搜索树</strong>。可以说我的做法有“取巧”的嫌疑，因为我这种思路虽然结果正确，但并不在意输入序列的结构，这样<strong>会使得题干中“先序序列”这一要点被绕过、被忽略掉</strong>，或许就违背了出题者的初衷。</p>
+<p><strong>收获：</strong></p>
+<ul>
+<li>懒癌发作，其他解法之后找时间再补</li>
+<li>学会了二叉搜索树如何插入元素，不过并不熟练</li>
+<li>知道了C++ new 返回的是指针</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> MyClass 返回的是MyClass的指针。 </span><br><span class="line">创建成功将地址回以MyClass *的形式返回，创建失败则返回<span class="literal">NULL</span>。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>确认了我之前一直未核实的一个猜测：<strong>C++类里面的函数和变量是不分先后顺序的</strong>，他们是平级的，这点和不使用类直接定义全局函数或者变量不同。</li>
+</ul>
+<hr>
+<p>2020.04.21</p>
+<p><a href="https://leetcode.com/explore/featured/card/30-day-leetcoding-challenge/530/week-3/3306/" target="_blank" rel="noopener">Leftmost Column with at Least a One</a> 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　今天的题目虽然做出来了，不过说实话如果只凭我自己想，估计一时半会儿写不出来。题目的难点在于最多只能查询矩阵元素1000次，而矩阵长宽各不大于100也就是元素最多有10000个。<br>　　最终做出来还是靠题目下方给的两个提示，第一个提示说用二分查找做；第二个提示应该算是此题的一个特殊思路，可以说是一个奇技淫巧而不是某类算法。最终我选择用二分查找去做，因为很显然二分查找的适用面更广，有利于我今后刷题。<br>　　首先思考为什么会提示用二分查找——因为本题矩阵的每一行的元素都是非递减的，也就是说<strong>已经排好顺序</strong>的，而二分查找恰恰与<strong>已排序序列</strong>有着紧密的联系(未排序序列可以先排序)。本题二分查找的思路就是对每一行进行二分查找然后更新答案。同时粗略计算一下，最多100行100列，那么查询矩阵元素的次数就大概是$(log_2\ 100)*100 \approx664.4$，小于题目限制的1000次。<br>　　本题写代码所使用的二分查找，是除了常用的“精确查找某一个数”之外的另一个应用方式——<strong>查找左/右边界</strong>。至于什么叫“查找边界”，可以看如下两篇文章。<br><a href="https://blog.csdn.net/weixin_43784989/article/details/98229031" target="_blank" rel="noopener">二分查找——不但可具体位置，也可查左边界或右边界</a><br><a href="https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/er-fen-cha-zhao-xiang-jie" target="_blank" rel="noopener">二分查找详解</a><br>　　之后，我照着<a href="https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/er-fen-cha-zhao-xiang-jie" target="_blank" rel="noopener">二分查找详解</a>的模板完成了本题。不过第一次提交却报错了，说是查询矩阵元素次数大于1000次。当时就很纳闷，按照计算不应该会这样啊？再仔细一看代码，原来抄模板的时候过于死板，所以导致了二分查找模块里多了两次重复查询。修改之后就顺利通过了。<br>　　本题是新题未曾收纳入题库。我看出来了，在这“30天挑战”里，有hint的题目很可能就是新题，比如2020.04.07的题目。由此我也发现了，LeetCode中文版虽然很多官方题解不需要会员，但是英文版这边貌似更容易出新题。</p>
+<p><strong>收获：</strong></p>
+<ul>
+<li>学到了二分查找左/右边界，不过并不熟练</li>
+<li>知道了Mathjax的约等于号<code>\approx</code></li>
+</ul>
+<hr>
+<p>2020.04.22</p>
+<p>33-Search in Rotated Sorted Array 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　题目所给的输入数组长度不超过20000，暴力$O(n^2)$肯定是不行的。然后我想到了动态规划sum(i,j)这种形式，可是sum数组大小为$20000<em>20000=4</em>10^8$估计要爆内存，而且填充二维dp数组的过程也是$O(n^2)$，遂放弃。然后我想起了之前做过的 2020.04.13 <strong>525-Contiguous Array</strong> 与本题有点类似，想从中获取灵感，然而照葫芦画瓢构思了一会儿还是没写出来……然后就去看题解了。<br>　　看了官方题解，方法一的时间复杂度居然是$O(n^3)$，暴力程度超出了我的想象力，让我发出“原来还能这么暴力啊?”这样的惊叹……(这种暴力解法看多了印在脑海里真的会降智商的)<br>　　官方题解方法二、三都是$O(n^2)$，我最初构思的暴力解法就跟方法三类似，但是我惊讶于这么大的时间复杂度题解上说居然能通过……？印象中$4*10^8$一般都会超时吧？<a href="https://zhidao.baidu.com/question/489302245.html" target="_blank" rel="noopener">查了一下</a>也确实如我所想，可见本题所测试的数据有点弱。看了看官方题解下面的评论区，有人说python前三种解法都会超时，果然印证了我的疑惑。<br>　　然后开始看官方题解方法四，思路以及代码结构与<strong>525-Contiguous Array</strong>确实十分相似( 尤其是那个再次出现在题解Java代码里的map.put(0, 1) ) ，可惜我往这个方向思考过，但就是没想出来本题的具体的细节(主要受<strong>525-Contiguous Array</strong>官方题解里的那个折线图影响，我做本题的时候一直想画出类似的折线图辅助解题，一直没画出来，导致我放弃思考……而本题的官方题解里也没画出折线图，很可能说明本题确实画不出来折线图来说明解题思路)。我观察对比了这两道题，发现两题的评论区经常会出现一个我之前未曾接触过的词汇“前缀和”，看来的确是一类问题，其最优解法就是使用HashMap。<br>　　前两次提交代码均为 Wrong Answer，两次都是<code>[1] 0</code>这一组样例过不去。找了一下原因发现是<code>查找sum[i]-k是否曾经出现过</code>、<code>更新map[sum[i]]</code> 这两个模块位置我写反了，其他样例基本上看不出来这个问题，但是当k=0时就会立刻把这个错误暴露出来。<br>　　幸亏LeetCode能返回错误样例，否则像以前做ACM题那样，不知道又要花费多少时间debug(而且很可能照着别人的代码修改后还不知道为什么要这么改)。虽然以前感叹过很多次，不得不再次感叹：<strong>做算法题太容易忽略掉这种细枝末节的地方，导致结果出错</strong>，然后花费大量时间debug。</p>
+<p><strong>收获：</strong></p>
+<ul>
+<li><p>了解到“前缀和”这一词汇</p>
+</li>
+<li><p>浏览英文版LeetCode评论区他人的代码，发现了一些我不曾了解的map的特性，由此可以简化代码中map的相关操作</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//我的代码</span></span><br><span class="line"><span class="keyword">auto</span> iter = mp.find(sum-k);</span><br><span class="line"><span class="keyword">if</span>(iter!=mp.end())</span><br><span class="line">  ans+=mp[sum-k];</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> it = mp.find(sum);</span><br><span class="line"><span class="keyword">if</span>(it!=mp.end())</span><br><span class="line">  mp[sum]++;</span><br><span class="line"><span class="keyword">else</span> mp[sum]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//别人的代码</span></span><br><span class="line"><span class="keyword">if</span> (mp[sum-k]) </span><br><span class="line">  ans += mp[sum-k];</span><br><span class="line"></span><br><span class="line">mp[sum]++;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">两种代码的差异可以用以下三个map的特性来解释：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">1. 下标访问会有一个返回值</span></span><br><span class="line"><span class="comment">https://blog.csdn.net/qq_40056908/article/details/83538290  </span></span><br><span class="line"><span class="comment">这篇博文中，下标访问输出了一个本来没有的m[4]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">2. 在map中使用下标[]访问不存在的元素将导致在map容器中添加一个新的元素</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">3. map元素具有默认值</span></span><br><span class="line"><span class="comment">https://www.cnblogs.com/musecho/p/11996287.html</span></span><br><span class="line"><span class="comment">当map内元素值为int类型或常量时，默认值为0。</span></span><br><span class="line"><span class="comment">当为String类型时，默认值不明，不显示。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>另外，在<a href="https://leetcode.com/problems/subarray-sum-equals-k/discuss/378788/C++-solution-explained-with-an-example-..." target="_blank" rel="noopener">这篇题解</a>的评论区有人提出如下观点，意思就是<strong>上一条提及的那种简短代码风格有弊端</strong>。具体的弊端在<a href="https://blog.csdn.net/qq_40056908/article/details/83538290" target="_blank" rel="noopener">这篇博文</a>中也有阐述 <strong>“这种下标访问模式有一个缺点就是如果被访问元素不在map中，会插入此元素并初始化”</strong></li>
+</ul>
+<blockquote>
+<p>I think the part if (m[s - k]) could be improved. If s-k is not in the map, after this if-check, you are implicitly inserting m[s-k] = 0 in your hash map. Therefore the size of the hash map is a little larger than its optimal size (However still O(N)). I would replace it with something like this:<br>auto it = m.find(s-k);<br>if (it != m.end()) r += it-&gt;second;</p>
+</blockquote>
+<ul>
+<li>在<a href="https://leetcode.com/problems/subarray-sum-equals-k/discuss/591787/C%2B%2B-Simple-Solution-and-Explanation" target="_blank" rel="noopener">该题解</a>下方评论区，我看到了有人说“<strong>use unordered_map it will take less time</strong>”，我想起来map是会默认排序的，所以不需要这个特性的时候，可以用unordered_map来加快代码运行速度。我特意还去百度搜了一下两种map的区别 <a href="https://blog.csdn.net/haoliliang88/article/details/92394005" target="_blank" rel="noopener">map/unordered_map原理和使用整理</a></li>
+</ul>
+<blockquote>
+<p>运行效率方面：unordered_map最高，而map效率较低但 提供了稳定效率和有序的序列。<br>占用内存方面：map内存占用略低，unordered_map内存占用略高,而且是线性成比例的<br>需要无序容器，快速查找删除，不担心略高的内存时用unordered_map；有序容器稳定查找删除效率，内存很在意时候用map。</p>
+</blockquote>
+<hr>
+<p>2020.04.23</p>
+<blockquote>
+<p>你们初刷leetcode时会怀疑自己的智商么？ - 李欣宜的回答 - 知乎<br><a href="https://www.zhihu.com/question/388971497/answer/1164383895" target="_blank" rel="noopener">https://www.zhihu.com/question/388971497/answer/1164383895</a><br>刷 LeetCode 吃力正常吗？ - 微调的回答 - 知乎<br><a href="https://www.zhihu.com/question/31092580/answer/1171079380" target="_blank" rel="noopener">https://www.zhihu.com/question/31092580/answer/1171079380</a></p>
+</blockquote>
+<p>今天看了这两个回答，再次点醒我：</p>
+<ol>
+<li>见题秒题并不是常态</li>
+<li>遇到不会做的题才是正常的</li>
+<li>既然大部分人刷个LeetCode的都感到不适，那么我们也并<strong>不用去羡慕、神化</strong>那些OIer、ACMer在LeetCode所向披靡，因为他们背后也曾经付出过太多的汗水才能取得今天轻松切题的姿态</li>
+</ol>
+<p><br><br><br></p>
+<p>201-Bitwise AND of Numbers RangeBitwise AND of Numbers Range 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　仅看题目描述会觉得挺简单的，但是当看到数据范围 <code>0 &lt;= m &lt;= n &lt;= 2147483647</code>就会意识到这道题并不好做。$2147483647=2^{31}-1$即为32位int的最大值。21亿的数据量，很明显即使是最直接的 $O(n)$ 代码也会超时。想了一会儿，想不出来其他的做法，索性就写了个 $O(n)$ 代码交上去了，果不其然Time Limit Exceeded。然后又去打表找规律，貌似想出来了，写了写，过了几个样例，结果交了两次都是Wrong Answer，说明我的思路考虑不周全，并不具有普适性。<br>　　没办法，就只能去看题解了。代码非常非常短，但是得出代码的思考过程却并不简单。如下两篇题解思路一致，二者结合多看几遍，大概就能理解其中的含义了。</p>
+<blockquote>
+<p><a href="https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/solution/0he-shui-yu-du-shi-0-by-powcai/198786" target="_blank" rel="noopener">https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/solution/0he-shui-yu-du-shi-0-by-powcai/198786</a><br><a href="https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/solution/yi-wei-suan-fa-by-tuotuoli/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/solution/yi-wei-suan-fa-by-tuotuoli/</a></p>
+</blockquote>
+<p><strong>收获：</strong></p>
+<ul>
+<li>了解到Mathjax里指数大于1位数时要用{}括起来，比如<code>$2^{31}$</code></li>
+<li>了解到<a href="https://www.zhihu.com/question/20134106/answer/312304677" target="_blank" rel="noopener">Markdown如何插入空行</a></li>
+</ul>
+<hr>
+<p>2020.04.24</p>
+<p>146-LRU Cache 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　题意并不难理解，LRU的概念也在学操作系统的时候学过。本题的难点在于进阶要求两个操作时间复杂度均为$O(1)$. 我思考了一会儿，想到了几个可以在本题应用的数据结构：hashmap、vector、双向链表。<strong>map、vector查询操作$O(1)$，但是vector的删除操作$O(n)$</strong>(因为删除完元素要对整个数组进行移动)；<strong>双向链表删除操作为$O(1)$但是查询操作$O(n)$</strong>(因为不知道要找的元素在哪只能顺着结点一个个找)。<br>　　这就让我很犯难，想了一会儿只能写了个$O(n)$代码交差了。用map+vector进行实现，map主要用来判断进程是否出现过，vector则按照进程使用情况对它们排序。删除操作使用了新学的vector.erase(key) 和 map.erase(key). <strong>事实证明这样做确实很慢，我的代码640ms，而大部分人的代码在200ms以内</strong>。<br>　　提交后看题解，发现题解基本上用的是<strong>hashmap+双向链表</strong>实现$O(1)$的。那么为什么之前我已经想到了这两种数据结构，但是最后却没能成功应用呢？因为<strong>我最初的设计是 map存储{key,value}、双向链表存储key</strong>。而<a href="https://leetcode-cn.com/problems/lru-cache/solution/lru-ce-lue-xiang-jie-he-shi-xian-by-labuladong/" target="_blank" rel="noopener">题解</a>设计的结构是 <strong>map存储{key, Linklist_Node_Address}</strong>，那么原本在map里的value存储在哪里呢，<strong>{key, value}一起存储在双向链表的结点里</strong>了(结点存储的信息不止一个哦)。这样一来hashmap和双向链表就紧密联系起来，形成了一个新的数据结构：<strong>哈希链表</strong>。<strong>哈希链表</strong>就巧妙地结合了二者的优点，使得查询和删除的时间复杂度都能为O(1)。</p>
+<p><strong>题外话：</strong><br>　　本题<a href="https://leetcode-cn.com/problems/lru-cache/comments/110611" target="_blank" rel="noopener">评论区第一条</a>说“<strong>感觉这种设计类的题目比那些脑筋急转弯的题目有意思多了, 希望leetcode能增加这类题目量.</strong>”，估计有人回复“脑筋急转弯的题目可以提高智商”(该回复已删除只能猜测大致的原话)，然后被一顿乱喷，笑死……</p>
+<blockquote>
+<p>别几把逗了 你靠leetcode提高智商 那弱智是不是都来这里治疗了？无非背几个题解过面试而已<br>没用 智商是多少就多少 刷题只能起到背题的作用 背的多了 就有思路了<br>爷笑了，LeetCode能提高智商。</p>
+</blockquote>
+<p><strong>收获：</strong></p>
+<ul>
+<li>回顾了vector.push_back(x)，学习了vector.erase(x)的用法<blockquote>
+<p><a href="https://www.cnblogs.com/shiliuxinya/p/12219149.html" target="_blank" rel="noopener">从vector中删除指定元素</a><br><a href="https://blog.csdn.net/u014571489/article/details/82258769" target="_blank" rel="noopener">vector中去除指定元素</a><br><a href="https://www.jianshu.com/p/9676c6b877d2" target="_blank" rel="noopener">Vector中使用erase函数的分析</a></p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//清除某一位置的元素，清除第一个元素如下</span></span><br><span class="line">order.erase(order.begin());</span><br><span class="line"></span><br><span class="line"><span class="comment">//清除某个元素，先查找，再删除，erase操作会自动调整数组内部元素的位置</span></span><br><span class="line"><span class="comment">//因为进行了for循环，所以删除的时间复杂度就是O(n)</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> iter=order.begin(); iter!=order.end(); iter++)&#123;</span><br><span class="line">  <span class="keyword">if</span>(*iter==key)&#123;</span><br><span class="line">    order.erase(iter);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>学习了map.erase(x)的用法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> iter=mp.find(key);</span><br><span class="line">mp.erase(iter);<span class="comment">//清除</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>学习了<strong>哈希链表</strong></p>
+</li>
+</ul>
+<hr>
+<p>2020.04.25</p>
+<p>146-LRU Cache 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　本题是昨天做的题。因为昨天虽然学了本题的最优解法“哈希链表”，但是没有亲手去实现哈希链表。所以今天就再次用哈希链表再将本题写一遍。<br>　　整体写得很慢，因为对链表的细节基本上忘得差不多了，就边写边想。一开始先写了链表插入删除的函数，写到一半感觉不太对劲，然后才想起来要引入头结点、尾结点。<br>　　代码写完后，开始调试，代码书写错误都改完后，一运行就报了一长串错，错误第一行<code>==32==ERROR: AddressSanitizer: heap-use-after-free</code>, 我感觉意思就是在说在“释放内存后又去尝试使用该内存”。在我代码中，只有在删除链表结点这一函数中我使用了<code>delete</code>释放结点。但是使用<code>delete</code>并不应该会报错啊？在debug一会儿无果后，因为<code>delete</code>语句是否存在只会影响到使用的内存大小，并不影响程序流程，所以我只能先注释掉<code>delete</code>去运行。然而跑默认样例的结果是Wrong Answer，这说明是我代码的流程有问题。<br>　　再次查找bug，终于发现是因为<strong>对“哈希链表”进行删除操作的时候，我只删除了链表结点，没有删除hashmap结点</strong>。然后补充删除hashmap元素的代码，补充delete，这次默认样例通过了。提交，<strong>再次报错Runtime Error</strong>，错误原因 <code>AddressSanitizer: attempting free on address which was not malloc()-ed</code> 又是跟内存分配、释放有关系，说我“试图free一个未曾malloc过的内存空间”。突然我脑海中一闪，火速看了看刚才新增的代码，立刻就找到了错误：<strong>本来应该删除mp[key], 我写成了删除mp[value]</strong>。修改后，再次提交，通过，运行时间为188ms，远小于昨天的640ms。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改前</span></span><br><span class="line"><span class="keyword">auto</span> iter=mp.find(LHead-&gt;next-&gt;value);</span><br><span class="line">mp.erase(iter);<span class="comment">//删除哈希表冗余元素</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//修改后</span></span><br><span class="line"><span class="keyword">auto</span> iter=mp.find(LHead-&gt;next-&gt;key);</span><br><span class="line">mp.erase(iter);<span class="comment">//删除哈希表冗余元素</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>收获：</strong></p>
+<ul>
+<li><p>回顾了链表头结点、尾结点、插入、删除</p>
+</li>
+<li><p>回顾了C++ 删除对象的方法 delete、free，以及<a href="https://blog.csdn.net/weixin_39469127/article/details/82288994" target="_blank" rel="noopener">二者的区别</a></p>
+</li>
+</ul>
+<blockquote>
+<p>delete会调用类的析构函数和释放内存, 而free只是释放内存。<br>C++里一般都使用delete，因为new和delete是配套的</p>
+</blockquote>
+<ul>
+<li><p>回顾了map.erase(x)的用法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> iter=mp.find(key);</span><br><span class="line">mp.erase(iter);<span class="comment">//清除</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>亲手实现了<strong>哈希链表</strong>这个查询、插入、删除均为$O(1)$的数据结构</p>
+</li>
+<li><p>牢记删除哈希链表的结点时，一定要同时删除链表和hashmap的结点</p>
+</li>
+</ul>
+<p><br><br>55-Jump Game 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><strong>随记：</strong><br>　　刚看到这道题，感觉好像是用dfs或bfs，但是题目没有给数据范围，并且这种暴力做法不仅不优雅，而且一般情况下都会超时，所以我决定放弃这种思路。<br>　　然后我就在想怎么用dp做，想了一会儿没想出来。本来准备去看题解了，但是灵光一闪，发觉本题其实很简单。不用考虑其他任何东西，只用不断记录并更新一个最大值就行了。我不知道这种方法叫什么，但隐隐感觉像是贪心法。</p>
+<blockquote>
+<p>创建一个变量maxIndex，用来记录当前所能到达的最大坐标。依次遍历每个数，比较maxIndex和i+nums[i]，取最大值更新maxIndex。如果遇到0，就查看maxIndex是否大于当前坐标i，如果能跨过这个0，就继续一步步向前，最后查看是否能到达终点。</p>
+</blockquote>
+<p>　　第一次提交WrongAnswer，被<code>[0]</code>卡住了。我以为是数组长度的问题，就在求数组长度后面直接加了一句<code>if(numsSize == 1) return true;</code>。第二次提交还是WrongAnswer，被<code>[2,0,0]</code>卡住了。我这才发现这两组数据的共同点在于终点元素都为0。恍然大悟，删除了第一次修改的语句，在for循环开始添加了一句判断当前是否已在终点 <code>if(i == numsSize-1) return true;</code>，遂通过。<br>　　提交成功后发现这居然是一道medium题，挺高兴的，之前没见过类似的题，依旧独立想出来了。官方题解只给了一种方法，被称作“贪心”，与我之前的猜想完全一致，嘿嘿。</p>
+<p><strong>收获：</strong> 无</p>
 
       
     </div>
@@ -462,7 +632,7 @@
         <p><span>本文标题:</span><a href="/2020/04/02/LeetCode刷题记录/">LeetCode刷题记录</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
         <p><span>发布时间:</span>2020-04-02, 23:45</p>
-        <p><span>最后更新:</span>2020-04-16, 03:51</p>
+        <p><span>最后更新:</span>2020-04-25, 21:54</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/04/02/LeetCode刷题记录/" title="LeetCode刷题记录">https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/</a>
             <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
