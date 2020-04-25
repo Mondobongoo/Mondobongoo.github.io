@@ -27,7 +27,7 @@
 <meta property="og:description" content="一个写给自己看的刷题记录">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://m.qpic.cn/psc?/V138MMQ83qT5pq/h4SLI6MeeCc7mRdKk01uskDCE8*0CvhXv4YbFx6rpz0V6rKS16mCxdoOmVbmT3hnsVTRm.nzjIpniRz.fJ8Z2c71F41daQSLOi3OJhbIxF8!/b&bo=5gEdAuYBHQIRGS4!&rf=viewer_4&t=5">
-<meta property="og:updated_time" content="2020-04-25T14:01:02.496Z">
+<meta property="og:updated_time" content="2020-04-25T14:06:29.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode刷题记录">
 <meta name="twitter:description" content="一个写给自己看的刷题记录">
@@ -465,7 +465,8 @@
 <hr>
 <p>2020.04.17</p>
 <p>200-Number of Islands 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
-<p><strong>随记：</strong><br>　　题目太过于经典没什么好说的，《挑战程序设计竞赛》第32页原题，大一的时候就做过，算是我对于<strong>深度优先搜索</strong>这个知识点的启蒙题之一吧。<br>　　开始编写代码，我习惯性地设置了一个二维数组flag进行标记，虽然后来flag发现并没有用就删掉了，但是在这个过程中我学到了如何对一个空二维vector初始化行列数。<br>　　提交成功之前，代码有三处错误：<br>　　1.第一次跑样例 Runtime Error，应该是数组越界，看了一下，是因为没有判断nextI和nextJ的范围，补上了一句<code>if(nextI&gt;0&amp;&amp;nextI&lt;rows&amp;&amp;nextJ&gt;0&amp;&amp;nextJ&lt;columns)</code><br>　　2.第二次跑样例发现结果不对，插入了几个printf查错，最后发现是判断范围的语句里，nextI&gt;=0 nextJ&gt;0 都少写了一个 = 号，低级错误<br>　　3.提交后又报错Runtime Error，发现跟2020.04.11二叉树错因一样:<strong>某个样例输入为空</strong><code>[]</code>……二叉树你输入空就算了，这个题还输入个空vector，无语…… 然后在求输入二维vector行数后加了个判断，如果rows=0就直接返回。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rows=grid.size();</span><br><span class="line"><span class="keyword">if</span>(rows==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">columns=grid[<span class="number">0</span>].size();</span><br></pre></td></tr></table></figure></p>
+<p><strong>随记：</strong><br>　　题目太过于经典没什么好说的，《挑战程序设计竞赛》第32页原题，大一的时候就做过，算是我对于<strong>深度优先搜索</strong>这个知识点的启蒙题之一吧。<br>　　开始编写代码，我习惯性地设置了一个二维数组flag进行标记，虽然后来flag发现并没有用就删掉了，但是在这个过程中我学到了如何对一个空二维vector初始化行列数。<br>　　提交成功之前，代码有三处错误：<br>　　1.第一次跑样例 Runtime Error，应该是数组越界，看了一下，是因为没有判断nextI和nextJ的范围，补上了一句<code>if(nextI&gt;0&amp;&amp;nextI&lt;rows&amp;&amp;nextJ&gt;0&amp;&amp;nextJ&lt;columns)</code><br>　　2.第二次跑样例发现结果不对，插入了几个printf查错，最后发现是判断范围的语句里，nextI&gt;=0 nextJ&gt;0 都少写了一个 = 号，低级错误<br>　　3.提交后又报错Runtime Error，发现跟2020.04.11二叉树错因一样:<strong>某个样例输入为空</strong><code>[]</code>……二叉树你输入空就算了，这个题还输入个空vector，无语…… 然后在求输入二维vector行数后加了个判断，如果rows=0就直接返回。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rows=grid.size();</span><br><span class="line"><span class="keyword">if</span>(rows==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">columns=grid[<span class="number">0</span>].size();</span><br></pre></td></tr></table></figure>
 <p>　　今天还有一个奇怪的现象就是，在提交成功后，我点击题目，跳转回了30-Day LeetCoding Challenge的做题页面，而不是题库。我以为本题跟2020.04.07、2020.04.14两题类似，没有被收入进题库。但是我感觉按常理来讲，本题难度远高于之前的两题，应该是medium难度的。于是我复制题目名称在题库里搜索，果然搜到了一道medium题，证实了我的猜想。不过，我又在题库里搜了之前的两道题，依旧没有被收录。</p>
 <p><strong>收获：</strong></p>
 <ul>
@@ -576,23 +577,24 @@
 </blockquote>
 <p><strong>收获：</strong></p>
 <ul>
-<li>回顾了vector.push_back(x)，学习了vector.erase(x)的用法<blockquote>
+<li>回顾了vector.push_back(x)，学习了vector.erase(x)的用法</li>
+</ul>
+<blockquote>
 <p><a href="https://www.cnblogs.com/shiliuxinya/p/12219149.html" target="_blank" rel="noopener">从vector中删除指定元素</a><br><a href="https://blog.csdn.net/u014571489/article/details/82258769" target="_blank" rel="noopener">vector中去除指定元素</a><br><a href="https://www.jianshu.com/p/9676c6b877d2" target="_blank" rel="noopener">Vector中使用erase函数的分析</a></p>
 </blockquote>
-</li>
-</ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//清除某一位置的元素，清除第一个元素如下</span></span><br><span class="line">order.erase(order.begin());</span><br><span class="line"></span><br><span class="line"><span class="comment">//清除某个元素，先查找，再删除，erase操作会自动调整数组内部元素的位置</span></span><br><span class="line"><span class="comment">//因为进行了for循环，所以删除的时间复杂度就是O(n)</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> iter=order.begin(); iter!=order.end(); iter++)&#123;</span><br><span class="line">  <span class="keyword">if</span>(*iter==key)&#123;</span><br><span class="line">    order.erase(iter);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>学习了map.erase(x)的用法</p>
+<li>学习了map.erase(x)的用法</li>
+</ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> iter=mp.find(key);</span><br><span class="line">mp.erase(iter);<span class="comment">//清除</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>学习了<strong>哈希链表</strong></p>
-</li>
+<ul>
+<li>学习了<strong>哈希链表</strong></li>
 </ul>
 <hr>
 <p>2020.04.25</p>
 <p>146-LRU Cache 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
-<p><strong>随记：</strong><br>　　本题是昨天做的题。因为昨天虽然学了本题的最优解法“哈希链表”，但是没有亲手去实现哈希链表。所以今天就再次用哈希链表再将本题写一遍。<br>　　整体写得很慢，因为对链表的细节基本上忘得差不多了，就边写边想。一开始先写了链表插入删除的函数，写到一半感觉不太对劲，然后才想起来要引入头结点、尾结点。<br>　　代码写完后，开始调试，代码书写错误都改完后，一运行就报了一长串错，错误第一行<code>==32==ERROR: AddressSanitizer: heap-use-after-free</code>, 我感觉意思就是在说在“释放内存后又去尝试使用该内存”。在我代码中，只有在删除链表结点这一函数中我使用了<code>delete</code>释放结点。但是使用<code>delete</code>并不应该会报错啊？在debug一会儿无果后，因为<code>delete</code>语句是否存在只会影响到使用的内存大小，并不影响程序流程，所以我只能先注释掉<code>delete</code>去运行。然而跑默认样例的结果是Wrong Answer，这说明是我代码的流程有问题。<br>　　再次查找bug，终于发现是因为<strong>对“哈希链表”进行删除操作的时候，我只删除了链表结点，没有删除hashmap结点</strong>。然后补充删除hashmap元素的代码，补充delete，这次默认样例通过了。提交，<strong>再次报错Runtime Error</strong>，错误原因 <code>AddressSanitizer: attempting free on address which was not malloc()-ed</code> 又是跟内存分配、释放有关系，说我“试图free一个未曾malloc过的内存空间”。突然我脑海中一闪，火速看了看刚才新增的代码，立刻就找到了错误：<strong>本来应该删除mp[key], 我写成了删除mp[value]</strong>。修改后，再次提交，通过，运行时间为188ms，远小于昨天的640ms。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改前</span></span><br><span class="line"><span class="keyword">auto</span> iter=mp.find(LHead-&gt;next-&gt;value);</span><br><span class="line">mp.erase(iter);<span class="comment">//删除哈希表冗余元素</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//修改后</span></span><br><span class="line"><span class="keyword">auto</span> iter=mp.find(LHead-&gt;next-&gt;key);</span><br><span class="line">mp.erase(iter);<span class="comment">//删除哈希表冗余元素</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>随记：</strong><br>　　本题是昨天做的题。因为昨天虽然学了本题的最优解法“哈希链表”，但是没有亲手去实现哈希链表。所以今天就再次用哈希链表再将本题写一遍。<br>　　整体写得很慢，因为对链表的细节基本上忘得差不多了，就边写边想。一开始先写了链表插入删除的函数，写到一半感觉不太对劲，然后才想起来要引入头结点、尾结点。<br>　　代码写完后，开始调试，代码书写错误都改完后，一运行就报了一长串错，错误第一行<code>==32==ERROR: AddressSanitizer: heap-use-after-free</code>, 我感觉意思就是在说在“释放内存后又去尝试使用该内存”。在我代码中，只有在删除链表结点这一函数中我使用了<code>delete</code>释放结点。但是使用<code>delete</code>并不应该会报错啊？在debug一会儿无果后，因为<code>delete</code>语句是否存在只会影响到使用的内存大小，并不影响程序流程，所以我只能先注释掉<code>delete</code>去运行。然而跑默认样例的结果是Wrong Answer，这说明是我代码的流程有问题。<br>　　再次查找bug，终于发现是因为<strong>对“哈希链表”进行删除操作的时候，我只删除了链表结点，没有删除hashmap结点</strong>。然后补充删除hashmap元素的代码，补充delete，这次默认样例通过了。提交，<strong>再次报错Runtime Error</strong>，错误原因 <code>AddressSanitizer: attempting free on address which was not malloc()-ed</code> 又是跟内存分配、释放有关系，说我“试图free一个未曾malloc过的内存空间”。突然我脑海中一闪，火速看了看刚才新增的代码，立刻就找到了错误：<strong>本来应该删除mp[key], 我写成了删除mp[value]</strong>。修改后，再次提交，通过，运行时间为188ms，远小于昨天的640ms。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改前</span></span><br><span class="line"><span class="keyword">auto</span> iter=mp.find(LHead-&gt;next-&gt;value);</span><br><span class="line">mp.erase(iter);<span class="comment">//删除哈希表冗余元素</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//修改后</span></span><br><span class="line"><span class="keyword">auto</span> iter=mp.find(LHead-&gt;next-&gt;key);</span><br><span class="line">mp.erase(iter);<span class="comment">//删除哈希表冗余元素</span></span><br></pre></td></tr></table></figure>
 <p><strong>收获：</strong></p>
 <ul>
 <li>回顾了链表头结点、尾结点、插入、删除</li>
@@ -602,14 +604,14 @@
 <p>delete会调用类的析构函数和释放内存, 而free只是释放内存。<br>C++里一般都使用delete，因为new和delete是配套的</p>
 </blockquote>
 <ul>
-<li><p>回顾了map.erase(x)的用法</p>
+<li>回顾了map.erase(x)的用法</li>
+</ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> iter=mp.find(key);</span><br><span class="line">mp.erase(iter);<span class="comment">//清除</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>亲手实现了<strong>哈希链表</strong>这个查询、插入、删除均为$O(1)$的数据结构</p>
-</li>
+<ul>
+<li>亲手实现了<strong>哈希链表</strong>这个查询、插入、删除均为$O(1)$的数据结构</li>
 <li>牢记删除哈希链表的结点时，一定要同时删除链表和hashmap的结点</li>
 </ul>
-<p><br><br>55-Jump Game 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
+<p><br><br><br><br>55-Jump Game 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
 <p><strong>随记：</strong><br>　　刚看到这道题，感觉好像是用dfs或bfs，但是题目没有给数据范围，并且这种暴力做法不仅不优雅，而且一般情况下都会超时，所以我决定放弃这种思路。<br>　　然后我就在想怎么用dp做，想了一会儿没想出来。本来准备去看题解了，但是灵光一闪，发觉本题其实很简单。不用考虑其他任何东西，只用不断记录并更新一个最大值就行了。我不知道这种方法叫什么，但隐隐感觉像是贪心法。</p>
 <blockquote>
 <p>创建一个变量maxIndex，用来记录当前所能到达的最大坐标。依次遍历每个数，比较maxIndex和i+nums[i]，取最大值更新maxIndex。如果遇到0，就查看maxIndex是否大于当前坐标i，如果能跨过这个0，就继续一步步向前，最后查看是否能到达终点。</p>
@@ -627,7 +629,7 @@
         <p><span>本文标题:</span><a href="/2020/04/02/LeetCode刷题记录/">LeetCode刷题记录</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
         <p><span>发布时间:</span>2020-04-02, 23:45</p>
-        <p><span>最后更新:</span>2020-04-25, 22:01</p>
+        <p><span>最后更新:</span>2020-04-25, 22:06</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/04/02/LeetCode刷题记录/" title="LeetCode刷题记录">https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/</a>
             <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
