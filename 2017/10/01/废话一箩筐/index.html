@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="Mondobongo&#39;s Blog">
 <meta property="og:description" content="记录一些废话">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-03T08:57:09.297Z">
+<meta property="og:updated_time" content="2020-05-07T15:38:47.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="废话一箩筐">
 <meta name="twitter:description" content="记录一些废话">
@@ -285,21 +285,37 @@
 <li><p>当然对于原博文个别描述不清的地方，我也会附上自己对于这些的算法的理解的</p>
 </li>
 <li><p>在输入一个数字之后，再输入字符，注意要处理好输入数字后的回车键，绝对不能让回车键错误地存进字符中。所以应该这样进行输入</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">" %c"</span>,&amp;ch);<span class="comment">//注意这个%c前面有个空格</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br><span class="line">getchar();<span class="comment">//处理掉回车键</span></span><br><span class="line">gets(s);</span><br></pre></td></tr></table></figure>
 </li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">" %c"</span>,&amp;ch);<span class="comment">//注意这个%c前面有个空格</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br><span class="line">getchar();<span class="comment">//处理掉回车键</span></span><br><span class="line">gets(s);</span><br></pre></td></tr></table></figure>
+<ol start="6">
 <li><p>在图论的题目中，<strong>删点是大忌</strong>，所以要把正向删点转化为逆向建点</p>
 </li>
 <li><p>long long 类型的输出方式要根据oj的机器而进行正确的选择，否则会报错，win %I64d    linux %lld</p>
 </li>
 <li><p>注意 <strong>子串</strong> 和 <strong>子序列</strong> 是有区别的</p>
+</li>
+</ol>
 <blockquote>
 <p>给定 <code>&quot;pwwkew&quot;</code> ，</p>
 <p>子串是pww,wwk等很多个子串 是连在一起的</p>
-<p>子序列是 pwk,pke等很多个子序列 ，但是子序列中的字符在字符串中不一定是连在一起的。</p>
+<p>子序列是 pwk,pke等很多个子序列 ，但是子序列中的字符在字符串中不一定是连在一起的。​</p>
 </blockquote>
-<p>​</p>
-</li>
+<ol start="9">
+<li><a href="https://www.zhihu.com/question/386238424/answer/1141660250" target="_blank" rel="noopener">OI 中你见过哪些离奇的爆零原因？ - Anguei的回答 - 知乎</a> 写道 “对于多组数据题，忘了<code>memset</code>或者没有全部<code>memset</code>，且过了所有大样例”，我就想起了很久很久以前有一次在voj上写一道题，就是因为<code>memset</code>写错了，导致第二组数据永远是错的。我在笔记本端的QQ里居然还翻到了我因为这个bug请教wmr的聊天记录，可见该bug当时应该折磨了我很久，所以给予了我非常深刻的印象，以致于我三年后还记得……</li>
 </ol>
+<blockquote>
+<p>薛定谔的喵 2017/4/16 9:47:26<br>那个。。。我想问一下<a href="https://vjudge.net/problem/POJ-3278" target="_blank" rel="noopener">https://vjudge.net/problem/POJ-3278</a><br>就是一个简单的暴力bfs<br>我写的是<a href="http://paste.ubuntu.com/24390983/" target="_blank" rel="noopener">http://paste.ubuntu.com/24390983/</a></p>
+<p>薛定谔的喵 2017/4/16 9:48:36<br>但是只有第一次输入的数据能得出正确结果</p>
+<p>薛定谔的喵 2017/4/16 9:50:07<br>不过由于题目好像只有一组测试数据。。。所以我的代码ac了。。。也就是说算法没问题</p>
+<p>* 　* 　* 　2017/4/16 10:08:39<br>您可以把int bfs()里的q定义之后先清空</p>
+<p>* 　* 　* 　2017/4/16 10:08:55<br>函数里定义一个queue q后，这个q不是空的</p>
+<p>薛定谔的喵 2017/4/16 10:14:16<br>如果这个队列不是空的。。。为什么第一次结果是正确的？</p>
+<p>薛定谔的喵 2017/4/16 10:14:54<br>我加了一行这个。。还是没用</p>
+<p>薛定谔的喵 2017/4/16 10:18:14<br>意思就是如果队列不为空，就一直pop到队列是空的</p>
+<p>* 　* 　* 　2017/4/16 10:24:07<br>您数组清空错了</p>
+<p>薛定谔的喵 2017/4/16 10:26:36<br>。。。。<br>薛定谔的喵 2017/4/16 10:29:07<br>好吧。。。解决了</p>
+</blockquote>
 
       
     </div>
@@ -311,7 +327,7 @@
         <p><span>本文标题:</span><a href="/2017/10/01/废话一箩筐/">废话一箩筐</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
         <p><span>发布时间:</span>2017-10-01, 01:27</p>
-        <p><span>最后更新:</span>2020-04-03, 16:57</p>
+        <p><span>最后更新:</span>2020-05-07, 23:38</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/10/01/废话一箩筐/" title="废话一箩筐">https://mondobongoo.github.io/2017/10/01/废话一箩筐/</a>
             <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2017/10/01/废话一箩筐/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
