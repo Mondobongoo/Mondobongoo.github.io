@@ -27,7 +27,7 @@
 <meta property="og:description" content="一个写给自己看的刷题记录">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://m.qpic.cn/psc?/V138MMQ83qT5pq/h4SLI6MeeCc7mRdKk01uskDCE8*0CvhXv4YbFx6rpz0V6rKS16mCxdoOmVbmT3hnsVTRm.nzjIpniRz.fJ8Z2c71F41daQSLOi3OJhbIxF8!/b&bo=5gEdAuYBHQIRGS4!&rf=viewer_4&t=5">
-<meta property="og:updated_time" content="2020-05-08T09:29:42.408Z">
+<meta property="og:updated_time" content="2020-05-09T10:50:24.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode刷题记录">
 <meta name="twitter:description" content="一个写给自己看的刷题记录">
@@ -326,10 +326,8 @@
 </ol>
 <p>​<br><strong>收获：</strong></p>
 <ul>
-<li><p>学会了一个vector初始化并赋值的方式 <code>vector&lt;int&gt; dp(numsSize,0);</code></p>
-</li>
-<li><p>在本地IDE测试代码时，又学会了一种vector的初始化方式</p>
-</li>
+<li>学会了一个vector初始化并赋值的方式 <code>vector&lt;int&gt; dp(numsSize,0);</code></li>
+<li>在本地IDE测试代码时，又学会了一种vector的初始化方式</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b[<span class="number">9</span>]=&#123;<span class="number">-2</span>,<span class="number">1</span>,<span class="number">-3</span>,<span class="number">4</span>,<span class="number">-1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-5</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a(b,b+<span class="number">9</span>);</span><br></pre></td></tr></table></figure>
 <hr>
@@ -649,10 +647,8 @@
 <p>　　写代码时要<strong>额外注意</strong>：字符串在text数组与dp数组中“当前元素”对应的坐标不一致，因为text默认起始坐标为0，而为了方便处理边界dp数组就额外加了一行一列，所以dp数组默认起始坐标为1。比如text1[i]、text2[j] 对应的dp数组元素为 dp[i-1][j-1]，写代码的时候不要写错了。</p>
 <p><strong>收获：</strong></p>
 <ul>
-<li><p>回顾了memset的用法</p>
-</li>
-<li><p>今天我突然发现，我在提交成功的代码里无意间定义并使用了一个变长数组  <code>int dp[m+1][n+1]</code>，然而在我印象中C/C++数组长度的定义<strong>只能是常数</strong>。这就让我十分好奇，就去网上查找了一番，找到了答案。我感觉是因为LeetCode的编译器兼容性很强才能让我的代码通过，所以我以后还是尽量用二维vector吧。</p>
-</li>
+<li>回顾了memset的用法</li>
+<li>今天我突然发现，我在提交成功的代码里无意间定义并使用了一个变长数组  <code>int dp[m+1][n+1]</code>，然而在我印象中C/C++数组长度的定义<strong>只能是常数</strong>。这就让我十分好奇，就去网上查找了一番，找到了答案。我感觉是因为LeetCode的编译器兼容性很强才能让我的代码通过，所以我以后还是尽量用二维vector吧。</li>
 </ul>
 <blockquote>
 <p>新的C++标准里定义数组时数组长度可以是变量了吗？ <a href="https://bbs.csdn.net/topics/391898322" target="_blank" rel="noopener">https://bbs.csdn.net/topics/391898322</a><br>——C 自 C99 开始，在特定条件下允许使用变量作为数组长度定义数组；C++ 至今不允许这种用法，C++中你只能用vector之类容器等代替</p>
@@ -671,18 +667,15 @@
 <p>　　然后逛了一下讨论区，发现了<a href="https://leetcode.com/explore/featured/card/30-day-leetcoding-challenge/531/week-4/3313/discuss/601199/LRU-Cache-Logic-HashMap-+-Doubly-LinkedList" target="_blank" rel="noopener">一个贴子</a>与我的思路基本一致，用的是哈希双向链表。更凑巧的是，<strong>他竟然也用了“伪删除思想”</strong>。该贴评论区的第一条就在在质疑这个“删除”，问道“如果删除结点，第三次遇到一个值，会访问不存在的地址”，楼主之后对“伪删除”进行了解释。该贴下，也有其他人提出了另一种做法，就是再设置一个set保存所有元素，而map只存储着唯一存在的元素，这样删除链表结点的同时也可以删除map结点了。</p>
 <p><strong>收获：</strong></p>
 <ul>
-<li><p>复习了哈希双向链表</p>
-</li>
-<li><p>我发现本题我又一次忘了用unordered_map了</p>
-</li>
-<li><p>发现了vscode垂直列选中的快捷键是<code>alt+shift+左键</code>。以前在notepad++中的快捷键是<code>alt+左键</code>，刚开始用vscode的时候用这个快捷键发现没用，还以为vscode没有这个功能，今天才知道只是快捷键不一样罢了</p>
-</li>
+<li>复习了哈希双向链表</li>
+<li>我发现本题我又一次忘了用unordered_map了</li>
+<li>发现了vscode垂直列选中的快捷键是<code>alt+shift+左键</code>。以前在notepad++中的快捷键是<code>alt+左键</code>，刚开始用vscode的时候用这个快捷键发现没用，还以为vscode没有这个功能，今天才知道只是快捷键不一样罢了</li>
 </ul>
 <hr>
 <p>2020.04.29<br>124-Binary Tree Maximum Path Sum 题目顺序类别: 30-Day LeetCoding Challenge  2020.04</p>
 <p><strong>随记：</strong><br>　　第一眼看上去，感觉本题与2020.04.11 543-Diameter of Binary Tree 基本上就是同一类型的题目，就立刻开始上手去写了。写的过程中发现思路、代码结构几乎就一模一样，这次写代码时我就吸取了上次的教训，直接创建了一个全局变量maxSum用来记录，并在同一个递归函数里进行更新。<br>　　第一版代码写完进行测试，发现答案不对。想了一会儿，发现是我的思路有一点瑕疵：我选择 <code>maxSum, root-&gt;val, root-&gt;val+leftVal, root-&gt;val+rightVal</code> 这四个值中的最大值来更新maxSum。然而实际上在取最大值的过程中，应该再加入一个 <code>root-&gt;val+leftVal+rightVal</code> 进行比较。代码进行修改后，提交成功。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一版错误代码</span></span><br><span class="line">root-&gt;val = max(root-&gt;val, max(root-&gt;val+leftVal, root-&gt;val+rightVal));</span><br><span class="line">maxSum = max(maxSum, root-&gt;val);</span><br><span class="line"><span class="keyword">return</span> root-&gt;val;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二版代码，先更新maxSum，再更新root-&gt;val</span></span><br><span class="line">maxSum = max(maxSum, max(root-&gt;val+leftValrightVal, max(root-&gt;val, max(root-&gt;val+leftVal, root-&gt;va+rightVal))))</span><br><span class="line">root-&gt;val = max(root-&gt;val, max(root-&gt;val+leftVal, root-&gt;val+rightVal));</span><br><span class="line"><span class="keyword">return</span> root -&gt; val;</span><br></pre></td></tr></table></figure>
-<p>　　整道题写���来基本上可以说很轻松，思路很快想出来，代码量也不大。当我以为本题和 543-Diameter of Binary Tree同样为easy题时，竟然发现本题难度为hard……无语，上一次我写 543-Diameter of Binary Tree 时写得磕磕绊绊，以为至少是 medium，结果是easy；本题思路与 543-Diameter of Binary Tree 基本一致，写得很顺利，以为是easy，却是hard……评论区题解基本上也是同样的思路就没什么好说的了。</p>
+<p>　　整道题写����来基本上可以说很轻松，思路很快想出来，代码量也不大。当我以为本题和 543-Diameter of Binary Tree同样为easy题时，竟然发现本题难度为hard……无语，上一次我写 543-Diameter of Binary Tree 时写得磕磕绊绊，以为至少是 medium，结果是easy；本题思路与 543-Diameter of Binary Tree 基本一致，写得很顺利，以为是easy，却是hard……评论区题解基本上也是同样的思路就没什么好说的了。</p>
 <p><strong>收获：</strong></p>
 <ul>
 <li>复习了二叉树的相关操作</li>
@@ -706,12 +699,9 @@
 <p><strong>随记：</strong><br>　　我感觉这种题过于简单，就不应该出现在LeetCode题库里。因为题目里J中的每个字符都不相同，所以我用的是map写的，提交4ms。我看别人0ms代码用的是set。</p>
 <p><strong>收获：</strong></p>
 <ul>
-<li><p>用下标[ ]访问string返回的数据类型是char，我以前一直<strong>错以为</strong>即使是单个字符，类型也是string</p>
-</li>
-<li><p>我又忘了用unordered_map</p>
-</li>
-<li><p>题目涉及到唯一性，记得用set</p>
-</li>
+<li>用下标[ ]访问string返回的数据类型是char，我以前一直<strong>错以为</strong>即使是单个字符，类型也是string</li>
+<li>我又忘了用unordered_map</li>
+<li>题目涉及到唯一性，记得用set</li>
 </ul>
 <hr>
 <p>2020.05.03<br>771-Jewels and Stones 题目顺序类别: May LeetCoding Challenge</p>
@@ -725,10 +715,8 @@
 <p><strong>随记：</strong><br>　　题意就是把一个数的二进制逐位求反。在做过 201-Bitwise AND of Numbers RangeBitwise AND of Numbers Range 之后，我对这类“位运算”的题目就有了一些思路，所以本题很快就想出了解法：num为奇数时，代表当前最低位是1，为了求反把0入栈，num右移一位；num为偶数时，代表当前最低位是0，为了求反把1入栈，num右移一位，往复循环直到num为0。然后不断出栈，组成一个新的数字就是答案了。</p>
 <p><strong>收获：</strong></p>
 <ul>
-<li><p>回顾了位运算</p>
-</li>
-<li><p><strong>注意</strong> “num右移” 的写法不是 <code>num &gt;&gt; 1;</code>，而是 <code>num = num &gt;&gt; 1;</code></p>
-</li>
+<li>回顾了位运算</li>
+<li><strong>注意</strong> “num右移” 的写法不是 <code>num &gt;&gt; 1;</code>，而是 <code>num = num &gt;&gt; 1;</code></li>
 </ul>
 <hr>
 <p>2020.05.05<br>387-First Unique Character in a String 题目顺序类别: May LeetCoding Challenge</p>
@@ -745,11 +733,36 @@
 <hr>
 <p>2020.05.07<br>993-Cousins in Binary Tree 题目顺序类别: May LeetCoding Challenge</p>
 <p><strong>随记：</strong><br>　　比较简单的一道二叉树题目。关于二叉树的题目，最常见的套路就是“dfs+全局变量”去解题。本题亦然，只不过需要记录的数据有点多，也不方便都用全局变量来记录，于是就只好作为参数传递，最终dfs函数的参数高达5个。<br>　　提交，一遍过。点击<a href="https://leetcode.com/submissions/detail/335718637/" target="_blank" rel="noopener">提交详情页面</a>的第一条圆柱查看别人的代码，发现与我的代码思路、格式惊人的一致，嘿嘿。</p>
-<p><strong>收获：</strong> 无</p>
+<p><strong>收获：</strong> </p>
+<ul>
+<li>看了以前用typora写的一篇markdown文章，才发现原来“引用”里是可以加空行的，只是一直不知道而已，因为typora“所见即所得”的特性掩盖了底层代码实现的原理。</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;AAAAAA</span><br><span class="line">&gt;</span><br><span class="line">&gt;BBBBBB</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>AAAAAA</p>
+<p>BBBBBB</p>
+</blockquote>
 <hr>
 <p>2020.05.08<br>1232-Check If It Is a Straight Line 题目顺序类别: May LeetCoding Challenge</p>
 <p><strong>随记：</strong><br>　　非常简单的一道题，只要知道初中数学斜率公式就能很轻松地写出来。虽然我的代码通过了，但是在评论区的讨论中我发现我的代码还是有问题的：我是直接用的相除形式的公式，然而这可能会出现一个问题，就是分母为0，所以应该把除法转换为乘法 <code>(y1-y0)/(x1-x0)==(yi-y0)/(xi-x0) 防止除0，变换成相乘的形式 (y1-y0)*(xi-x0)==(yi-y0)*(x1-x0)</code></p>
-<p><strong>收获：</strong> 无</p>
+<p><strong>收获：</strong> </p>
+<ul>
+<li>写除法代码的时候要避免分母为0</li>
+</ul>
+<hr>
+<p>2020.05.09<br>367-Valid Perfect Square 题目顺序类别: May LeetCoding Challenge</p>
+<p><strong>随记：</strong><br>　　本题的难点在于不让用库函数<code>sqrt()</code>，我依稀记得学C语言的时候在课本上学过类似的题，当时用的方法叫“牛顿迭代法”，于是我就去搜了一下这个方法的具体实现。在搜索的同时，我发现<a href="https://www.cnblogs.com/wangkundentisy/p/8118007.html" target="_blank" rel="noopener">一篇博文</a>里同时提到了另一种常见的开根号算法：二分查找。对比了一下两个方法，因为对二分更熟悉，所以我就选择用二分去做。三下五除二写完，代码如下，测试了几个样例也都通过了，提交的结果却是<strong>Runtime Error</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPerfectSquare</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> right = num;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(mid * mid == num)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(mid * mid &lt; num)</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(mid * mid &gt; num)</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Runtime Error Message:<br>Line 9: Char 20: runtime error: signed integer overflow: 1073741824 * 1073741824 cannot be represented in type ‘int’ (solution.cpp)<br>SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior prog_joined.cpp:18:20</p>
+<p>Last executed input:<br>2147483647</p>
+</blockquote>
+<p>　　仔细查看报错信息，发现原来是整型溢出了。输入的这个2147483647就是int类型的最大正整数值，1073741824 <em> 1073741824自然会溢出。于是我额外添加了一个unsigned long long变量来存储输入的int类型num，然后把上文代码里所有的int都改为unsigned long long。提交，通过。看了看评论区，发现别人的代码并没有用unsigned long long，而是巧妙地运用了除法来避免整型溢出`mid </em> mid == num 改为 mid == num / mid`。</p>
+<p><strong>收获：</strong></p>
+<ul>
+<li>二分法开根号</li>
+<li>用除法来规避乘法造成的整型溢出</li>
+</ul>
 <hr>
 
       
@@ -762,7 +775,7 @@
         <p><span>本文标题:</span><a href="/2020/04/02/LeetCode刷题记录/">LeetCode刷题记录</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
         <p><span>发布时间:</span>2020-04-02, 23:45</p>
-        <p><span>最后更新:</span>2020-05-08, 17:29</p>
+        <p><span>最后更新:</span>2020-05-09, 18:50</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/04/02/LeetCode刷题记录/" title="LeetCode刷题记录">https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/</a>
             <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2020/04/02/LeetCode刷题记录/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
