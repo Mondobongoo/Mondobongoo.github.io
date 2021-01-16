@@ -18,19 +18,13 @@
 
 
 
-<meta name="description" content="继上次在eclipse中配置好Tomcat之后，今天准备用写一个hello world 的jsp文件试试水 不曾想，又坠入了另一个深坑……">
-<meta property="og:type" content="article">
-<meta property="og:title" content="记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程">
-<meta property="og:url" content="https://mondobongoo.github.io/2018/04/25/记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mondobongo&#39;s Blog">
+<meta property="og:url" content="https://mondobongoo.github.io/archives/2018/10/index.html">
 <meta property="og:site_name" content="Mondobongo&#39;s Blog">
-<meta property="og:description" content="继上次在eclipse中配置好Tomcat之后，今天准备用写一个hello world 的jsp文件试试水 不曾想，又坠入了另一个深坑……">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://owqr4khb7.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720180424233241.png">
-<meta property="og:updated_time" content="2018-09-26T14:47:07.119Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程">
-<meta name="twitter:description" content="继上次在eclipse中配置好Tomcat之后，今天准备用写一个hello world 的jsp文件试试水 不曾想，又坠入了另一个深坑……">
-<meta name="twitter:image" content="http://owqr4khb7.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720180424233241.png">
+<meta name="twitter:title" content="Mondobongo&#39;s Blog">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -62,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程 | Mondobongo&#39;s Blog</title>
+<title>Archives: 2018/10 | Mondobongo&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -72,8 +66,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: true,
-        isArchive: false,
+        isPost: false,
+        isArchive: true,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -227,197 +221,56 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2018/04/25/记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程/" class="article-date">
-      <time datetime="2018-04-25T02:22:25.000Z" itemprop="datePublished">2018-04-25</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+          <div class="article-meta">
+              <a href="/2018/10/05/JDBC/" class="archive-article-date">
+      <time datetime="2018-10-05T05:47:10.000Z" itemprop="datePublished">10-05</time>
 </a>
 
 
-    </div>
+        </div>
+         
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/10/05/JDBC/">JavaWeb 踩坑记录</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-archive">
+          
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/随笔/">随笔</a>
     </div>
 
 
-        
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
           
-        <p>继上次在eclipse中配置好Tomcat之后，今天准备用写一个hello world 的jsp文件试试水</p>
-<p>不曾想，又坠入了另一个深坑……</p>
-<a id="more"></a>
-<p>​     </p>
-<p>创建项目-&gt;创建jsp文件-&gt;写代码-&gt;运行-&gt;报错？？？？</p>
-<p>只见我的眼前出现了一个小框框，上面写道</p>
-<p>Could not create the Java Virtual Machine.</p>
-<p>行行行，您厉害，我怕了还不成吗？（怕个屁，百度走起~~ Stack Overflow走起~~</p>
-<p>​      </p>
-<p>搜啊搜，找啊找，试啊试，调啊调</p>
-<p>各路牛鬼蛇神们的方法都试过了，eclipse和jdk也卸载安装好几遍了</p>
-<p>——没用！</p>
-<p>一晃三个多小时就这样莫名其妙地过去了？？？？</p>
-<p>开始慌了……（我的天这样下去没办法写作业没办法交作业期末要挂科了啊啊啊啊啊啊啊怎么办啊神啊救救我啊</p>
-<p>​                                           </p>
-<p>冥思苦想</p>
-<p>苦思冥想</p>
-<p>​                                           </p>
-<p>一眼瞥见</p>
-<p><img src="http://owqr4khb7.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720180424233241.png" alt=""></p>
-<p>在eclipse下面的小console框框里，写了几行这样的字</p>
-<p><code>-Djava.endorsed.dirs=E:\Tomcat 9.0\endorsed is not supported. Endorsed standards and standalone APIsin modular form will be supported via the concept of upgradeable modules.</code></p>
-<p>啥啥啥？这都都是啥？跟我出错的地方好像没什么关系吧？</p>
-<p>​      </p>
-<p>算了复制粘贴一股脑扔百度上得了</p>
-<p>没想到还真找到了！！！</p>
-<p>看了看，大部分人都说的是，出现这个错误是因为jdk版本太新了，tomcat的版本跟不上，所以二者不匹配导致出现了错误</p>
-<p><a href="https://bbs.csdn.net/topics/392277991" target="_blank" rel="noopener">https://bbs.csdn.net/topics/392277991</a></p>
-<p><a href="https://www.cnblogs.com/heyanfei/p/8856047.html" target="_blank" rel="noopener">https://www.cnblogs.com/heyanfei/p/8856047.html</a></p>
-<p>哈？？？？</p>
-<p>这让我想起来了某一个下午</p>
-<p>我看见桌面弹出了一个java需要更新的消息框</p>
-<p>想都没想就点了确定</p>
-<p>难道是……？？？</p>
-<p>Oh my god……</p>
-<p>我为什么要这么手贱？？？？</p>
-<p>​        </p>
-<p>痛定思痛，卸载了最新的jdk，找了一个老版本的装了上去</p>
-<p>配环境，创文件</p>
-<p>点击 Run as 运行</p>
-<p>成功了！！！！！！！！！！！！！！</p>
-<p>这件事告诉我们：</p>
-<ol>
-<li>不要手贱！！</li>
-<li>仅仅会搜报错信息还是不够的，要灵活，学会在茫茫的报错中，找到最特殊的，最具有代表性的那一条错误去搜，才是最重要的！！</li>
-</ol>
-
-      
-    </div>
-    
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/04/25/记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程/">记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程</a></p>
-        <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
-        <p><span>发布时间:</span>2018-04-25, 10:22</p>
-        <p><span>最后更新:</span>2018-09-26, 22:47</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/04/25/记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程/" title="记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程">https://mondobongoo.github.io/2018/04/25/记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2018/04/25/记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
-
-    
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/07/10/BUG记录之JSP篇/">
-                    BUG记录之JSP篇
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/04/09/不吐不快——吐槽Tomcat 和 Eclipse 相关联过程中遇到的坑/">
-                    不吐不快——吐槽Tomcat与Eclipse相关联过程中遇到的坑
-                </a>
-            </div>
-        
-    </nav>
-
-  
 </article>
-
-
-
-
-
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"true"];
-    </script>
-
-
-
-
+  
+  
+    </div></section>
+  
 
     
 
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2018/07/10/BUG记录之JSP篇/" title="上一篇: BUG记录之JSP篇">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2018/04/09/不吐不快——吐槽Tomcat 和 Eclipse 相关联过程中遇到的坑/" title="下一篇: 不吐不快——吐槽Tomcat与Eclipse相关联过程中遇到的坑">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/数据范围导致的循环问题/">数据范围导致的循环问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/01/修改hexo字体大小与文字溢出边框问题/">修改hexo字体大小与CSS文字溢出边框问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/05/JDBC/">JavaWeb 踩坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/10/BUG记录之JSP篇/">BUG记录之JSP篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/25/记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程/">记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/09/不吐不快——吐槽Tomcat 和 Eclipse 相关联过程中遇到的坑/">不吐不快——吐槽Tomcat与Eclipse相关联过程中遇到的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/17/CCF 201709-2 公共钥匙盒/">CCF 201709-2 公共钥匙盒</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/18/汇编语言环境搭建-输出-Hello-World/">汇编语言环境搭建&&输出'Hello World'</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/废话一箩筐/">废话一箩筐</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/codeforces-862B-Mahmoud-and-Ehab-and-the-bipartiteness/">codeforces-862B Mahmoud and Ehab and the bipartiteness</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/hihocoder-1121 二分图的判定/">hihocoder-1121 二分图的判定</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/简述二分图/">简述二分图</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/23/continue语句在while和for中用法的差别/">continue语句在while和for中用法的差别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/19/对克鲁斯卡尔算法的深度理解/">对克鲁斯卡尔算法的深度理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/利用vector实现邻接表建图/">利用vector实现邻接表建图</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
 </div>
       <footer id="footer">
     <div class="outer">
