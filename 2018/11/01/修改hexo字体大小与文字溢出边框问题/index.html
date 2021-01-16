@@ -25,15 +25,15 @@
 <meta property="og:site_name" content="Mondobongo&#39;s Blog">
 <meta property="og:description" content="新换了Melody主题后，总是感觉有哪里不对劲，仔细想了想原来是这个主题的字体太小了，看上去很不舒服">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://qpic.cn/hh0D5kaR1">
+<meta property="og:image" content="http://b308.photo.store.qq.com/psb?/V138MMQ83qT5pq/x.bo3yue7WR*amRVIU2isURhy.M8hYZWdSQgxrKWyZo!/b/dDQBAAAAAAAA&bo=WgE1AVoBNQERGS4!&rf=viewer_4&t=5">
 <meta property="og:image" content="http://m.qpic.cn/psb?/V138MMQ83qT5pq/UnZtl5Gflb2Es5pnuWEfVclGJTGbC0jyK0EjHxpMA3M!/b/dEcBAAAAAAAA&bo=NAEGATQBBgERGS4!&rf=viewer_4&t=5">
 <meta property="og:image" content="http://m.qpic.cn/psb?/V138MMQ83qT5pq/1QzW8.Fa0DyOswUwxh3T8eGn59EFvjwqxTmxauEyB3c!/b/dFMBAAAAAAAA&bo=8wIWAvMCFgIDGTw!&rf=viewer_4&t=5">
 <meta property="og:image" content="http://b304.photo.store.qq.com/psb?/V138MMQ83qT5pq/ujVbA9PzRuxhiX2wMYe3SY.oLd10bFstmOB35VYVCrA!/b/dDABAAAAAAAA&bo=OgE0AToBNAEDGTw!&rf=viewer_4&t=5">
-<meta property="og:updated_time" content="2019-03-15T02:16:14.939Z">
+<meta property="og:updated_time" content="2021-01-16T08:48:54.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="修改hexo字体大小与CSS文字溢出边框问题">
 <meta name="twitter:description" content="新换了Melody主题后，总是感觉有哪里不对劲，仔细想了想原来是这个主题的字体太小了，看上去很不舒服">
-<meta name="twitter:image" content="http://qpic.cn/hh0D5kaR1">
+<meta name="twitter:image" content="http://b308.photo.store.qq.com/psb?/V138MMQ83qT5pq/x.bo3yue7WR*amRVIU2isURhy.M8hYZWdSQgxrKWyZo!/b/dDQBAAAAAAAA&bo=WgE1AVoBNQERGS4!&rf=viewer_4&t=5">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -273,11 +273,13 @@
           
         <p>新换了<a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener">Melody</a>主题后，总是感觉有哪里不对劲，仔细想了想原来是这个主题的字体太小了，看上去很不舒服</p>
  <a id="more"></a>
+<header><meta name="referrer" content="never"></header>
+
 <p>于是乎在网上搜了一下如何修改字体，<a href="https://www.jianshu.com/p/02fbd409988c" target="_blank" rel="noopener">https://www.jianshu.com/p/02fbd409988c</a></p>
 <p>对照这篇文章，我在 <code>melody\source\css\var.styl</code> 找到了可修改之处</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$font-size = 14px  </span><br><span class="line">//修改为</span><br><span class="line">$font-size = 16px</span><br></pre></td></tr></table></figure>
 <p>可万万没想到，修改了字体后，在移动端的博客文章底部，却出现了文字溢出边框的问题</p>
-<p><img src="http://qpic.cn/hh0D5kaR1" alt=""></p>
+<p><img src="http://b308.photo.store.qq.com/psb?/V138MMQ83qT5pq/x.bo3yue7WR*amRVIU2isURhy.M8hYZWdSQgxrKWyZo!/b/dDQBAAAAAAAA&amp;bo=WgE1AVoBNQERGS4!&amp;rf=viewer_4&amp;t=5" alt=""></p>
 <p>经过了几番查找，在 <code>melody\source\css\_layout\post.styl</code> 找到了可修改之处</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span></span><br><span class="line">  color: $a-link-color</span><br><span class="line">  <span class="selector-tag">transition</span>: <span class="selector-tag">all</span> 0<span class="selector-class">.2s</span></span><br><span class="line">//修改为</span><br><span class="line"><span class="selector-tag">a</span></span><br><span class="line">  color: $a-link-color</span><br><span class="line">  <span class="selector-tag">transition</span>: <span class="selector-tag">all</span> 0<span class="selector-class">.2s</span></span><br><span class="line">  <span class="selector-tag">word-break</span>: <span class="selector-tag">break-all</span></span><br></pre></td></tr></table></figure>
 <p>可以看到已解决文字溢出问题，但换行并不完全能够令人满意</p>
@@ -299,7 +301,7 @@
         <p><span>本文标题:</span><a href="/2018/11/01/修改hexo字体大小与文字溢出边框问题/">修改hexo字体大小与CSS文字溢出边框问题</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Mondobongo 的个人博客">Mondobongo</a></p>
         <p><span>发布时间:</span>2018-11-01, 20:07</p>
-        <p><span>最后更新:</span>2019-03-15, 10:16</p>
+        <p><span>最后更新:</span>2021-01-16, 16:48</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/11/01/修改hexo字体大小与文字溢出边框问题/" title="修改hexo字体大小与CSS文字溢出边框问题">https://mondobongoo.github.io/2018/11/01/修改hexo字体大小与文字溢出边框问题/</a>
             <span class="copy-path" data-clipboard-text="原文: https://mondobongoo.github.io/2018/11/01/修改hexo字体大小与文字溢出边框问题/　　作者: Mondobongo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -384,7 +386,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/04/02/LeetCode刷题记录/">LeetCode刷题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/数据范围导致的循环问题/">数据范围导致的循环问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/01/修改hexo字体大小与文字溢出边框问题/">修改hexo字体大小与CSS文字溢出边框问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/10/BUG记录之JSP篇/">BUG记录之JSP篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/25/记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程/">记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/09/不吐不快——吐槽Tomcat 和 Eclipse 相关联过程中遇到的坑/">不吐不快——吐槽Tomcat与Eclipse相关联过程中遇到的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/18/汇编语言环境搭建-输出-Hello-World/">汇编语言环境搭建&&输出'Hello World'</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/废话一箩筐/">废话一箩筐</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/codeforces-862B-Mahmoud-and-Ehab-and-the-bipartiteness/">codeforces-862B Mahmoud and Ehab and the bipartiteness</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/hihocoder-1121 二分图的判定/">hihocoder-1121 二分图的判定</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/简述二分图/">简述二分图</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/23/continue语句在while和for中用法的差别/">continue语句在while和for中用法的差别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/19/对克鲁斯卡尔算法的深度理解/">对克鲁斯卡尔算法的深度理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/利用vector实现邻接表建图/">利用vector实现邻接表建图</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/数据范围导致的循环问题/">数据范围导致的循环问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/01/修改hexo字体大小与文字溢出边框问题/">修改hexo字体大小与CSS文字溢出边框问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/10/BUG记录之JSP篇/">BUG记录之JSP篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/25/记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程/">记录一次令人崩溃、气得想撞墙的Tomcat环境启动过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/09/不吐不快——吐槽Tomcat 和 Eclipse 相关联过程中遇到的坑/">不吐不快——吐槽Tomcat与Eclipse相关联过程中遇到的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/18/汇编语言环境搭建-输出-Hello-World/">汇编语言环境搭建&&输出'Hello World'</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/废话一箩筐/">废话一箩筐</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/codeforces-862B-Mahmoud-and-Ehab-and-the-bipartiteness/">codeforces-862B Mahmoud and Ehab and the bipartiteness</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/hihocoder-1121 二分图的判定/">hihocoder-1121 二分图的判定</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/简述二分图/">简述二分图</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/23/continue语句在while和for中用法的差别/">continue语句在while和for中用法的差别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/19/对克鲁斯卡尔算法的深度理解/">对克鲁斯卡尔算法的深度理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/利用vector实现邻接表建图/">利用vector实现邻接表建图</a></li></ul>
 
 
 
